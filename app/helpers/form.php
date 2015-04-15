@@ -1,11 +1,4 @@
 <?php namespace helpers;
-/*
- * Form Helper - create form elements quickly
- *
- * @author David Carr - dave@daveismyname.com - http://www.daveismyname.com
- * @version 1.0
- * @date June 27, 2014
- */
 class form {
 
     /**

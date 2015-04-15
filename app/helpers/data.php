@@ -1,12 +1,5 @@
 <?php namespace helpers;
 
-/*
- * data Helper - common data lookup methods
- *
- * @author David Carr - dave@daveismyname.com - http://www.daveismyname.com
- * @version 1.0
- * @date March 28, 2015
- */
 class data {
 
 	/**

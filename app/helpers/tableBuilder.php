@@ -1,13 +1,5 @@
 <?php namespace helpers;
 
-/*
- * Table builder class
- *
- * @author Volter9 - https://github.com/Volter9
- * @version 2.1
- * @date Sept 22, 2014
- */
-
 use PDO;
 
 /**

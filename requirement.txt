@@ -1,0 +1,15 @@
+Build 1 website eSupervision cho 1 truong dai hoc:
+ Phai co nhung yeu to sau:
+- Tat ca sinh vien phai co 1 nguoi giam sat va 1 nguoi theo doi thu 2.
+- Cac member co quyen va khong co quyen deu co quyen chi dinh 2 nguoi tren cho sinh vien.
+- Moi sinh vien va moi staff deu co email notification khi co viec do xay ra. 
+- Set quyen quan ly toi cac supervisor va second marker.
+- Sinh vien / supervisor / marker dung esupervision cho viec nhan tin, sap xep va record meeting,
+upload document, or blogging.
+- Email lien quan den project giua sinh vien va staff dung de thong bao cac su kien ben trong 
+backend. Khong co noi dung khac send thong qua email.
+- Sinh vien va nhan vien thi truy cap tu MIS system.
+- Moi sinh vien co dash board ca nhan tong hop tat ca nhung hoat dong voi supervisor va marker.
+- Moi supervisor and marker co 1 cai bang, nhung sinh vien voi project cua ho co the sort va
+filter.
+- Interface phai responsive.

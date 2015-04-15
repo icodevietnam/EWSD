@@ -2,13 +2,6 @@
 use core\controller,
     core\view;
 
-/*
- * error class - calls a 404 page
- *
- * @author David Carr - dave@daveismyname.com - http://www.daveismyname.com
- * @version 2.1
- * @date June 27, 2014
- */
 class Error extends Controller {
 
 	/**

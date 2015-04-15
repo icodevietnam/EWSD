@@ -1,13 +1,5 @@
 <?php namespace helpers;
 
-/**
- * Assets static helper
- * 
- * @author volter9
- * @author QsmaPL
- * @date 27th November, 2014
- */
-
 class Assets {
 	
 	/**

@@ -1,12 +1,5 @@
 <?php namespace core;
 
-/*
-* logger class - Custom errors
-*
-* @author David Carr - dave@daveismyname.com - http://www.daveismyname.com
-* @version 2.1
-* @date June 27, 2014
-*/
 class Logger {
 
 	/**

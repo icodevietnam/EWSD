@@ -1,12 +1,5 @@
 <?php namespace core;
 
-/*
- * Language - simple language handler
- *
- * @author Bartek Kuśmierczuk - contact@qsma.pl - http://qsma.pl
- * @version 2.1
- * @date November 18, 2014
- */
 class Language {
 
 	/**

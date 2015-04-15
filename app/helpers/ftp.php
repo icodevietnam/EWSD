@@ -1,11 +1,5 @@
 <?php namespace helpers;
-/*
- * FTP Class - interact with remote FTP Server
- *
- * @author David Carr - dave@daveismyname.com - http://www.daveismyname.com
- * @version 1.0
- * @date June 27, 2014
- */
+
 class Ftp {
 
 	/**

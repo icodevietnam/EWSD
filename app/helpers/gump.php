@@ -1,14 +1,5 @@
 <?php namespace helpers;
 
-/**
- * GUMP - A fast, extensible PHP input validation class
- *
- * @author      Sean Nieuwoudt (http://twitter.com/SeanNieuwoudt)
- * @copyright   Copyright (c) 2014 Wixelhq.com
- * @link        http://github.com/Wixel/GUMP
- * @version     1.0
- */
-
 class GUMP
 {
 	// Validation rules for execution

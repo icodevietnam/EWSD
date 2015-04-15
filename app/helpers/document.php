@@ -1,11 +1,5 @@
 <?php namespace helpers;
-/*
- * Document Helper - collection of methods for working with documents
- *
- * @author David Carr - dave@daveismyname.com - http://www.daveismyname.com
- * @version 1.0
- * @date updated Feb 07, 2015
- */
+
 class Document {
 
 	/**

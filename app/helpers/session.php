@@ -1,12 +1,5 @@
 <?php namespace helpers;
 
-/*
- * Session Class - prefix sessions with useful methods
- *
- * @author David Carr - dave@daveismyname.com - http://www.daveismyname.com
- * @version 2.0
- * @date June 27, 2014
- */
 class Session {
 
 	/**

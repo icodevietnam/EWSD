@@ -1,11 +1,4 @@
 <?php namespace helpers;
-/* 
-** RainCaptcha PHP Wrapper v1.1.0
-**
-** Documentation: http://raincaptcha.driversworld.us/pages/docs_php_wrapper
-** http://raincaptcha.driversworld.us/
-** This code is in the public domain.
-*/
 
 class RainCaptcha {
 
