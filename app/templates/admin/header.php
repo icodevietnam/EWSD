@@ -10,18 +10,12 @@
 
     <title><?php echo $data['title'].' - '.SITETITLE ?></title>
     <?php
-    	
+    	helpers\assets::css(array(
+    		helpers\url::admin_template_path().'css/bootstrap.min.css',
+    		helpers\url::admin_template_path().'css/sb-admin.css',
+    		helpers\url::admin_template_path().'css/morris.css',
+    		helpers\url::admin_template_path().'css/font-awesome.min.css',
+    		helpers\url::admin_template_path().'css/style.css'
+    	));
     ?>
-    <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="css/sb-admin.css" rel="stylesheet">
-
-    <!-- Morris Charts CSS -->
-    <link href="css/plugins/morris.css" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
 </head>
