@@ -27,7 +27,7 @@ class Welcome extends \core\controller{
 		$data['welcome_message'] = $this->language->get('welcome_message');
 		
 		View::rendertemplate('header', $data);
-		View::render('welcome/welcome', $data);
+		View::render('admin/welcome1', $data);
 		View::rendertemplate('footer', $data);
 	}
 
