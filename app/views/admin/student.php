@@ -1,1 +1,1 @@
-<h1>Dep trai</h1>
+<h1><?php echo $welcome; ?></h1>
