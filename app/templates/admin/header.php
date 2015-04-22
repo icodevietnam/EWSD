@@ -12,9 +12,9 @@
     <?php
     	helpers\assets::css(array(
     		helpers\url::admin_template_path().'css/bootstrap.min.css',
-    		helpers\url::admin_template_path().'css/sb-admin.css',
     		helpers\url::admin_template_path().'css/morris.css',
     		helpers\url::admin_template_path().'css/font-awesome.min.css',
+            helpers\url::admin_template_path().'css/sb-admin.css',
     		helpers\url::admin_template_path().'css/style.css'
     	));
     ?>

@@ -25,11 +25,11 @@ class Url {
 	}
 
 	public static function admin_template_path(){
-		return DIR.'app/templates/admin/';
+		return DIR.'ewsd/app/templates/admin/';
 	}
 
 	public static function home_template_path(){
-		return DIR.'app/templates/home';
+		return DIR.'ewsd/app/templates/home';
 	}
 
 	/**
