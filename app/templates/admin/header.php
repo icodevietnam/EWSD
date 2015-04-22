@@ -30,7 +30,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">SB Admin</a>
+                <a class="navbar-brand" href="index.html">eSupervisor</a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
@@ -175,3 +175,5 @@
             </div>
             <!-- /.navbar-collapse -->
         </nav>
+    <div id='page-wrapper'>
+        <div class='container-fluid'>
