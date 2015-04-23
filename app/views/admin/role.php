@@ -14,7 +14,7 @@
 <div class="row crud-action">
 	<div class="col-lg-3"><button class="btn btn-primary">Create</button></div>
 </div>
-<div class="row main-table">
+<div id="mainTable" class="row">
 	<table class="table table-striped table-hover"  id="tblList"> </table>
 </div>
 

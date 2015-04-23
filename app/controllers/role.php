@@ -15,12 +15,4 @@ class Role extends \core\controller{
 		echo json_encode($listRole);
 	}
 
-	public function index(){
-		$data['title']='Role Management';
-		$data['key']='Role';
-		View::renderAdminTemplate('header', $data);
-		View::render('admin/role', $data);
-		View::renderAdminTemplate('footer', $data);
-	}
-
 }
