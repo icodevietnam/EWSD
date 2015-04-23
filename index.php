@@ -64,8 +64,10 @@ use \core\router,
     \helpers\url;
 
 //define routes
-Router::any('/abc', '\controllers\student@index');
-Router::any('/subpage', '\controllers\welcome@subpage');
+Router::any('/admin/role', '\controllers\role@index');    
+Router::any('/student/getAll', '\controllers\student@getAll');
+Router::get('/role/getAll', '\controllers\role@getAll');
+
 
 //if no route found
 Router::error('\core\error@index');

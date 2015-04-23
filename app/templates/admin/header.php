@@ -18,6 +18,11 @@
     		helpers\url::admin_template_path().'css/style.css'
     	));
     ?>
+    <?php 
+    \helpers\assets::js(array(
+    helpers\url::admin_template_path().'js/jquery.js',
+    helpers\url::admin_template_path().'js/bootstrap.min.js'));
+    ?>
 </head>
 <body>
     <div id="wrapper">
@@ -136,7 +141,24 @@
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
+                    <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Account Management <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="demo" class="collapse">
+                            <li>
+                                <a href="admin/account">Account</a>
+                            </li>
+                            <li>
+                                <a href="admin/role">Role</a>
+                            </li>
+                        </ul>
+                    </li>
                     <li class="active">
+                        <a href="index.html"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="charts.html"><i class="fa fa-fw fa-bar-chart-o"></i> Charts</a>
+                    </li>
+                    <!-- <li class="active">
                         <a href="index.html"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
                     </li>
                     <li>
@@ -170,7 +192,7 @@
                     </li>
                     <li>
                         <a href="index-rtl.html"><i class="fa fa-fw fa-dashboard"></i> RTL Dashboard</a>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
