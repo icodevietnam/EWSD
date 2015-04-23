@@ -67,6 +67,7 @@ use \core\router,
 Router::any('/admin/role', '\controllers\role@index');    
 Router::any('/student/getAll', '\controllers\student@getAll');
 Router::get('/role/getAll', '\controllers\role@getAll');
+Router::get('/admin/project', '\controllers\project@index');
 
 
 //if no route found
