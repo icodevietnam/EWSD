@@ -2,12 +2,9 @@ $(function(){
 
   initialize();
 
-
-
   function initialize(){
     getAll();
   }
-
 
   function getAll(){
     var dataSrc=[];
@@ -29,7 +26,7 @@ $(function(){
           var temp = [num,item.name,item.description,"<button class='btn btn-default'>Edit</button>","<button class='btn btn-danger'>Delete</button>"];
           dataSrc.push(temp);
       });
-      
+
       $('#tblList').dataTable({
         "bDestroy": true,
         "bSort": true,

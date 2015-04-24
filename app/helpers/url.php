@@ -25,11 +25,27 @@ class Url {
 	}
 
 	public static function admin_template_path(){
-		return DIR.'ewsd/app/templates/admin/';
+		return DIR.'EWSD/app/templates/admin/';
 	}
 
 	public static function home_template_path(){
-		return DIR.'ewsd/app/templates/home';
+		return DIR.'EWSD/app/templates/home/';
+	}
+
+	public static function login_template_path(){
+		return DIR.'EWSD/app/templates/login/';
+	}
+
+	public static function home_url(){
+		echo '/EWSD/app/templates/home/';	
+	}
+
+	public static function admin_url(){
+		echo '/EWSD/app/templates/admin/';	
+	}
+
+	public static function login_url(){
+		echo '/EWSD/app/templates/login/';	
 	}
 
 	/**

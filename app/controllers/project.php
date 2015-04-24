@@ -12,11 +12,14 @@ class Project extends \core\controller{
 
 	public function index(){
 		$data['title']="Project management";
-		$data['listProject'] = $this->_model->getAll();
 		//echo json_encode($listProject);
 		View::renderAdminTemplate('header',$data);
 		View::render('admin/project',$data);
 		View::renderAdminTemplate('footer',$data);
 	}
 
+	public function getAll(){
+		$listProject = $this->_model->getAll();
+		echo json_encode($listProject);
+	}
 }

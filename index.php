@@ -63,11 +63,18 @@ new \core\config();
 use \core\router,
     \helpers\url;
 
-//define routes
-Router::any('/admin/role', '\controllers\role@index');    
+
+//load Page View
+Router::any('/admin/role', '\controllers\pages@RolePage');  
+Router::any('/home', '\controllers\pages@homePage');
+Router::any('/login', '\controllers\pages@loginPage');
+Router::any('/admin/dashboard', '\controllers\pages@dashBoardPage');
+//define routes  
 Router::any('/student/getAll', '\controllers\student@getAll');
 Router::get('/role/getAll', '\controllers\role@getAll');
+Router::post('/loginStaffProcess','\controllers\user@loginStaff');
 Router::get('/admin/project', '\controllers\project@index');
+Router::get('/project/getAll', '\controllers\project@getAll');
 
 
 //if no route found
