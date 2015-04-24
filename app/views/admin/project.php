@@ -7,7 +7,7 @@
 			<i class="fa fa-dashboard"></i><a href="admin/dashboard">Dashboard</a>
 		</li>
 		<li class="active">
-			<i class="fa fa-bar-chart-o"></i><a href="/admin/role"><?php echo $data['key'] ?></a>
+			<i class="fa fa-bar-chart-o"></i><a href="/admin/<?php echo $data['key'] ?>"><?php echo $data['key'] ?></a>
 		</li>
 	</ol>
 </div>
@@ -22,7 +22,7 @@
 <div class="modal fade" id="popup-modal">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<form class="save-project-form">
+			<form class="save-form">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span></button>
@@ -56,7 +56,7 @@
 <div class="modal fade" id="delete-modal">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<form class="delete-project-form">
+			<form class="delete-form">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span></button>

@@ -22,7 +22,8 @@
     <?php 
     \helpers\assets::js(array(
     helpers\url::home_template_path().'js/jquery.js',
-    helpers\url::home_template_path().'js/bootstrap.min.js'));
+    helpers\url::home_template_path().'js/bootstrap.min.js',
+	helpers\url::home_template_path().'js/home.js'));
     ?>
 </head>
 <body>
@@ -32,28 +33,50 @@
                 <!-- Button for smallest screens -->
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
                 <a class="navbar-brand" href="index.html">
-                    <img src="<?php helpers\url::home_url() ?>images/logo.png" alt="Techro HTML5 template"></a>
+                    <img src="<?php helpers\url::home_url() ?>images/logo.png" alt=""></a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav pull-right mainNav">
-                    <li class="active"><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="courses.html">Courses</a></li>
-                    <li><a href="fees.html">Fees</a></li>
-                    <li><a href="portfolio.html">Portfolio</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pages <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="sidebar-right.html">Right Sidebar</a></li>
-                            <li><a href="#">Dummy Link1</a></li>
-                            <li><a href="#">Dummy Link2</a></li>
-                            <li><a href="#">Dummy Link3</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="contact.html">Contact</a></li>
+                    <li class="active"><a href="home">Home</a></li>
+                    <li><a href="about">About</a></li>
+                    <li><a href="courses">Courses</a></li>
+                    <li><a href="fees">Fees</a></li>
+                    <li><a href="portfolio">Portfolio</a></li>
+                    <li><a href="contact">Contact</a></li>
+					<li><a id="login-link" href="" data-toggle="modal" data-target="#login-modal">Login</a></li>
 
                 </ul>
             </div>
             <!--/.nav-collapse -->
         </div>
     </div>
+
+	<div class="modal fade" id="login-modal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<form class="save-form">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title">Login</h4>
+					</div>
+					<div class="modal-body">
+						<div class="form-group">
+							<label for="txtUsername">Username: </label>
+							<input id="txtUsername" name="txtUsername" class="form-control" type="text" placeholder="Enter username" required />
+						</div>
+						<div class="form-group">
+							<label for="txtPassword">Password: </label>
+							<input id="txtPassword" name="txtPassword" class="form-control" type="password" placeholder="Enter password" required />
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						<button type="submit" class="btn btn-primary">Login</button>
+					</div>
+				</form>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div><!-- /.modal -->

@@ -8,7 +8,7 @@ $(function () {
 
     function getAll() {
         var dataSrc = [];
-        var url = '/EWSD/project/getAll';
+        var url = '/EWSD/forum/getAll';
         var num = 0;
         //$.when($.ajax({
         //  url : url,
@@ -26,9 +26,9 @@ $(function () {
         //      var temp = [num,item.name,item.description,"<button class='btn btn-default btn-edit'>Edit</button>","<button class='btn btn-danger btn-create'>Delete</button>"];
         //      dataSrc.push(temp);
         //  });
-        var temp1 = [1, "Project 1", "This is project 1", "Supervisor 1", "<button class='btn btn-default btn-edit' data-toggle='modal' data-target='#popup-modal' data-id='1'>Edit</button>", "<button class='btn btn-danger btn-delete' data-toggle='modal' data-target='#delete-modal' data-id='1'>Delete</button>"];
-        var temp2 = [2, "Project 2", "This is project 2", "Supervisor 2", "<button class='btn btn-default btn-edit' data-toggle='modal' data-target='#popup-modal' data-id='2'>Edit</button>", "<button class='btn btn-danger btn-delete' data-toggle='modal' data-target='#delete-modal' data-id='2'>Delete</button>"];
-        var temp3 = [3, "Project 3", "This is project 3", "Supervisor 3", "<button class='btn btn-default btn-edit' data-toggle='modal' data-target='#popup-modal' data-id='3'>Edit</button>", "<button class='btn btn-danger btn-delete' data-toggle='modal' data-target='#delete-modal' data-id='3'>Delete</button>"];
+        var temp1 = [1, "forum 1", "This is forum 1", "<button class='btn btn-default btn-edit' data-toggle='modal' data-target='#popup-modal' data-id='1'>Edit</button>", "<button class='btn btn-danger btn-delete' data-toggle='modal' data-target='#delete-modal' data-id='1'>Delete</button>"];
+        var temp2 = [2, "forum 2", "This is forum 2", "<button class='btn btn-default btn-edit' data-toggle='modal' data-target='#popup-modal' data-id='2'>Edit</button>", "<button class='btn btn-danger btn-delete' data-toggle='modal' data-target='#delete-modal' data-id='2'>Delete</button>"];
+        var temp3 = [3, "forum 3", "This is forum 3", "<button class='btn btn-default btn-edit' data-toggle='modal' data-target='#popup-modal' data-id='3'>Edit</button>", "<button class='btn btn-danger btn-delete' data-toggle='modal' data-target='#delete-modal' data-id='3'>Delete</button>"];
         dataSrc.push(temp1);
         dataSrc.push(temp2);
         dataSrc.push(temp3);
@@ -41,7 +41,6 @@ $(function () {
                 {"sTitle": "#"},
                 {"sTitle": "name"},
                 {"sTitle": "Description"},
-                {"sTitle": "Created by"},
                 {"sTitle": "Edit"},
                 {"sTitle": "Delete"}
             ]
@@ -53,8 +52,8 @@ $(function () {
 
     $('.btn-edit').click(function () {
         var dataId = $(this).data('id');
-        $('.save-form #txtName').val('Project ' + dataId);
-        $('.save-form #txtDescription').val('This is project ' + dataId);
+        $('.save-form #txtName').val('forum ' + dataId);
+        $('.save-form #txtDescription').val('This is forum ' + dataId);
     });
 
     $('.btn-create').click(function(){
@@ -64,6 +63,6 @@ $(function () {
 
     $('.btn-yes').click(function(){
         //$('#delete-modal').fadeOut();
-       alert('Delete successfully!')
+        alert('Delete successfully!')
     });
 });

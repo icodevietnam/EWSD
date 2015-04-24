@@ -34,7 +34,7 @@
 						<i class="fa fa-cogs fa-2x"></i>
 						<div class="text">
 							<h3>Responsive Design</h3>
-							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+							Responsive web design (RWD) is an approach to web design aimed at crafting sites to provide an optimal viewing experience—easy reading and navigation ...
 						</div>
 					</div>
 				</div>
@@ -43,7 +43,7 @@
 						<i class="fa fa-leaf fa-2x"></i>
 						<div class="text">
 							<h3>HTML5/CSS3</h3>
-							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+							Free HTML CSS JavaScript DOM jQuery XML AJAX Angular ASP .NET PHP ... What is New in HTML5? The DOCTYPE declaration for HTML5 is very simple
 						</div>
 					</div>
 				</div>
@@ -52,7 +52,7 @@
 						<i class="fa fa-tachometer fa-2x"></i>
 						<div class="text">
 							<h3>Web Designing</h3>
-							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+							Web design encompasses many different skills and disciplines in the production and maintenance of websites. The different areas of web design include web ...
 						</div>
 					</div>
 				</div>
@@ -63,7 +63,7 @@
 						<i class="fa fa-eye fa-2x"></i>
 						<div class="text">
 							<h3>Web App Dev</h3>
-							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+							Web application development is the process and practice of developing web applications. Contents. [hide]. 1 Risk; 2 Technologies; 3 Lifecycle Model; 4 Testing ...
 						</div>
 					</div>
 				</div>
@@ -72,7 +72,7 @@
 						<i class="fa fa-quote-right fa-2x"></i>
 						<div class="text">
 							<h3>Data Base</h3>
-							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+							A database is an organized collection of data. The data is typically organized to model aspects of reality in a way that supports processes requiring information.
 						</div>
 					</div>
 				</div>
@@ -81,7 +81,7 @@
 						<i class="fa fa-arrows fa-2x"></i>
 						<div class="text">
 							<h3>Mobile App Dev</h3>
-							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+							Mobile application development by which application software is developed for handheld devices, such as personal digital assistants, enterprise digital ...
 						</div>
 					</div>
 				</div>
@@ -100,10 +100,10 @@
 				<img src="<?php helpers\url::home_url() ?>images/1.jpg" alt="" class="img-responsive">
 			</div>
 			<div class="col-md-8">
-				<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. </p>
+				<p>While relishing the fact that the future belongs to optics and photonics, we shouldn't forget that the future of the field lies in the hands of students. Students are tomorrow's leaders, scientists, inventors, entrepreneurs and engineers. This makes every little investment into students, be it intellectual or financial, worthwhile. Fortunately, the optics and photonics community actively provides diverse opportunities and support for students. </p>
 				<blockquote class="blockquote-1">
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante. Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid</p>
-					<small>Someone famous in <cite title="Source Title">Source Title</cite></small>
+					<p>We must work together to ensure better and brighter days for our students. They are, after all, our future. The District is implementing many new programs to ...</p>
+					<small>Our student</small>
 				</blockquote>
 			</div>
 		</div>
