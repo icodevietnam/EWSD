@@ -48,6 +48,10 @@ class Url {
 		echo '/EWSD/app/templates/login/';	
 	}
 
+	public static function root_page(){
+		echo '/EWSD/';
+	}
+
 	/**
 	 * converts plain text urls into HTML links, second argument will be
 	 * used as the url label <a href=''>$custom</a>

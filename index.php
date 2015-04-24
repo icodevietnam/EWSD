@@ -65,7 +65,13 @@ use \core\router,
 
 
 //load Page View
-Router::any('/admin/role', '\controllers\pages@RolePage');  
+Router::any('/admin/role', '\controllers\pages@rolePage');
+Router::any('/admin/course', '\controllers\pages@coursePage');
+Router::any('/admin/article', '\controllers\pages@articlePage');
+Router::any('/admin/account', '\controllers\pages@accountPage');  
+Router::any('/admin/project', '\controllers\pages@projectPage');
+Router::any('/admin/forum', '\controllers\pages@forumPage');
+Router::any('/admin/file', '\controllers\pages@filePage');
 Router::any('/home', '\controllers\pages@homePage');
 Router::any('/login', '\controllers\pages@loginPage');
 Router::any('/admin/dashboard', '\controllers\pages@dashBoardPage');
@@ -73,6 +79,7 @@ Router::any('/admin/dashboard', '\controllers\pages@dashBoardPage');
 Router::any('/student/getAll', '\controllers\student@getAll');
 Router::get('/role/getAll', '\controllers\role@getAll');
 Router::post('/loginStaffProcess','\controllers\user@loginStaff');
+Router::any('/logout','\controllers\user@logOut');
 Router::get('/admin/project', '\controllers\project@index');
 Router::get('/project/getAll', '\controllers\project@getAll');
 

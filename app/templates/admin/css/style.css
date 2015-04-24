@@ -1,6 +1,10 @@
 #mainTable{
 	margin-top: 15px;
 }
+
+i{
+	margin-right: 5px;
+}
 #delete-modal p.confirm-message {
     text-align: center;
 }

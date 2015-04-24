@@ -14,36 +14,33 @@ use helpers\session;
 			$this->_user = new \models\users();
 		}
 
-		/*public function __initPage(){
-			if(Session::get('user') == false){
-				url::redirect('admin/login');
-			}
-			$data['title'] = 'Staff Management';
-			$this->view->rendertemplate('header',$data);
-			$this->view->render('admin/admin',$data);
-			$this->view->rendertemplate('footer',$data);
-		}*/
-
 		public function loginStaff(){
 			if(Session::get('user')==true){
-				url::redirect('EWSD/admin/dashboard');
+				Url::redirect('EWSD/admin/dashboard');
 			}
 			if($_POST['action'] = 'login'){
 				$username = $_POST['username'];
 				$password = md5($_POST['password']);
 
-				//echo $username.'-'.$password;
-
 				$listUser =  $this->_user->loginAdmin($username,$password);
-				if(sizeof(listUser) > 0){
+
+				if(sizeof($listUser) > 0){
 					$currentUser = $listUser[0];
 					Session::set('user',$currentUser);
-					url::redirect('EWSD/admin/dashboard');
+					Url::redirect('EWSD/admin/dashboard');
 				}
 				else{
-					url::redirect('EWSD/login');
+					Url::redirect('EWSD/login');
 				}
 			}
+		}
+
+		public function logOut(){
+			
+			if(null!=Session::get('user')){
+				Session::destroy('user');
+			}
+			Url::redirect('EWSD/login');
 		}
 	}
 ?>

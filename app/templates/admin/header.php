@@ -120,7 +120,11 @@
                     </ul>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> John Smith <b class="caret"></b></a>
+                    <?php 
+                        $user = helpers\session::get('user',false);
+                        echo $user;
+                    ?>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i><?php echo $user->username ?><b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
                             <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
@@ -133,7 +137,7 @@
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="#"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                            <a href="<?php helpers\url::root_page() ?>logout"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
                         </li>
                     </ul>
                 </li>
@@ -141,22 +145,48 @@
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
-                    <li>
+                    <li <?php if($data['key']=='dashboard') 
+                            echo "class='active'";
+                        ?> >
+                        <a href="<?php helpers\url::root_page() ?>admin/dashboard"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+                    </li>
+                    <li <?php if($data['key']=='account' || $data['key']=='role') 
+                            echo "class='active'";
+                        ?> >
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Account Management <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo" class="collapse">
                             <li>
-                                <a href="admin/account">Account</a>
+                                <a href="<?php helpers\url::root_page() ?>admin/account">Account</a>
                             </li>
                             <li>
-                                <a href="admin/role">Role</a>
+                                <a href="<?php helpers\url::root_page() ?>admin/role">Role</a>
                             </li>
                         </ul>
                     </li>
-                    <li class="active">
-                        <a href="index.html"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+                    <li <?php if($data['key']=='course') 
+                            echo "class='active'";
+                        ?>>
+                        <a href="<?php helpers\url::root_page() ?>admin/course"><i class="fa fa-fw fa fa-folder-open-o"></i> Course</a>
                     </li>
-                    <li>
-                        <a href="charts.html"><i class="fa fa-fw fa-bar-chart-o"></i> Charts</a>
+                    <li <?php if($data['key']=='article') 
+                            echo "class='active'";
+                        ?>>
+                        <a href="<?php helpers\url::root_page() ?>admin/article"><i class="fa fa-fw fa-pencil"></i> Article</a>
+                    </li>
+                    <li <?php if($data['key']=='dashboard') 
+                            echo "class='file'";
+                        ?>>
+                        <a href="<?php helpers\url::root_page() ?>admin/file"><i class="fa fa-fw fa-file"></i> File</a>
+                    </li>
+                    <li <?php if($data['key']=='project') 
+                            echo "class='active'";
+                        ?>>
+                        <a href="<?php helpers\url::root_page() ?>admin/project"><i class="fa fa-fw fa-paper-plane-o"></i> Project</a>
+                    </li>
+                    <li <?php if($data['key']=='forum') 
+                            echo "class='active'";
+                        ?>>
+                        <a href="<?php helpers\url::root_page() ?>admin/forum"><i class="fa fa-fw fa-plus-square"></i> Forum</a>
                     </li>
                     <!-- <li class="active">
                         <a href="index.html"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
