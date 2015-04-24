@@ -15,4 +15,8 @@ class Project extends model {
 	public function getAll(){
 		return $this->_db->select("select * from project");
 	}
+
+	public function addProject(){
+		return $this->_db->insert("");
+	}
 }
