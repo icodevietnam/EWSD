@@ -145,10 +145,14 @@
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
-                    <li>
+                    <li <?php if($data['key']=='dashboard') 
+                            echo "class='active'";
+                        ?> >
                         <a href="<?php helpers\url::root_page() ?>admin/dashboard"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
                     </li>
-                    <li>
+                    <li <?php if($data['key']=='account' || $data['key']=='role') 
+                            echo "class='active'";
+                        ?> >
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Account Management <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo" class="collapse">
                             <li>
@@ -159,19 +163,29 @@
                             </li>
                         </ul>
                     </li>
-                    <li>
+                    <li <?php if($data['key']=='course') 
+                            echo "class='active'";
+                        ?>>
                         <a href="<?php helpers\url::root_page() ?>admin/course"><i class="fa fa-fw fa fa-folder-open-o"></i> Course</a>
                     </li>
-                    <li>
+                    <li <?php if($data['key']=='article') 
+                            echo "class='active'";
+                        ?>>
                         <a href="<?php helpers\url::root_page() ?>admin/article"><i class="fa fa-fw fa-pencil"></i> Article</a>
                     </li>
-                    <li>
+                    <li <?php if($data['key']=='dashboard') 
+                            echo "class='file'";
+                        ?>>
                         <a href="<?php helpers\url::root_page() ?>admin/file"><i class="fa fa-fw fa-file"></i> File</a>
                     </li>
-                    <li>
+                    <li <?php if($data['key']=='project') 
+                            echo "class='active'";
+                        ?>>
                         <a href="<?php helpers\url::root_page() ?>admin/project"><i class="fa fa-fw fa-paper-plane-o"></i> Project</a>
                     </li>
-                    <li>
+                    <li <?php if($data['key']=='forum') 
+                            echo "class='active'";
+                        ?>>
                         <a href="<?php helpers\url::root_page() ?>admin/forum"><i class="fa fa-fw fa-plus-square"></i> Forum</a>
                     </li>
                     <!-- <li class="active">
