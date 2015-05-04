@@ -76,8 +76,14 @@ Router::any('/home', '\controllers\pages@homePage');
 Router::any('/login', '\controllers\pages@loginPage');
 Router::any('/admin/dashboard', '\controllers\pages@dashBoardPage');
 //define routes  
-Router::any('/student/getAll', '\controllers\student@getAll');
+//Define Role
 Router::get('/role/getAll', '\controllers\role@getAll');
+Router::get('/role/get', '\controllers\role@getById');
+Router::post('/role/save', '\controllers\role@save');
+Router::post('/role/edit', '\controllers\role@edit');
+Router::post('/role/delete', '\controllers\role@delete');
+//
+Router::any('/student/getAll', '\controllers\student@getAll');
 Router::post('/loginStaffProcess','\controllers\user@loginStaff');
 Router::any('/logout','\controllers\user@logOut');
 

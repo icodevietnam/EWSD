@@ -6,7 +6,9 @@ $(function(){
     getAll();
   }
 
-  function getAll(){
+});
+
+function getAll(){
     var dataSrc=[];
     var url = '/EWSD/role/getAll';
     var num = 0;
@@ -15,15 +17,14 @@ $(function(){
       type : 'GET',
       dataType : 'JSON',
       success : function(response){
-
       },
       error:function(e){
-        alert('Error in loading data');
+        alert('Error in loading data:'+e);
       }
     })).then(function(data,textStatus,jqXHR){
       $.each(data,function(i,item){
           num++;
-          var temp = [num,item.name,item.description,"<button class='btn btn-default'>Edit</button>","<button class='btn btn-danger'>Delete</button>"];
+          var temp = [num,item.name,item.description,"<button onclick='javascript:viewEditCreate("+ item.id +")' class='btn btn-default' data-toggle='modal' data-target='#crudCreate' >Edit</button>","<button onclick='javascript:deleteItem("+ item.id +")' class='btn btn-danger'>Delete</button>"];
           dataSrc.push(temp);
       });
 
@@ -41,6 +42,119 @@ $(function(){
         ]
       });
     })
+}
+
+function viewEditCreate(id){
+    var url = '/EWSD/role/get';
+    $('span#modelId').html(id);
+    if(id!=0){
+      $.ajax({
+        url : url,
+        type : 'GET',
+        data :{
+          id:id
+        },
+        dataType : 'JSON',
+        success : function(response){
+          $("input[name='name']").val(response.name);
+          $("input[name='description']").val(response.description);
+        },
+        error:function(e){
+          alert('Error in loading data:'+e);
+        }  
+      });
+    }
+    return;
   }
 
-});
+function actionEditCreate(){
+    var id = $('span#modelId').html();
+    var name = $("input[name='name']").val();
+    var description = $("input[name='description']").val();
+    console.log(id + '-' + name + " - " + description);
+    if(id != 0){
+      var url = '/EWSD/role/edit';
+      $.ajax({
+      url : url,
+      type : 'POST',
+      data :{
+        id : id,
+        name :name,
+        description : description
+      },
+      dataType : 'JSON',
+      success : function(response){
+          console.log(response.msg);
+      },
+      error:function(e){
+        console.table(e);
+        alert('Error in loading data:'+e);
+      }
+      });
+    }
+    else{
+      var url = '/EWSD/role/save';
+      $.ajax({
+      url : url,
+      type : 'POST',
+      data :{
+        name :name,
+        description : description
+      },
+      dataType : 'JSON',
+      success : function(response){
+          console.log(response.msg);
+      },
+      error:function(e){
+        alert('Error in loading data:'+e);
+      }
+      });
+    }
+    resetValue();
+    getAll();
+}
+
+function processDelete(id){
+  var url = '/EWSD/role/delete';
+  $.ajax({
+    url : url,
+    type : 'POST',
+    data :{
+      id : id
+    },
+    dataType : 'JSON',
+    success : function(response){
+      console.log(response.msg);
+    },
+    error:function(e){
+      alert('Error in loading data:'+e);
+    }
+    });
+    resetValue();
+    getAll();
+}
+
+function deleteItem(id){
+  var flag = notifyAlert.confirm(options.msg);
+}
+
+function resetValue(){
+  closeModal();
+  $('span#modelId').html(0);
+  $("input[name='name']").val('');
+  $("input[name='description']").val('');
+}
+
+function closeModal(){
+  $('#crudCreate').modal('hide');
+}
+
+options = {
+  msg : 'Are you sure to delete this item?',
+  callbackFunc : function(result){
+    var id = $('span#modelId').html();
+    if(result){
+      processDelete(id);
+    }
+  }
+}

@@ -7,7 +7,7 @@
             <i class="fa fa-dashboard"></i><a href="admin/dashboard">Dashboard</a>
         </li>
         <li class="active">
-            <i class="fa fa-bar-chart-o"></i><a href="/admin/role"><?php echo $data['key'] ?></a>
+            <i class="fa fa-bar-chart-o"></i><a href="/admin/role"><?php echo ucwords($data['key']) ?></a>
         </li>
     </ol>
 </div>
