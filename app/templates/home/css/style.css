@@ -861,3 +861,6 @@ padding:4px 8px;
         font-weight: 400;
     }
 }
+#login-modal .modal-dialog {
+    width: 400px;
+}

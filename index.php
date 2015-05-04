@@ -75,6 +75,11 @@ Router::any('/admin/file', '\controllers\pages@filePage');
 Router::any('/home', '\controllers\pages@homePage');
 Router::any('/login', '\controllers\pages@loginPage');
 Router::any('/admin/dashboard', '\controllers\pages@dashBoardPage');
+Router::any('/about', '\controllers\pages@about');
+Router::any('/contact', '\controllers\pages@contact');
+Router::any('/fees', '\controllers\pages@fees');
+Router::any('/portfolio', '\controllers\pages@portfolio');
+Router::any('/courses', '\controllers\pages@courses');
 //define routes  
 //Define Role
 Router::get('/role/getAll', '\controllers\role@getAll');
@@ -86,6 +91,8 @@ Router::post('/role/delete', '\controllers\role@delete');
 Router::any('/student/getAll', '\controllers\student@getAll');
 Router::post('/loginStaffProcess','\controllers\user@loginStaff');
 Router::any('/logout','\controllers\user@logOut');
+Router::get('/admin/project', '\controllers\project@index');
+Router::get('/project/getAll', '\controllers\project@getAll');
 
 
 //if no route found

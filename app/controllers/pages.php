@@ -87,4 +87,44 @@ class Pages extends \core\controller{
 		View::renderAdminTemplate('footer', $data);
 	}
 
+	public function about(){
+		$data['title']='Forum Management';
+		$data['key']='forum';
+		View::renderHomeTemplate('header', $data);
+		View::render('home/about', $data);
+		View::renderHomeTemplate('footer', $data);
+	}
+
+	public function courses(){
+		$data['title']='Forum Management';
+		$data['key']='forum';
+		View::renderHomeTemplate('header', $data);
+		View::render('home/courses', $data);
+		View::renderHomeTemplate('footer', $data);
+	}
+
+	public function contact(){
+		$data['title']='Forum Management';
+		$data['key']='forum';
+		View::renderHomeTemplate('header', $data);
+		View::render('home/contact', $data);
+		View::renderHomeTemplate('footer', $data);
+	}
+
+	public function fees(){
+		$data['title']='Forum Management';
+		$data['key']='forum';
+		View::renderHomeTemplate('header', $data);
+		View::render('home/fees', $data);
+		View::renderHomeTemplate('footer', $data);
+	}
+
+	public function portfolio(){
+		$data['title']='Forum Management';
+		$data['key']='forum';
+		View::renderHomeTemplate('header', $data);
+		View::render('home/portfolio', $data);
+		View::renderHomeTemplate('footer', $data);
+	}
+
 }
