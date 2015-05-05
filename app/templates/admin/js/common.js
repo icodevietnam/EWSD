@@ -1,16 +1,16 @@
 var notifyAlert = {
 	alert:function(){
-		bootbox.alert(options.msg,options.callbackFunc);
+		bootbox.alert(notifys.msg,notifys.callbackFunc);
 	},
 	confirm : function(){
-		bootbox.confirm(options.msg,options.callbackFunc);
+		bootbox.confirm(notifys.msg,notifys.callbackFunc);
 	},
 	prompt : function(){
-		bootbox.prompt(options.msg,options.callbackFunc);
+		bootbox.prompt(notifys.msg,notifys.callbackFunc);
 	}
 }
 
-options = {
+notifys = {
 	msg : 'Default value',
 	callbackFunc : function(result){
 	}

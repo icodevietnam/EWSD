@@ -71,7 +71,6 @@ function actionEditCreate(){
     var id = $('span#modelId').html();
     var name = $("input[name='name']").val();
     var description = $("input[name='description']").val();
-    console.log(id + '-' + name + " - " + description);
     if(id != 0){
       var url = '/EWSD/role/edit';
       $.ajax({
@@ -135,7 +134,8 @@ function processDelete(id){
 }
 
 function deleteItem(id){
-  var flag = notifyAlert.confirm(options.msg);
+  notifys.mId = id;
+  notifyAlert.confirm(notifys.msg);
 }
 
 function resetValue(){
@@ -149,10 +149,11 @@ function closeModal(){
   $('#crudCreate').modal('hide');
 }
 
-options = {
+notifys = {
+  mId : 0,
   msg : 'Are you sure to delete this item?',
   callbackFunc : function(result){
-    var id = $('span#modelId').html();
+    var id = notifys.mId;
     if(result){
       processDelete(id);
     }
