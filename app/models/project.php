@@ -13,10 +13,22 @@ use core\Model;
 
 class Project extends model {
 	public function getAll(){
-		return $this->_db->select("select * from project");
+		return $this->_db->select(" Select * from project order by name ");
 	}
 
-	public function addProject(){
-		return $this->_db->insert("");
+	public function getById($id){
+		return $this->_db->select(" Select * from project where id = :id ",array(':id'=>$id));
+	}
+
+	public function insert($data){
+		return $this->_db->insert('project',$data);
+	}
+
+	public function update($data,$where){
+		$this->_db->update('project',$data,$where);
+	}
+
+	public function delete($where){
+		$this->_db->delete('project',$where);
 	}
 }
