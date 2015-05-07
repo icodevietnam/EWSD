@@ -10,6 +10,12 @@
 
     <title><?php echo $data['title'].' - '.SITETITLE ?></title>
     <?php
+    $currentUser = helpers\session::get('user');
+        if($currentUser == null || ($currentUser->role_name != 'admin' && $currentUser->role_name != 'staff')){
+            helpers\url::redirect('EWSD/login');
+        }
+    ?>
+    <?php
     	helpers\assets::css(array(
     		helpers\url::admin_template_path().'css/bootstrap.min.css',
     		helpers\url::admin_template_path().'css/morris.css',
@@ -128,7 +134,7 @@
                         $user = helpers\session::get('user',false);
                         echo $user;
                     ?>
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i><?php echo $user->username ?><b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i><?php echo $user->username.'[ Role:'.$user->role_name.' ]' ?><b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
                             <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>

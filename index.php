@@ -87,6 +87,13 @@ Router::get('/role/get', '\controllers\role@getById');
 Router::post('/role/save', '\controllers\role@save');
 Router::post('/role/edit', '\controllers\role@edit');
 Router::post('/role/delete', '\controllers\role@delete');
+
+//Define Course
+Router::get('/course/getAll', '\controllers\course@getAll');
+Router::get('/course/get', '\controllers\course@getById');
+Router::post('/course/save', '\controllers\course@save');
+Router::post('/course/edit', '\controllers\course@edit');
+Router::post('/course/delete', '\controllers\course@delete');
 //
 Router::any('/student/getAll', '\controllers\student@getAll');
 Router::post('/loginStaffProcess','\controllers\user@loginStaff');

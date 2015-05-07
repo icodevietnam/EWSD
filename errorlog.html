@@ -1,5 +1,28 @@
 <h3>Exception information:</h3>
 
+		<p><strong>Date:</strong> May 07, 2015 1:07AM</p>
+
+		<p><strong>Message:</strong> SQLSTATE[42S22]: Column not found: 1054 Unknown column 'description' in 'field list'</p>
+
+		<p><strong>Code:</strong> 42S22</p>
+
+		<p><strong>File:</strong> C:\xampp\htdocs\EWSD\app\helpers\database.php</p>
+
+		<p><strong>Line:</strong> 150</p>
+
+		<h3>Stack trace:</h3>
+
+		<pre>#0 C:\xampp\htdocs\EWSD\app\helpers\database.php(150): PDOStatement->execute()
+#1 C:\xampp\htdocs\EWSD\app\models\courses.php(17): helpers\Database->update('course', Array, Array)
+#2 C:\xampp\htdocs\EWSD\app\controllers\course.php(52): models\Courses->update(Array, Array)
+#3 C:\xampp\htdocs\EWSD\app\core\router.php(78): controllers\Course->edit()
+#4 C:\xampp\htdocs\EWSD\app\core\router.php(172): core\Router::invokeObject('\\controllers\\co...')
+#5 C:\xampp\htdocs\EWSD\index.php(112): core\Router::dispatch()
+#6 {main}</pre>
+
+		<hr />
+<h3>Exception information:</h3>
+
 		<p><strong>Date:</strong> May 04, 2015 11:31AM</p>
 
 		<p><strong>Message:</strong> SQLSTATE[42S02]: Base table or view not found: 1146 Table 'esupervisor.ewsd_role' doesn't exist</p>

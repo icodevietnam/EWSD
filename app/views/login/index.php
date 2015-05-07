@@ -1,3 +1,9 @@
+<?php
+	$currentUser = helpers\session::get('user');
+	if($currentUser->role_name == 'staff' || $currentUser->role_name == 'admin' ){
+		helpers\url::redirect('EWSD/admin/dashboard');
+	}
+?>
 <form class="box login" action="loginStaffProcess" method="post">
 	<fieldset class="boxBody">
 	  <label>Username</label>
