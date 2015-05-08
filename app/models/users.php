@@ -3,7 +3,7 @@ class Users extends \core\model {
 
 	public function getAllByRole($roleName){
 		if($roleName == 'admin'){
-			return $this->_db->select(" Select U.*, R.name as role_name from user U, role R, users_roles UR WHERE U.id = UR.user_id AND UR.role_id = R.id ");
+			return $this->_db->select(" Select U.*, R.id as role_id, R.name as role_name from user U, role R, users_roles UR WHERE U.id = UR.user_id AND UR.role_id = R.id ");
 		}elseif ($roleName == 'staff') {
 			return $this->_db->select(" Select U.*, R.name as role_name from user U, role R, users_roles UR WHERE U.id = UR.user_id AND UR.role_id = R.id AND R.name <> 'admin' ");
 		}elseif ($roleName == 'student') {
@@ -24,8 +24,21 @@ class Users extends \core\model {
 		return $this->_db->insert('user',$data);
 	}
 
+	public function isUsersRolesExist($userId,$roleId){
+		$sql = (" Select * from users_roles where user_id = :userId AND role_id = :roleId ");
+		return $this->_db->select($sql,array(':userId'=>$userId,':roleId'=>$roleId));
+	}
+
+	public function insertUsersRoles($usersroles){
+		$this->_db->insert('users_roles',$usersroles);
+	}
+
 	public function update($data,$where){
 		$this->_db->update('user',$data,$where);
+	}
+
+	public function updateUserRole($data,$where){
+		$this->_db->update('users_roles',$data,$where);
 	}
 
 	public function delete($where){

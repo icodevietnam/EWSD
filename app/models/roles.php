@@ -23,7 +23,7 @@ class Roles extends \core\model {
 
 	public function getAllByRole($roleName){
 		if($roleName == 'admin'){
-			return $this->_db->select(" Select * from role order by name");
+			return $this->_db->select(" Select * from role order by name ");
 		}elseif ($roleName == 'staff') {
 			return $this->_db->select(" Select * from role WHERE name <>'admin' order by name ");
 		}elseif ($roleName == 'student') {
