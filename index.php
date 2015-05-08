@@ -127,6 +127,12 @@ Router::get('/article/get', '\controllers\article@getById');
 Router::post('/article/save', '\controllers\article@save');
 Router::post('/article/edit', '\controllers\article@edit');
 Router::post('/article/delete', '\controllers\article@delete');
+//Define Comment
+Router::get('/comment/getAll', '\controllers\comment@getAll');
+Router::get('/comment/get', '\controllers\comment@getById');
+Router::post('/comment/save', '\controllers\comment@save');
+Router::post('/comment/edit', '\controllers\comment@edit');
+Router::post('/comment/delete', '\controllers\comment@delete');
 
 
 //if no route found

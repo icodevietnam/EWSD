@@ -10,7 +10,8 @@ class Comment extends \core\model {
 	}
 
 	public function getByProject($projectId){
-		return $this->_db->select(" Select * from comment where project = :projectId ",array(':projectId'=>$projectId));
+		return $this->_db->select(" SELECT c.*, u.name as username FROM comment as c
+									join user as u on c.user = u.id where project = :projectId ",array(':projectId'=>$projectId));
 	}
 
 	public function insert($data){
