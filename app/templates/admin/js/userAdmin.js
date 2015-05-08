@@ -67,12 +67,20 @@ function viewEditCreate(id,roleId){
         },
         dataType : 'JSON',
         success : function(response){
+          removeCheckBox();
           $("input[name='name']").val(response.name);
           $("input[name='address']").val(response.address);
           $("input[name='email']").val(response.email);
           $("input[name='username']").val(response.username);
-          $.each($('#role'),function(key,value){
-            console.log(value);
+          $.each($("input[name='gender']"),function(key,value){
+            if($(value).val() == response.gender){
+                value.prop("checked");
+            }
+          });
+          $.each($("input[name='role']"),function(key,value){
+            if($(value).val() == roleId){
+                value.prop("checked");
+            }
           });
           var birthDate = response.birthday.split(" ")[0];
           $("#birthday .form-control").val(birthDate);
@@ -89,7 +97,8 @@ function viewEditCreate(id,roleId){
   }
 
 function removeCheckBox(){
-
+    $("input[name='gender']").removeAttr("checked");
+    $("input[name='role']").removeAttr("checked");
 }
 
 function actionEditCreate(){
