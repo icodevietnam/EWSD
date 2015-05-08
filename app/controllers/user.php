@@ -91,12 +91,15 @@ use helpers\session;
 			$birthday = $_POST['birthday'];
 			$gender = intval($_POST['gender']);
 			$roleId = intval($_POST['role']);
+			$oldRoleId = intval($_POST['oldRoleId']);
 			$obj = array('name'=>$name,'address' => $address,'email'=>$email,'birthday'=>$birthday,'gender'=>$gender);
 			$where = array('id'=>$id);
 			try{
 				$roleUsers = $this->_user->getById($roleId);
-				$whereRole = array('id'=>$roleId);
-				$this->_user->update($role,$whereRole);
+				$whereRole = array('role_id'=>$oldRoleId,'user_id'=>$id);
+				$this->_user->deleteUsersRoles($whereRole);
+				$usersroles = array('role_id'=>$roleId,'user_id'=>$id);
+				$this->_user->insertUsersRoles($usersroles);
 				$this->_user->update($obj,$where);
 				echo json_encode(array('msg'=>'success'));
 			}
