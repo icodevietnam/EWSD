@@ -29,6 +29,10 @@ class Users extends \core\model {
 		return $this->_db->select($sql,array(':userId'=>$userId,':roleId'=>$roleId));
 	}
 
+	public function deleteUsersRoles($where){
+		$this->_db->delete('users_roles',$where);
+	}
+
 	public function insertUsersRoles($usersroles){
 		$this->_db->insert('users_roles',$usersroles);
 	}

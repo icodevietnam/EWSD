@@ -74,12 +74,12 @@ function viewEditCreate(id,roleId){
           $("input[name='username']").val(response.username);
           $.each($("input[name='gender']"),function(key,value){
             if($(value).val() == response.gender){
-                value.prop("checked");
+                $(value).prop('checked','checked');
             }
           });
           $.each($("input[name='role']"),function(key,value){
             if($(value).val() == roleId){
-                value.prop("checked");
+                $(value).prop('checked','checked');
             }
           });
           var birthDate = response.birthday.split(" ")[0];
@@ -103,6 +103,7 @@ function removeCheckBox(){
 
 function actionEditCreate(){
     var id = $('span#modelId').html();
+    var oldRoleId = $('span#roleId').html();
     var name = $("input[name='name']").val();
     var address = $("input[name='address']").val();
     var username = $("input[name='username']").val();
@@ -124,6 +125,7 @@ function actionEditCreate(){
         birthday : birthday,
         gender : gender,
         role : role,
+        oldRoleId : oldRoleId
       },
       dataType : 'JSON',
       success : function(response){
