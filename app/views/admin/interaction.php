@@ -24,19 +24,32 @@
 		<div class="modal-content">
 			<form class="save-form">
 				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<button type="button" onclick="javascript:resetValue()" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span></button>
 					<h4 class="modal-title">Create or Update</h4>
 				</div>
 				<div class="modal-body">
 					<span id="modelId" class="hide">0</span>
 					<div class="form-group">
-						<label for="txtName">Name: </label>
+						<label for="name">Name: </label>
 						<input id="name" name="name" class="form-control" type="text" placeholder="Name" required />
 					</div>
 					<div class="form-group">
-						<label for="txtContent">Content: </label>
-						<textarea id="content" name="content" class="form-control" placeholder="Content" required ></textarea>
+						<label for="description">Description: </label>
+						<input id="description" name="description" class="form-control" type="text" placeholder="Description" required />
+					</div>
+					<div class="form-group">
+						<label for="type">Type: </label>
+						<input id="type" name="type" class="form-control" type="text" placeholder="Type" required />
+					</div>
+					<div class="form-group">
+						<label for="status">Status: </label>
+						<input id="status1" name="status" class="" type="radio" value="0" checked /> Enable
+						<input id="status2" name="status" class="" type="radio" value="1" /> Disable
+					</div>
+					<div class="form-group">
+						<label for="uploadFile">Upload: </label>
+						<input id="uploadFile" name="uploadFile" class="" type="file" />
 					</div>
 				</div>
 				<div class="modal-footer">
@@ -52,5 +65,5 @@
 
 <?php
 \helpers\assets::js(array(
-						helpers\url::admin_template_path() . 'js/articleAdmin.js')
+						helpers\url::admin_template_path() . 'js/interactionAdmin.js')
 ); ?>

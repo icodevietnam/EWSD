@@ -39,6 +39,8 @@
                 <ul class="nav navbar-nav pull-right mainNav">
                     <li class="active"><a href="home">Home</a></li>
                     <li><a href="about">About</a></li>
+					<li><a href="article">Article</a></li>
+					<li><a href="interactions">Interactions</a></li>
                     <li><a href="courses">Courses</a></li>
                     <li><a href="fees">Fees</a></li>
                     <li><a href="portfolio">Portfolio</a></li>

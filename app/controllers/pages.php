@@ -2,6 +2,9 @@
 use core\view;
 use helpers\data;
 use helpers\session;
+use models\Article;
+use models\Comment;
+use models\Project;
 
 class Pages extends \core\controller{
 	private $_role;
@@ -90,11 +93,11 @@ class Pages extends \core\controller{
 		View::renderAdminTemplate('footer', $data);
 	}
 
-	public function forumPage(){
-		$data['title']='Forum Management';
-		$data['key']='forum';
+	public function interactionPage(){
+		$data['title']='Interactions Management';
+		$data['key']='interactions';
 		View::renderAdminTemplate('header', $data);
-		View::render('admin/forum', $data);
+		View::render('admin/interaction', $data);
 		View::renderAdminTemplate('footer', $data);
 	}
 
@@ -135,6 +138,39 @@ class Pages extends \core\controller{
 		$data['key']='forum';
 		View::renderHomeTemplate('header', $data);
 		View::render('home/portfolio', $data);
+		View::renderHomeTemplate('footer', $data);
+	}
+
+	public function interactions(){
+		$data['title']='Interactions';
+		$data['key']='interactions';
+		$projectModel = new Project();
+		$commentModel = new Comment();
+		//$loginUserId = Session::get('user')->id;
+		$loginUserId = 1;
+		$projects = $projectModel->getByUserId($loginUserId);
+		$interactions = array();
+		foreach ($projects as $proj){
+			$comments = $commentModel->getByProject($proj->id);
+			$interaction = array(
+				'project'=>$proj,
+				'comments'=>$comments
+			);
+			array_push($interactions, $interaction);
+		}
+		$data['interactions'] = $interactions;
+		View::renderHomeTemplate('header', $data);
+		View::render('home/interactions', $data);
+		View::renderHomeTemplate('footer', $data);
+	}
+
+	public function article(){
+		$data['title']='Article';
+		$data['key']='article';
+		$articleModel = new Article();
+		$data['articles'] = $articleModel->getAll();
+		View::renderHomeTemplate('header', $data);
+		View::render('home/article', $data);
 		View::renderHomeTemplate('footer', $data);
 	}
 
