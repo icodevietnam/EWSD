@@ -29,6 +29,8 @@
 					<h4 class="modal-title">Create or Update</h4>
 				</div>
 				<div class="modal-body">
+					<span id="modelId" class="hide">0</span>
+					<span id="roleId" class="hide">0</span>
 					<div class="form-group">
 						<label for="txtName">Name: </label>
 						<input id="name" name="name" class="form-control" type="text" placeholder="Enter name" required />
@@ -41,9 +43,9 @@
 					</div>
 					<div class="form-group">
 						<label for="txtEmail">Email: </label>
-						<input id="email" name="email" class="form-control" type="email" placeholder="Enter email" required />
+						<input id="email" type="email" name="email" class="form-control" type="email" placeholder="Enter email" required />
 					</div>
-					<div class="form-group">
+					<div class="form-group ipUsername">
 						<label for="txtUsername">Username: </label>
 						<input id="username" name="username" class="form-control" type="text" placeholder="Enter username" required />
 					</div>
@@ -57,8 +59,8 @@
 					</div>
 					<div class="form-group">
 						<label for="sex">Gender: </label>
-						<input type="radio" name="sex" value="1"> Male
-						<input type="radio" name="sex" value="0"> Female
+						<input type="radio" name="gender" checked value="1"> Male
+						<input type="radio" name="gender" value="0"> Female
 					</div>
 					<div class="form-group">
 						<label for="role">Role: </label>
@@ -71,8 +73,8 @@
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					<button type="submit" class="btn btn-primary">Save changes</button>
+					<button type="button" id="btnSave" onclick="javascript:actionEditCreate()" class="btn btn-primary">Save changes</button>
+					<button type="button" onclick="javascript:resetValue()" class="btn btn-default" data-dismiss="modal">Close</button>
 				</div>
 			</form>
 		</div>

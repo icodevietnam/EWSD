@@ -7,11 +7,13 @@ use helpers\session;
 	class User extends \core\controller
 	{
 		private $_user;
+		private $_role;
 
 		function __construct()
 		{
 			parent::__construct();
 			$this->_user = new \models\users();
+			$this->_role = new \models\roles();
 		}
 
 		public function loginStaff(){
@@ -57,7 +59,51 @@ use helpers\session;
 		if(sizeof($listUser) > 0){
 			$current = $listUser[0];
 			echo json_encode($current);
+			}
 		}
+
+		public function save(){
+			$name = $_POST['name'];
+			$address = $_POST['address'];
+			$username = $_POST['username'];
+			$password = $_POST['password'];
+			$email = $_POST['email'];
+			$birthday = $_POST['birthday'];
+			$gender = intval($_POST['gender']);
+			$roleId = intval($_POST['role']);
+			$obj = array('name'=>$name,'address' => $address,'username'=>$username,'password'=>md5($password),'email'=>$email,'birthday'=>$birthday,'gender'=>$gender,'is_suspended'=>1,'is_deleted'=>1);
+			try{
+				$accountId = $this->_user->insert($obj);
+				$usersroles = array('user_id'=>$accountId,'role_id'=>$roleId);
+				$this->_user->insertUsersRoles($usersroles);
+			}
+			catch(Exception $e){
+				echo 'Caught exception: ',  $e->getMessage(), "\n";
+				echo json_encode(array('msg'=>'fail'));
+			}
+		}
+
+		public function edit(){
+			$id = $_POST['id'];
+			$name = $_POST['name'];
+			$address = $_POST['address'];
+			$email = $_POST['email'];
+			$birthday = $_POST['birthday'];
+			$gender = intval($_POST['gender']);
+			$roleId = intval($_POST['role']);
+			$obj = array('name'=>$name,'address' => $address,'email'=>$email,'birthday'=>$birthday,'gender'=>$gender);
+			$where = array('id'=>$id);
+			try{
+				$roleUsers = $this->_user->getById($roleId);
+				$whereRole = array('id'=>$roleId);
+				$this->_user->update($role,$whereRole);
+				$this->_user->update($obj,$where);
+				echo json_encode(array('msg'=>'success'));
+			}
+			catch(Exception $e){
+				echo 'Caught exception: ',  $e->getMessage(), "\n";
+				echo json_encode(array('msg'=>'fail'));
+			}
 	}
 	}
 ?>

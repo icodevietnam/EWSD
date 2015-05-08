@@ -106,7 +106,6 @@ Router::post('/account/save', '\controllers\user@save');
 Router::post('/account/edit', '\controllers\user@edit');
 Router::post('/account/delete', '\controllers\user@delete');
 //
-Router::any('/student/getAll', '\controllers\student@getAll');
 Router::post('/loginStaffProcess','\controllers\user@loginStaff');
 Router::any('/logout','\controllers\user@logOut');
 Router::get('/admin/project', '\controllers\project@index');
