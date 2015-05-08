@@ -23,9 +23,9 @@
 				<h3 class="comment-title">Comments: </h3>
 
 				<div class="comment-container">
-					<?php foreach ($interaction['comments'] as $comment){ ?>
+					<?php foreach ($interaction['comments'] as $comment) { ?>
 					<div class="comment">
-						<span class="username"><strong>User 1:</strong> $comment</span>
+						<span class="username"><strong>User:</strong><?php echo $comment->content ?></span>
 					</div>
 					<?php } ?>
 
