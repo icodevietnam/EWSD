@@ -21,6 +21,8 @@
     		helpers\url::admin_template_path().'css/morris.css',
     		helpers\url::admin_template_path().'css/font-awesome.min.css',
             helpers\url::admin_template_path().'css/sb-admin.css',
+            helpers\url::admin_template_path().'css/editor.css',
+            helpers\url::admin_template_path().'css/formhelpers.css',
     		helpers\url::admin_template_path().'css/style.css'
     	));
     ?>
@@ -29,6 +31,8 @@
     helpers\url::admin_template_path().'js/jquery.js',
     helpers\url::admin_template_path().'js/bootstrap.min.js',
     helpers\url::admin_template_path().'js/bootbox.min.js',
+    helpers\url::admin_template_path().'js/editor.js',
+    helpers\url::admin_template_path().'js/formhelpers.js',
     helpers\url::admin_template_path().'js/common.js',
     ));
 

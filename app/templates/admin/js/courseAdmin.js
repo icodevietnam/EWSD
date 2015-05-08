@@ -1,5 +1,7 @@
 $(function(){
-
+    
+  $("textarea[name='content']").trumbowyg();
+  
   initialize();
 
   function initialize(){

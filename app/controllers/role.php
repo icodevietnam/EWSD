@@ -15,6 +15,15 @@ class Role extends \core\controller{
 		echo json_encode($listRole);
 	}
 
+	public function getAllByRole(){
+		$roleName = null;
+		if(null != Session::get('user')){
+			$roleName = Session::get('user')->role_name;
+		}
+		$listRole = $this->_role->getAllByRole($roleName);
+		echo json_encode($listRole);
+	}
+
 	public function getById(){
 		$id = $_GET['id'];
 		$listRole =  $this->_role->getById($id);
