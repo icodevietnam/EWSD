@@ -107,7 +107,12 @@ Router::any('/student/getAll', '\controllers\student@getAll');
 Router::post('/loginStaffProcess','\controllers\user@loginStaff');
 Router::any('/logout','\controllers\user@logOut');
 Router::get('/admin/project', '\controllers\project@index');
+//Define Project
 Router::get('/project/getAll', '\controllers\project@getAll');
+Router::get('/project/get', '\controllers\project@getById');
+Router::post('/project/save', '\controllers\project@save');
+Router::post('/project/edit', '\controllers\project@edit');
+Router::post('/project/delete', '\controllers\project@delete');
 
 
 //if no route found
