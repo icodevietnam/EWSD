@@ -1,9 +1,14 @@
 <?php namespace controllers;
 use core\view;
 use helpers\data;
+use helpers\session;
 
 class Pages extends \core\controller{
-	
+	private $_role;
+
+	public function __construct(){
+		$this->_role = new \models\roles();
+	}
 
 	public function dashBoardPage(){
 		$data['title']='Dashboard Page';
@@ -66,6 +71,12 @@ class Pages extends \core\controller{
 	public function accountPage(){
 		$data['title']='Account Management';
 		$data['key']='account';
+		$roleName = null;
+		if(null != Session::get('user')){
+			$roleName = Session::get('user')->role_name;
+		}
+		$listRole = $this->_role->getAllByRole($roleName);
+		$data['listRole'] = $listRole;
 		View::renderAdminTemplate('header', $data);
 		View::render('admin/user', $data);
 		View::renderAdminTemplate('footer', $data);

@@ -83,6 +83,7 @@ Router::any('/courses', '\controllers\pages@courses');
 //define routes  
 //Define Role
 Router::get('/role/getAll', '\controllers\role@getAll');
+Router::get('/role/getAllByRole', '\controllers\role@getAllByRole');
 Router::get('/role/get', '\controllers\role@getById');
 Router::post('/role/save', '\controllers\role@save');
 Router::post('/role/edit', '\controllers\role@edit');
@@ -96,11 +97,11 @@ Router::post('/course/edit', '\controllers\course@edit');
 Router::post('/course/delete', '\controllers\course@delete');
 
 //Define Account
-Router::get('/account/getAll', '\controllers\account@getAll');
-Router::get('/account/get', '\controllers\account@getById');
-Router::post('/account/save', '\controllers\account@save');
-Router::post('/account/edit', '\controllers\account@edit');
-Router::post('/account/delete', '\controllers\account@delete');
+Router::get('/account/getAll', '\controllers\user@getAll');
+Router::get('/account/get', '\controllers\user@getById');
+Router::post('/account/save', '\controllers\user@save');
+Router::post('/account/edit', '\controllers\user@edit');
+Router::post('/account/delete', '\controllers\user@delete');
 //
 Router::any('/student/getAll', '\controllers\student@getAll');
 Router::post('/loginStaffProcess','\controllers\user@loginStaff');

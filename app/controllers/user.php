@@ -36,11 +36,28 @@ use helpers\session;
 		}
 
 		public function logOut(){
-			
 			if(null!=Session::get('user')){
 				Session::destroy('user');
 			}
 			Url::redirect('EWSD/login');
 		}
+
+		public function getAll(){
+			$roleName = null;
+			if(null != Session::get('user')){
+				$roleName = Session::get('user')->role_name;
+			}
+			$listUser = $this->_user->getAllByRole($roleName);
+			echo json_encode($listUser);
+		}
+
+		public function getById(){
+		$id = $_GET['id'];
+		$listUser =  $this->_user->getById($id);
+		if(sizeof($listUser) > 0){
+			$current = $listUser[0];
+			echo json_encode($current);
+		}
+	}
 	}
 ?>

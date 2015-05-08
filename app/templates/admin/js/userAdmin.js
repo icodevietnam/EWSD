@@ -1,82 +1,176 @@
-$(function () {
+$(function(){
 
-    initialize();
+  initialize();
 
-    function initialize() {
-        getAll();
-    }
+  function initialize(){
+    getAll();
+  }
 
-    function getAll() {
-        var dataSrc = [];
-        var url = '/EWSD/user/getAll';
-        var num = 0;
-        //$.when($.ajax({
-        //  url : url,
-        //  type : 'GET',
-        //  dataType : 'JSON',
-        //  success : function(response){
-        //
-        //  },
-        //  error:function(e){
-        //    alert('Error in loading data');
-        //  }
-        //})).then(function(data,textStatus,jqXHR){
-        //  $.each(data,function(i,item){
-        //      num++;
-        //      var temp = [num,item.name,item.description,"<button class='btn btn-default btn-edit'>Edit</button>","<button class='btn btn-danger btn-create'>Delete</button>"];
-        //      dataSrc.push(temp);
-        //  });
-        var temp1 = [1, "User 1", "01/01/1991", "Q1, Ho Chi Minh", "User1", "Male", "user1@fpt.com", "Supervisor 1", "Second marker 1", "Project 1"];
-        var temp3 = [3, "User 3", "03/03/3993", "Q3, Ho Chi Minh", "User3", "Male", "user3@fpt.com", "Supervisor 3", "Second marker 3", "Project 3"];
-        dataSrc.push(temp1);
-        //dataSrc.push(temp2);
-        dataSrc.push(temp3);
-        $('#tblList').dataTable({
-            "bDestroy": true,
-            "bSort": true,
-            "aaSorting": [],
-            "aaData": dataSrc,
-            "aoColumns": [
-                {"sTitle": "#"},
-                {"sTitle": "Name"},
-                {"sTitle": "Birthday"},
-                {"sTitle": "Address"},
-                {"sTitle": "Username"},
-                {"sTitle": "Password"},
-                {"sTitle": "Gender"},
-                {"sTitle": "Email"},
-                {"sTitle": "Supervisor"},
-                {"sTitle": "Second_marker"}
-            ]
-        });
-
-
-        //})
-    }
-
-    $('.btn-edit').click(function () {
-        var dataId = $(this).data('id');
-        $('.save-form #txtName').val('User ' + dataId);
-        $('.save-form #txtBirthday').val('0' + dataId + '/0' + dataId + '/' + dataId + '99' + dataId);
-        $('.save-form #txtAddress').val('Q' + dataId + ', Ho Chi Minh');
-        $('.save-form #txtEmail').val('user' + dataId + '@fpt.com');
-        $('.save-form #txtUsername').val('User' + dataId);
-        $('.save-form #txtPassword').val(dataId + dataId + dataId);
-        $('.save-form #txtConfirmPassword').val(dataId + dataId + dataId);
-    });
-
-    $('.btn-create').click(function(){
-        $('.save-form #txtName').val(null);
-        $('.save-form #txtBirthday').val(null);
-        $('.save-form #txtAddress').val(null);
-        $('.save-form #txtEmail').val(null);
-        $('.save-form #txtUsername').val(null);
-        $('.save-form #txtPassword').val(null);
-        $('.save-form #txtConfirmPassword').val(null);
-    });
-
-    $('.btn-yes').click(function(){
-        //$('#delete-modal').fadeOut();
-        alert('Delete successfully!')
-    });
 });
+
+function getAll(){
+    var dataSrc=[];
+    var url = '/EWSD/account/getAll';
+    var num = 0;
+    $.when($.ajax({
+      url : url,
+      type : 'GET',
+      dataType : 'JSON',
+      success : function(response){
+      },
+      error:function(e){
+        alert('Error in loading data:'+e);
+      }
+    })).then(function(data,textStatus,jqXHR){
+      $.each(data,function(i,item){
+          num++;
+          var temp = [num,item.name,item.birthday,item.address,item.username,item.gender,item.email,"<button onclick='javascript:viewEditCreate("+ item.id +")' class='btn btn-default' data-toggle='modal' data-target='#crudCreate' >Edit</button>","<button onclick='javascript:deleteItem("+ item.id +")' class='btn btn-danger'>Delete</button>"];
+          dataSrc.push(temp);
+      });
+
+      $('#tblList').dataTable({
+        "bDestroy": true,
+        "bSort": true,
+        "aaSorting": [],
+        "aaData": dataSrc,
+        "aoColumns": [
+        { "sTitle": "#" },
+        { "sTitle": "name" },
+        { "sTitle": "birthday" },
+        { "sTitle": "address" },
+        { "sTitle": "username" },
+        { "sTitle": "gender" },
+        { "sTitle": "email" },
+        { "sTitle": "Edit" },
+        { "sTitle": "Delete" }
+        ]
+      });
+    })
+}
+
+function showDivPassword(){
+    $(".ipPassword").show();
+    $(".ipConfirmpassword").show();   
+}
+
+function viewEditCreate(id){
+    var url = '/EWSD/account/get';
+    $('span#modelId').html(id);
+    if(id!=0){
+      $.ajax({
+        url : url,
+        type : 'GET',
+        data :{
+          id:id
+        },
+        dataType : 'JSON',
+        success : function(response){
+          $("input[name='name']").val(response.name);
+          $("input[name='address']").val(response.address);
+          $("input[name='email']").val(response.email);
+          $("input[name='username']").val(response.username);
+          var birthDate = response.birthday.split(" ")[0];
+          $("#birthday .form-control").val(birthDate);
+          $(".ipPassword").hide();
+          $(".ipConfirmpassword").hide();
+        },
+        error:function(e){
+          alert('Error in loading data:'+e);
+        }  
+      });
+    }
+    return;
+  }
+
+function actionEditCreate(){
+    var id = $('span#modelId').html();
+    var name = $("input[name='name']").val();
+    var content = $("textarea[name='content']").val();
+    if(id != 0){
+      var url = '/EWSD/course/edit';
+      $.ajax({
+      url : url,
+      type : 'POST',
+      data :{
+        id : id,
+        name :name,
+        content : content
+      },
+      dataType : 'JSON',
+      success : function(response){
+          console.log(response.msg);
+      },
+      error:function(e){
+        console.table(e);
+        alert('Error in loading data:'+e);
+      }
+      });
+    }
+    else{
+      var url = '/EWSD/course/save';
+      $.ajax({
+      url : url,
+      type : 'POST',
+      data :{
+        name :name,
+        content : content
+      },
+      dataType : 'JSON',
+      success : function(response){
+          console.log(response.msg);
+      },
+      error:function(e){
+        alert('Error in loading data:'+e);
+      }
+      });
+    }
+    resetValue();
+    getAll();
+}
+
+function processDelete(id){
+  var url = '/EWSD/course/delete';
+  $.ajax({
+    url : url,
+    type : 'POST',
+    data :{
+      id : id
+    },
+    dataType : 'JSON',
+    success : function(response){
+      console.log(response.msg);
+    },
+    error:function(e){
+      alert('Error in loading data:'+e);
+    }
+    });
+    resetValue();
+    getAll();
+}
+
+function deleteItem(id){
+  notifys.mId = id;
+  notifyAlert.confirm(notifys.msg);
+}
+
+function resetValue(){
+  closeModal();
+  $('span#modelId').html(0);
+  $("input[name='name']").val('');
+  $("textarea[name='content']").val('');
+}
+
+function closeModal(){
+  $('#crudCreate').modal('hide');
+}
+
+notifys = {
+  mId : 0,
+  msg : 'Are you sure to delete this item?',
+  callbackFunc : function(result){
+    var id = notifys.mId;
+    if(result){
+      processDelete(id);
+    }
+  }
+}
