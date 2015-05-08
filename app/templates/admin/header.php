@@ -197,10 +197,10 @@
                         ?>>
                         <a href="<?php helpers\url::root_page() ?>admin/project"><i class="fa fa-fw fa-paper-plane-o"></i> Project</a>
                     </li>
-                    <li <?php if($data['key']=='forum') 
+                    <li <?php if($data['key']=='interactions')
                             echo "class='active'";
                         ?>>
-                        <a href="<?php helpers\url::root_page() ?>admin/forum"><i class="fa fa-fw fa-plus-square"></i> Forum</a>
+                        <a href="<?php helpers\url::root_page() ?>admin/interactions"><i class="fa fa-fw fa-plus-square"></i> Interaction</a>
                     </li>
                 </ul>
             </div>

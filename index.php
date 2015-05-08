@@ -68,18 +68,21 @@ use \core\router,
 Router::any('/admin/role', '\controllers\pages@rolePage');
 Router::any('/admin/course', '\controllers\pages@coursePage');
 Router::any('/admin/article', '\controllers\pages@articlePage');
-Router::any('/admin/account', '\controllers\pages@accountPage');  
+Router::any('/admin/account', '\controllers\pages@accountPage');
+Router::any('/admin/interactions', '\controllers\pages@interactionPage');
 Router::any('/admin/project', '\controllers\pages@projectPage');
 Router::any('/admin/forum', '\controllers\pages@forumPage');
 Router::any('/admin/file', '\controllers\pages@filePage');
 Router::any('/home', '\controllers\pages@homePage');
 Router::any('/login', '\controllers\pages@loginPage');
 Router::any('/admin/dashboard', '\controllers\pages@dashBoardPage');
+Router::any('/interactions', '\controllers\pages@interactions');
 Router::any('/about', '\controllers\pages@about');
 Router::any('/contact', '\controllers\pages@contact');
 Router::any('/fees', '\controllers\pages@fees');
 Router::any('/portfolio', '\controllers\pages@portfolio');
 Router::any('/courses', '\controllers\pages@courses');
+Router::any('/article', '\controllers\pages@article');
 //define routes  
 //Define Role
 Router::get('/role/getAll', '\controllers\role@getAll');
@@ -113,6 +116,18 @@ Router::get('/project/get', '\controllers\project@getById');
 Router::post('/project/save', '\controllers\project@save');
 Router::post('/project/edit', '\controllers\project@edit');
 Router::post('/project/delete', '\controllers\project@delete');
+//Define Interaction
+Router::get('/interaction/getAll', '\controllers\interaction@getAll');
+Router::get('/interaction/get', '\controllers\interaction@getById');
+Router::post('/interaction/save', '\controllers\interaction@save');
+Router::post('/interaction/edit', '\controllers\interaction@edit');
+Router::post('/interaction/delete', '\controllers\interaction@delete');
+//Define Article
+Router::get('/article/getAll', '\controllers\article@getAll');
+Router::get('/article/get', '\controllers\article@getById');
+Router::post('/article/save', '\controllers\article@save');
+Router::post('/article/edit', '\controllers\article@edit');
+Router::post('/article/delete', '\controllers\article@delete');
 
 
 //if no route found

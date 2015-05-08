@@ -2,7 +2,7 @@
 class Article extends \core\model {
 
 	public function getAll(){
-		return $this->_db->select(" Select * from article order by name ");
+		return $this->_db->select(" Select * from article ");
 	}
 
 	public function getById($id){

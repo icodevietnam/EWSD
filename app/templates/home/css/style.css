@@ -864,3 +864,18 @@ padding:4px 8px;
 #login-modal .modal-dialog {
     width: 400px;
 }
+.comment-title{
+    margin-left: 20px;
+}
+.comment-container{
+    margin-left: 30px;
+    margin-bottom: 20px;
+}
+#interactions .container{
+    padding: 20px;
+}
+.project img{
+    float: left;
+    width: 50px;
+    height: 60px;
+}

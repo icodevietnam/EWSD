@@ -22,6 +22,12 @@ class Project extends model {
 		return $this->_db->select(" Select * from project where id = :id ",array(':id'=>$id));
 	}
 
+	public function getByUserId($id){
+		return $this->_db->select(" SELECT p.* FROM user as u
+									join project as p on u.project = p.id
+									where u.id = :id ",array(':id'=>$id));
+	}
+
 	public function insert($data){
 		return $this->_db->insert('project',$data);
 	}
