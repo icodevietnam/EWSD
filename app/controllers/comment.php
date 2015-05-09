@@ -48,9 +48,7 @@ class Comment extends \core\controller
 		$obj = array(
 			'content'      => $_POST['txtComment'],
 			'created_date' => date('Y-m-d H:i:s'),
-			//TODO: remove hard code user id
-			//'user'         => Session::get('user')->id,
-			'user'         => 1,
+			'user'         => Session::get('homeUser')->id,
 			'project'      => $_POST['projectId']
 		);
 		try
