@@ -119,6 +119,7 @@ Router::get('/project/get', '\controllers\project@getById');
 Router::post('/project/save', '\controllers\project@save');
 Router::post('/project/edit', '\controllers\project@edit');
 Router::post('/project/delete', '\controllers\project@delete');
+Router::get('/project/getProject','\controllers\project@getProjectIsNotManaged');
 
 //Define Interaction
 Router::get('/interaction/getAll', '\controllers\interaction@getAll');

@@ -34,6 +34,7 @@
     helpers\url::admin_template_path().'js/bootbox.min.js',
     helpers\url::admin_template_path().'js/editor.js',
     helpers\url::admin_template_path().'js/formhelpers.js',
+    helpers\url::admin_template_path().'js/validation.min.js',
     helpers\url::admin_template_path().'js/common.js',
     ));
     ?>
