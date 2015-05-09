@@ -14,7 +14,7 @@ use core\Model;
 class Project extends model {
 	public function getAll(){
 		return $this->_db->select(" SELECT p.*, f.path, f.file_name FROM project as p
-									join esupervisor.file as f on p.file = f.id
+									left join esupervisor.file as f on p.file = f.id
 									order by name ");
 	}
 

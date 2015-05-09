@@ -38,23 +38,20 @@ use helpers\session;
 		}
 
 		public function loginStudent(){
-			if(Session::get('user')==true){
+			if(Session::get('homeUser')==true){
 				Url::redirect('EWSD/home');
 			}
-			if($_POST['action'] = 'login'){
-				$username = $_POST['username'];
-				$password = md5($_POST['password']);
+			$username = $_POST['username'];
+			$password = md5($_POST['password']);
 
-				$listUser =  $this->_user->loginStudent($username,$password);
-
-				if(sizeof($listUser) > 0){
-					$currentUser = $listUser[0];
-					Session::set('homeUser',$currentUser);
-					Url::redirect('EWSD/home');
-				}
-				else{
-					Url::redirect('EWSD/home');
-				}
+			$listUser =  $this->_user->loginStudent($username,$password);
+			if(sizeof($listUser) > 0){
+				$currentUser = $listUser[0];
+				Session::set('homeUser',$currentUser);
+				Url::redirect('EWSD/home');
+			}
+			else{
+				Url::redirect('EWSD/login');
 			}
 		}
 

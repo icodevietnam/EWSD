@@ -56,7 +56,7 @@
 	<div class="modal fade" id="login-modal">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<form class="save-form">
+				<form class="save-form" action="loginHomeProcess" method="post">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span></button>
@@ -64,12 +64,12 @@
 					</div>
 					<div class="modal-body">
 						<div class="form-group">
-							<label for="txtUsername">Username: </label>
-							<input id="txtUsername" name="txtUsername" class="form-control" type="text" placeholder="Enter username" required />
+							<label for="username">Username: </label>
+							<input id="username" name="username" class="form-control" type="text" placeholder="Enter username" required />
 						</div>
 						<div class="form-group">
-							<label for="txtPassword">Password: </label>
-							<input id="txtPassword" name="txtPassword" class="form-control" type="password" placeholder="Enter password" required />
+							<label for="password">Password: </label>
+							<input id="password" name="password" class="form-control" type="password" placeholder="Enter password" required />
 						</div>
 					</div>
 					<div class="modal-footer">

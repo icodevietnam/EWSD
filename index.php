@@ -109,7 +109,7 @@ Router::post('/account/edit', '\controllers\user@edit');
 Router::post('/account/delete', '\controllers\user@delete');
 //
 Router::post('/loginStaffProcess','\controllers\user@loginStaff');
-Router::post('/loginHomeProcess','\controllers\user@loginStaff');
+Router::post('/loginHomeProcess','\controllers\user@loginStudent');
 Router::any('/logout','\controllers\user@logOut');
 Router::get('/admin/project', '\controllers\project@index');
 
