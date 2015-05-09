@@ -146,6 +146,7 @@ class Pages extends \core\controller{
 		$data['key']='interactions';
 		$projectModel = new Project();
 		$commentModel = new Comment();
+		//TODO: remove hard code
 		//$loginUserId = Session::get('user')->id;
 		$loginUserId = 1;
 		$projects = $projectModel->getByUserId($loginUserId);

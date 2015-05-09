@@ -11,9 +11,9 @@
 	<section class="container">
 		<div class="row">
 			<?php foreach ($data['interactions'] as $interaction){ ?>
-			<div class="col-md-12">
+			<div class="col-md-12 interaction">
 				<div class="featured-box project">
-					<img src="http://localhost:8888/EWSD/img/image-1402201919689-V.jpg" />
+					<img src="<?php echo '/EWSD/'.$interaction['project']->path.$interaction['project']->file_name ?>" />
 
 					<div class="text">
 						<h3><?php echo $interaction['project']->name ?></h3>
@@ -23,13 +23,21 @@
 				<h3 class="comment-title">Comments: </h3>
 
 				<div class="comment-container">
-					<?php foreach ($interaction['comments'] as $comment){ ?>
+					<?php foreach ($interaction['comments'] as $comment) { ?>
 					<div class="comment">
-						<span class="username"><strong>User 1:</strong> $comment</span>
+						<span class="username"><strong><?php echo $comment->username ?>: </strong><?php echo $comment->content ?></span>
 					</div>
 					<?php } ?>
 
 				</div>
+				<form id="commentProject-<?php echo $interaction['project']->id ?>" action="/EWSD/comment/save" method="post" class="">
+					<div class="form-group">
+						<input type="hidden" id="projectId" name="projectId" value="<?php echo $interaction['project']->id ?>"/>
+						<label for="txtComment">Say something:</label>
+						<input id="txtComment" name="txtComment" class="form-control"/>
+					</div>
+					<button type="submit" class="btn btn-info">Send comment</button>
+				</form>
 			</div>
 			<?php } ?>
 		</div>

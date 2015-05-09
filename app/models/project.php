@@ -23,8 +23,10 @@ class Project extends model {
 	}
 
 	public function getByUserId($id){
-		return $this->_db->select(" SELECT p.* FROM user as u
-									join project as p on u.project = p.id
+		return $this->_db->select(" SELECT p.*, f.file_name, f.path FROM project as p
+									join user_project as up on up.project = p.id
+									join user as u on up.user = u.id
+									join file as f on p.file = f.id
 									where u.id = :id ",array(':id'=>$id));
 	}
 
