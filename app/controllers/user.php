@@ -37,6 +37,29 @@ use helpers\session;
 			}
 		}
 
+		public function loginStudent(){
+			if(Session::get('user')==true){
+				Url::redirect('EWSD/home');
+			}
+			if($_POST['action'] = 'login'){
+				$username = $_POST['username'];
+				$password = md5($_POST['password']);
+
+				$listUser =  $this->_user->loginStudent($username,$password);
+
+				if(sizeof($listUser) > 0){
+					$currentUser = $listUser[0];
+					Session::set('homeUser',$currentUser);
+					Url::redirect('EWSD/home');
+				}
+				else{
+					Url::redirect('EWSD/home');
+				}
+			}
+		}
+
+
+
 		public function logOut(){
 			if(null!=Session::get('user')){
 				Session::destroy('user');
@@ -107,6 +130,24 @@ use helpers\session;
 				echo 'Caught exception: ',  $e->getMessage(), "\n";
 				echo json_encode(array('msg'=>'fail'));
 			}
-	}
+		}
+
+
+		public function delete(){
+			$id = $_POST['id'];
+			$roleId = $_POST['roleId'];
+			$where = array('id'=>$id);
+
+			$usersroles = array('role_id'=>$roleId,'user_id'=>$id);
+			try{
+				$this->_user->deleteUsersRoles($usersroles);
+				echo json_encode(array('msg'=>'success'));
+			}
+			catch(Exception $e){
+				echo 'Caught exception: ',  $e->getMessage(), "\n";
+				echo json_encode(array('msg'=>'fail'));
+			}
+			$this->_user->delete($where);
+		}
 	}
 ?>

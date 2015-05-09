@@ -24,7 +24,7 @@ function getAll(){
     })).then(function(data,textStatus,jqXHR){
       $.each(data,function(i,item){
           num++;
-          var temp = [num,item.name,item.birthday,item.address,item.username,item.gender,item.email,"<button onclick='javascript:viewEditCreate("+ item.id +","+item.role_id+")' class='btn btn-default' data-toggle='modal' data-target='#crudCreate' >Edit</button>","<button onclick='javascript:deleteItem("+ item.id +")' class='btn btn-danger'>Delete</button>"];
+          var temp = [num,item.name,item.birthday,item.address,item.username,item.gender,item.email,"<button onclick='javascript:viewEditCreate("+ item.id +","+item.role_id+")' class='btn btn-default' data-toggle='modal' data-target='#crudCreate' >Edit</button>","<button onclick='javascript:deleteItem("+ item.id + "," + item.role_id + ")' class='btn btn-danger'>Delete</button>"];
           dataSrc.push(temp);
       });
 
@@ -165,13 +165,14 @@ function actionEditCreate(){
     getAll();
 }
 
-function processDelete(id){
-  var url = '/EWSD/course/delete';
+function processDelete(id,roleId){
+  var url = '/EWSD/account/delete';
   $.ajax({
     url : url,
     type : 'POST',
     data :{
-      id : id
+      id : id,
+      roleId : roleId
     },
     dataType : 'JSON',
     success : function(response){
@@ -185,8 +186,9 @@ function processDelete(id){
     getAll();
 }
 
-function deleteItem(id){
+function deleteItem(id,roleId){
   notifys.mId = id;
+  notifys.mRoleId = roleId;
   notifyAlert.confirm(notifys.msg);
 }
 
@@ -207,11 +209,13 @@ function closeModal(){
 
 notifys = {
   mId : 0,
+  mRoleId :0,
   msg : 'Are you sure to delete this item?',
   callbackFunc : function(result){
     var id = notifys.mId;
+    var roleId = notifys.mRoleId;
     if(result){
-      processDelete(id);
+      processDelete(id,roleId);
     }
   }
 }

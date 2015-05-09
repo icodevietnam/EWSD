@@ -26,6 +26,7 @@
     		helpers\url::admin_template_path().'css/style.css'
     	));
     ?>
+
     <?php 
     \helpers\assets::js(array(
     helpers\url::admin_template_path().'js/jquery.js',
@@ -35,7 +36,6 @@
     helpers\url::admin_template_path().'js/formhelpers.js',
     helpers\url::admin_template_path().'js/common.js',
     ));
-
     ?>
 </head>
 <body>
@@ -201,6 +201,11 @@
                             echo "class='active'";
                         ?>>
                         <a href="<?php helpers\url::root_page() ?>admin/interactions"><i class="fa fa-fw fa-plus-square"></i> Interaction</a>
+                    </li>
+                    <li <?php if($data['key']=='assignation')
+                            echo "class='active'";
+                        ?>>
+                        <a href="<?php helpers\url::root_page() ?>admin/assignation"><i class="fa fa-fw fa-tag"></i> Assignation</a>
                     </li>
                 </ul>
             </div>

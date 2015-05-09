@@ -174,4 +174,12 @@ class Pages extends \core\controller{
 		View::renderHomeTemplate('footer', $data);
 	}
 
+	public function assignation(){
+		$data['title']='Assignation';
+		$data['key']='asssignation';
+		View::renderAdminTemplate('header', $data);
+		View::render('admin/assignation', $data);
+		View::renderAdminTemplate('footer', $data);
+	}
+
 }

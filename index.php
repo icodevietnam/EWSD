@@ -73,6 +73,7 @@ Router::any('/admin/interactions', '\controllers\pages@interactionPage');
 Router::any('/admin/project', '\controllers\pages@projectPage');
 Router::any('/admin/forum', '\controllers\pages@forumPage');
 Router::any('/admin/file', '\controllers\pages@filePage');
+Router::any('/admin/assignation', '\controllers\pages@assignation');
 Router::any('/home', '\controllers\pages@homePage');
 Router::any('/login', '\controllers\pages@loginPage');
 Router::any('/admin/dashboard', '\controllers\pages@dashBoardPage');
@@ -83,6 +84,7 @@ Router::any('/fees', '\controllers\pages@fees');
 Router::any('/portfolio', '\controllers\pages@portfolio');
 Router::any('/courses', '\controllers\pages@courses');
 Router::any('/article', '\controllers\pages@article');
+
 //define routes  
 //Define Role
 Router::get('/role/getAll', '\controllers\role@getAll');
@@ -107,20 +109,24 @@ Router::post('/account/edit', '\controllers\user@edit');
 Router::post('/account/delete', '\controllers\user@delete');
 //
 Router::post('/loginStaffProcess','\controllers\user@loginStaff');
+Router::post('/loginHomeProcess','\controllers\user@loginStaff');
 Router::any('/logout','\controllers\user@logOut');
 Router::get('/admin/project', '\controllers\project@index');
+
 //Define Project
 Router::get('/project/getAll', '\controllers\project@getAll');
 Router::get('/project/get', '\controllers\project@getById');
 Router::post('/project/save', '\controllers\project@save');
 Router::post('/project/edit', '\controllers\project@edit');
 Router::post('/project/delete', '\controllers\project@delete');
+
 //Define Interaction
 Router::get('/interaction/getAll', '\controllers\interaction@getAll');
 Router::get('/interaction/get', '\controllers\interaction@getById');
 Router::post('/interaction/save', '\controllers\interaction@save');
 Router::post('/interaction/edit', '\controllers\interaction@edit');
 Router::post('/interaction/delete', '\controllers\interaction@delete');
+
 //Define Article
 Router::get('/article/getAll', '\controllers\article@getAll');
 Router::get('/article/get', '\controllers\article@getById');

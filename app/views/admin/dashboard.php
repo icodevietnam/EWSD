@@ -4,10 +4,10 @@
 	</div>
 	<ol class="breadcrumb">
         <li>
-            <i class="fa fa-dashboard"></i><a href="admin/dashboard">Dashboard</a>
+            <i class="fa fa-dashboard"></i><a href="/EWSD/admin/dashboard">Dashboard</a>
         </li>
         <li class="active">
-            <i class="fa fa-bar-chart-o"></i><a href="/admin/role"><?php ucwords($data['key']) ?></a>
+            <i class="fa fa-bar-chart-o"></i><a href="/EWSD/admin/role"><?php ucwords($data['key']) ?></a>
         </li>
     </ol>
 </div>

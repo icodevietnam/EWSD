@@ -16,6 +16,11 @@ class Users extends \core\model {
 		return $this->_db->select($sql, array(':username'=>$username,':password'=>$password));
 	}
 
+	public function loginStudent($username, $password){
+		$sql =  " SELECT U.*, R.name as role_name FROM user U, role R, users_roles UR WHERE U.id = UR.user_id AND UR.role_id = R.id AND (R.name = 'staff' OR R.name = 'student') AND U.username = :username AND U.password = :password" ;
+		return $this->_db->select($sql, array(':username'=>$username,':password'=>$password));
+	}
+
 	public function getById($id){
 		return $this->_db->select(" Select U.*, R.name as role_name from user U, role R, users_roles UR WHERE U.id = UR.user_id AND UR.role_id = R.id AND U.id = :id ",array(':id'=>$id));
 	}
