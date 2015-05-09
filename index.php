@@ -105,6 +105,8 @@ Router::post('/course/delete', '\controllers\course@delete');
 
 //Define Account
 Router::get('/account/getAll', '\controllers\user@getAll');
+Router::get('/account/getStudent', '\controllers\user@getStudent');
+Router::get('/account/getStaff', '\controllers\user@getStaff');
 Router::get('/account/get', '\controllers\user@getById');
 Router::post('/account/save', '\controllers\user@save');
 Router::post('/account/edit', '\controllers\user@edit');
@@ -121,6 +123,7 @@ Router::get('/project/get', '\controllers\project@getById');
 Router::post('/project/save', '\controllers\project@save');
 Router::post('/project/edit', '\controllers\project@edit');
 Router::post('/project/delete', '\controllers\project@delete');
+Router::get('/project/getProject','\controllers\project@getProjectIsNotManaged');
 
 //Define Interaction
 Router::get('/interaction/getAll', '\controllers\interaction@getAll');

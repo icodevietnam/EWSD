@@ -18,6 +18,12 @@ class Project extends model {
 									order by name ");
 	}
 
+	public function getNonManageProject(){
+		return $this->_db->select(" SELECT P.* FROM project P
+									left join user_project UP on P.id <> UP.user
+									order by P.name ");
+	}
+
 	public function getById($id){
 		return $this->_db->select(" Select * from project where id = :id ",array(':id'=>$id));
 	}

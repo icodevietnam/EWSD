@@ -19,10 +19,15 @@ class Project extends \core\controller
 	public function index()
 	{
 		$data['title'] = "Project management";
-		//echo json_encode($listProject);
 		View::renderAdminTemplate('header', $data);
 		View::render('admin/project', $data);
 		View::renderAdminTemplate('footer', $data);
+	}
+
+
+	public function getProjectIsNotManaged(){
+		$listProject = $this->_model->getNonManageProject();
+		echo json_encode($listProject);
 	}
 
 	public function getAll()
@@ -30,6 +35,7 @@ class Project extends \core\controller
 		$listProject = $this->_model->getAll();
 		echo json_encode($listProject);
 	}
+
 
 	public function getById()
 	{

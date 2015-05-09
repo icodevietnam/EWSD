@@ -14,27 +14,35 @@
 
 <div class="row">
 	<div class="col-lg-3">
-		<span class="title">Choose Project:<span>
+		<span class="title">Choose Project:<span><br/>
 		<select id="selectProject" style="width:50%">
 		</select>
+		<br/><br/>
+		<button class="btn btn-sm btn-default" id="projNext">Next</button>
 	</div>
-	<div class="col-lg-3">
-		<span class="title">Choose Student:<span>
+	<div id="divStudent" class="col-lg-3">
+		<span class="title">Choose Student:<span><br/>
 		<select id="selectStudent" style="width:50%;height:400px" multiple>
-		  
 		</select>
+		<br/><br/>
+		<button class="btn btn-sm btn-default" id="studPrev">Prev</button>
+		<button class="btn btn-sm btn-default" id="studNext">Next</button>
 	</div>
-	<div class="col-lg-3">
-		<span class="title">Choose Supervisor:<span>
-		<select id="selectProject" style="width:50%">
-		  
+	<div id="divSupervisor" class="col-lg-3">
+		<span class="title">Choose Supervisor:<span><br/>
+		<select id="selectSupervisor" style="width:50%">
 		</select>
+		<br/><br/>
+		<button class="btn btn-sm btn-default" id="supePrev">Prev</button>
+		<button class="btn btn-sm btn-default" id="supeNext">Next</button>
 	</div>
-	<div class="col-lg-3">
-		<span class="title">Choose Second Marker:<span>
-		<select id="selectProject" style="width:50%">
-		  
+	<div id="divSecondMarker" class="col-lg-3">
+		<span class="title">Choose Second Marker:<span><br/>
+		<select id="selectSecondMarker" style="width:50%">
 		</select>
+		<br/><br/>
+		<button class="btn btn-sm btn-default" id="secoPrev">Prev</button>
+		<button class="btn btn-sm btn-primary" id="btnOk">Ok</button>
 	</div>
 </div>
 
