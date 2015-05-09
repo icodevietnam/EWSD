@@ -5,9 +5,9 @@ class Users extends \core\model {
 		if($roleName == 'admin'){
 			return $this->_db->select(" Select U.*, R.id as role_id, R.name as role_name from user U, role R, users_roles UR WHERE U.id = UR.user_id AND UR.role_id = R.id ");
 		}elseif ($roleName == 'staff') {
-			return $this->_db->select(" Select U.*, R.name as role_name from user U, role R, users_roles UR WHERE U.id = UR.user_id AND UR.role_id = R.id AND R.name <> 'admin' ");
+			return $this->_db->select(" Select U.*, R.id as role_id, R.name as role_name from user U, role R, users_roles UR WHERE U.id = UR.user_id AND UR.role_id = R.id AND R.name <> 'admin' ");
 		}elseif ($roleName == 'student') {
-			return $this->_db->select(" Select U.*, R.name as role_name from user U, role R, users_roles UR WHERE U.id = UR.user_id AND UR.role_id = R.id AND R.name <> 'admin' AND R.name <> 'staff' ");
+			return $this->_db->select(" Select U.*, R.id as role_id, R.name as role_name from user U, role R, users_roles UR WHERE U.id = UR.user_id AND UR.role_id = R.id AND R.name <> 'admin' AND R.name <> 'staff' ");
 		}
 	} 
 
@@ -31,6 +31,10 @@ class Users extends \core\model {
 
 	public function insert($data){
 		return $this->_db->insert('user',$data);
+	}
+
+	public function insertUserProject($data){
+		return $this->_db->insert('user_project',$data);
 	}
 
 	public function isUsersRolesExist($userId,$roleId){

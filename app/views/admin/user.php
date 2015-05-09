@@ -1,3 +1,5 @@
+<span class="hide" id="currentRole"><?php $currentUser = helpers\session::get('user');
+echo $currentUser->role_name ?></span>
 <div class="row">
 	<div class="col-lg-12">
 		<h1 class="page-header"><?php echo $data['title'] ?></h1>

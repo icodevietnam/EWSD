@@ -10,7 +10,7 @@
 
     <title><?php echo $data['title'].' - '.SITETITLE ?></title>
     <?php
-    $currentUser = helpers\session::get('user');
+        $currentUser = helpers\session::get('user');
         if($currentUser == null || ($currentUser->role_name != 'admin' && $currentUser->role_name != 'staff')){
             helpers\url::redirect('EWSD/login');
         }
@@ -173,9 +173,15 @@
                             <li>
                                 <a href="<?php helpers\url::root_page() ?>admin/account">Account</a>
                             </li>
+                            <?php 
+                        $currentUser = helpers\session::get('user');
+                        if($currentUser->role_name != 'staff')
+                        {
+                    ?>
                             <li>
                                 <a href="<?php helpers\url::root_page() ?>admin/role">Role</a>
                             </li>
+                        <?php } ?>
                         </ul>
                     </li>
                     <li <?php if($data['key']=='course') 

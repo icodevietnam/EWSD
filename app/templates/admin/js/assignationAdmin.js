@@ -41,9 +41,13 @@ $(function(){
 
   $("#studNext").click(function(e){
     e.preventDefault();
+    if($('#selectStudent').val()!=null){
+      if($('#selectStudent').val().length > 10){
+      alert("Total of students is < 10 ");
+      return;
+    }
     $("#divSupervisor").show();
     var url = '/EWSD/account/getStaff';
-    alert($('#selectStudent').val());
     $.ajax({
             url : url,
             type : 'GET',
@@ -59,6 +63,10 @@ $(function(){
     });
     $("#studNext").hide();
     $("#studPrev").hide();
+    }
+    else {
+      alert("Please select some student ");
+    }
   });
 
   $("#supePrev").click(function(e){
@@ -121,6 +129,28 @@ $(function(){
     $("#supePrev").show();
     $("#selectSecondMarker").empty();
     $("#divSecondMarker").hide();
+  });
+
+  $("#btnOk").click(function(e){
+    e.preventDefault();
+    var project = $("#selectProject").val();
+    var students = $("#selectStudent").val();
+    var supervisor = $("#selectSupervisor").val();
+    var secondMarker = $("#selectSecondMarker").val();
+
+    sizes = students.length;
+    for(var i = 0; i< sizes ; i++){
+      $.ajax({
+        url : '/EWSD/account/insertUserProject',
+        type : 'POST',
+        dataType : 'JSON',
+        success : function(response){
+        },
+        error:function(e){
+          alert('Error in loading data:'+e);
+        }
+,      });
+    }
   });
 
 });

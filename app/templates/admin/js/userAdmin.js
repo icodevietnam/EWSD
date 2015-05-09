@@ -12,6 +12,7 @@ function getAll(){
     var dataSrc=[];
     var url = '/EWSD/account/getAll';
     var num = 0;
+    var currentRole = $("#currentRole").html();
     $.when($.ajax({
       url : url,
       type : 'GET',
@@ -24,7 +25,7 @@ function getAll(){
     })).then(function(data,textStatus,jqXHR){
       $.each(data,function(i,item){
           num++;
-          var temp = [num,item.name,item.birthday,item.address,item.username,item.gender,item.email,"<button onclick='javascript:viewEditCreate("+ item.id +","+item.role_id+")' class='btn btn-default' data-toggle='modal' data-target='#crudCreate' >Edit</button>","<button onclick='javascript:deleteItem("+ item.id + "," + item.role_id + ")' class='btn btn-danger'>Delete</button>"];
+          var temp = [num,item.name,item.birthday,item.address,item.username,item.gender,item.email,showEditButton(currentRole,item.role_name,item.id,item.role_id),showDeleteButton(currentRole,item.role_name,item.id,item.role_id)];
           dataSrc.push(temp);
       });
 
@@ -46,6 +47,20 @@ function getAll(){
         ]
       });
     })
+}
+
+function showEditButton(currentRole,roleName,userId,roleId){
+  if(currentRole !=  roleName){
+     return "<button onclick='javascript:viewEditCreate("+ userId +","+roleId+")' class='btn btn-default' data-toggle='modal' data-target='#crudCreate' >Edit</button>"
+  }
+  return "";
+}
+
+function showDeleteButton(currentRole,roleName,userId,roleId){
+  if(currentRole !=  roleName){
+    return "<button onclick='javascript:deleteItem("+ userId + "," + roleId + ")' class='btn btn-danger'>Delete</button>"
+  }
+  return "";
 }
 
 function showDivPassword(){

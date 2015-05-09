@@ -56,7 +56,6 @@ use helpers\session;
 		}
 
 
-
 		public function logOut(){
 			if(null!=Session::get('user')){
 				Session::destroy('user');
@@ -92,6 +91,20 @@ use helpers\session;
 			}
 		}
 
+		public function insertUserProject(){
+			$user = $_POST['user'];
+			$project = $_POST['project'];
+			$obj  = array('user'=>$user,'project'=>$project);
+			try{
+				$this->_user->insertUserProject($obj);
+				echo json_encode(array('msg'=>'successful'));
+			}
+			catch(Exception $e){
+				echo 'Caught exception: ',  $e->getMessage(), "\n";
+				echo json_encode(array('msg'=>'fail'));
+			}
+		}
+
 		public function save(){
 			$name = $_POST['name'];
 			$address = $_POST['address'];
@@ -106,6 +119,7 @@ use helpers\session;
 				$accountId = $this->_user->insert($obj);
 				$usersroles = array('user_id'=>$accountId,'role_id'=>$roleId);
 				$this->_user->insertUsersRoles($usersroles);
+				echo json_encode(array('msg'=>'successful'));
 			}
 			catch(Exception $e){
 				echo 'Caught exception: ',  $e->getMessage(), "\n";
