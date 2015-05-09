@@ -98,7 +98,6 @@ function actionEditCreate(){
         form_data.append('file', file_data);
         form_data.append('name',name);
         form_data.append('description',description);
-        alert(form_data);
         $.ajax({
             url: url, // point to server-side PHP script
             dataType: 'text',  // what to expect back from the PHP script, if anything

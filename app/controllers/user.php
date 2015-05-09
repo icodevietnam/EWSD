@@ -73,6 +73,16 @@ use helpers\session;
 			echo json_encode($listUser);
 		}
 
+		public function getStudent(){
+			$listUser = $this->_user->getAllByRole("student");
+			echo json_encode($listUser);
+		}
+
+		public function getStaff(){
+			$listUser = $this->_user->getStaff();
+			echo json_encode($listUser);
+		}
+
 		public function getById(){
 		$id = $_GET['id'];
 		$listUser =  $this->_user->getById($id);

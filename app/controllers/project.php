@@ -36,6 +36,7 @@ class Project extends \core\controller
 		echo json_encode($listProject);
 	}
 
+
 	public function getById()
 	{
 		$id = $_GET['id'];
