@@ -84,6 +84,8 @@ Router::any('/fees', '\controllers\pages@fees');
 Router::any('/portfolio', '\controllers\pages@portfolio');
 Router::any('/courses', '\controllers\pages@courses');
 Router::any('/article', '\controllers\pages@article');
+Router::any('/event', '\controllers\pages@event');
+Router::any('/about', '\controllers\pages@about');
 
 //define routes  
 //Define Role

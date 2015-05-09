@@ -2,11 +2,15 @@
 class Article extends \core\model {
 
 	public function getAll(){
-		return $this->_db->select(" Select * from article ");
+		return $this->_db->select(" Select * from article where type != 'menu'");
 	}
 
 	public function getById($id){
 		return $this->_db->select(" Select * from article where id = :id ",array(':id'=>$id));
+	}
+
+	public function getByShortname($shortname){
+		return $this->_db->select(" Select * from article where  type = 'menu' and shortname = :shortname ",array(':shortname'=>$shortname));
 	}
 
 	public function insert($data){

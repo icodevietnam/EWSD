@@ -61,6 +61,9 @@ use helpers\session;
 			if(null!=Session::get('user')){
 				Session::destroy('user');
 			}
+			if(null!=Session::get('homeUser')){
+				Session::destroy('homeUser');
+			}
 			Url::redirect('EWSD/login');
 		}
 

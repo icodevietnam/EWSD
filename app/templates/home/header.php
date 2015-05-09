@@ -18,6 +18,7 @@
             helpers\url::home_template_path().'css/da-slider.css',
     		helpers\url::home_template_path().'css/style.css'
     	));
+		$currentUser = \helpers\Session::get('homeUser');
     ?>
     <?php 
     \helpers\assets::js(array(
@@ -39,14 +40,20 @@
                 <ul class="nav navbar-nav pull-right mainNav">
                     <li class="active"><a href="home">Home</a></li>
                     <li><a href="about">About</a></li>
-					<li><a href="article">Article</a></li>
+					<li><a href="article">News</a></li>
+					<?php if ($currentUser != null){ ?>
+					<li><a href="event">Events</a></li>
 					<li><a href="interactions">Interactions</a></li>
+					<?php } ?>
                     <li><a href="courses">Courses</a></li>
-                    <li><a href="fees">Fees</a></li>
-                    <li><a href="portfolio">Portfolio</a></li>
                     <li><a href="contact">Contact</a></li>
-					<li><a id="login-link" href="" data-toggle="modal" data-target="#login-modal">Login</a></li>
 
+					<?php if ($currentUser == null){ ?>
+					<li><a id="login-link" href="" data-toggle="modal" data-target="#login-modal">Login</a></li>
+					<?php } else { ?>
+					<li><a id="login-link" href="" data-toggle="modal" data-target="#login-modal">Welcome, <?php echo $currentUser->name ?></a></li>
+						<li><a href="logout">Logout</a></li>
+					<?php } ?>
                 </ul>
             </div>
             <!--/.nav-collapse -->

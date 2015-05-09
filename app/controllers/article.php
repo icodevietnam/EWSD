@@ -26,6 +26,15 @@ class Article extends \core\controller{
 		}
 	}
 
+	public function getByShortname(){
+		$shortname = $_GET['shortname'];
+		$listArticle =  $this->_article->getByShortname($shortname);
+		if(sizeof($listArticle) > 0){
+			$current = $listArticle[0];
+			echo json_encode($current);
+		}
+	}
+
 	public function save(){
 		$name = $_POST['name'];
 		$content = $_POST['content'];
