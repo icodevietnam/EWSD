@@ -59,8 +59,12 @@ use helpers\session;
 		public function logOut(){
 			if(null!=Session::get('user')){
 				Session::destroy('user');
+				Url::redirect('EWSD/login');
 			}
-			Url::redirect('EWSD/login');
+			if(null!=Session::get('homeUser')){
+				Session::destroy('homeUser');
+				Url::redirect('EWSD/home');
+			}
 		}
 
 		public function getAll(){

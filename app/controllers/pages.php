@@ -33,6 +33,9 @@ class Pages extends \core\controller{
 	public function homePage(){
 
 		$data['title'] = 'eSupervisor';
+
+		$modelArticle = new Article();
+		$data['articles'] = $modelArticle->getByShortname('home');
 		
 		View::renderHomeTemplate('header', $data);
 		View::render('home/index', $data);
@@ -58,6 +61,7 @@ class Pages extends \core\controller{
 	public function articlePage(){
 		$data['title']='Article Management';
 		$data['key']='article';
+
 		View::renderAdminTemplate('header', $data);
 		View::render('admin/article', $data);
 		View::renderAdminTemplate('footer', $data);
@@ -102,32 +106,36 @@ class Pages extends \core\controller{
 	}
 
 	public function about(){
-		$data['title']='Forum Management';
+		$data['title']='About us';
 		$data['key']='forum';
+		$modelArticle = new Article();
+		$data['articles'] = $modelArticle->getByShortname('about');
 		View::renderHomeTemplate('header', $data);
 		View::render('home/about', $data);
 		View::renderHomeTemplate('footer', $data);
 	}
 
 	public function courses(){
-		$data['title']='Forum Management';
-		$data['key']='forum';
+		$data['title']='courses';
+		$data['key']='courses';
+		$modelArticle = new Article();
+		$data['articles'] = $modelArticle->getByShortname('course');
 		View::renderHomeTemplate('header', $data);
 		View::render('home/courses', $data);
 		View::renderHomeTemplate('footer', $data);
 	}
 
 	public function contact(){
-		$data['title']='Forum Management';
-		$data['key']='forum';
+		$data['title']='Contact';
+		$data['key']='contact';
 		View::renderHomeTemplate('header', $data);
 		View::render('home/contact', $data);
 		View::renderHomeTemplate('footer', $data);
 	}
 
 	public function fees(){
-		$data['title']='Forum Management';
-		$data['key']='forum';
+		$data['title']='fees';
+		$data['key']='fees';
 		View::renderHomeTemplate('header', $data);
 		View::render('home/fees', $data);
 		View::renderHomeTemplate('footer', $data);
@@ -166,8 +174,20 @@ class Pages extends \core\controller{
 	public function article(){
 		$data['title']='Article';
 		$data['key']='article';
-		$articleModel = new Article();
-		$data['articles'] = $articleModel->getAll();
+
+		$modelArticle = new Article();
+		$data['articles'] = $modelArticle->getByShortname('news');
+		View::renderHomeTemplate('header', $data);
+		View::render('home/article', $data);
+		View::renderHomeTemplate('footer', $data);
+	}
+
+	public function event(){
+		$data['title']='event';
+		$data['key']='event';
+
+		$modelArticle = new Article();
+		$data['articles'] = $modelArticle->getByShortname('event');
 		View::renderHomeTemplate('header', $data);
 		View::render('home/article', $data);
 		View::renderHomeTemplate('footer', $data);

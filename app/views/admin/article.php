@@ -38,6 +38,13 @@
 						<label for="txtContent">Content: </label>
 						<textarea id="content" name="content" class="form-control" placeholder="Content" required ></textarea>
 					</div>
+					<div class="form-group">
+						<label for="type">Type: </label>
+						<select id="type" name="type">
+							<option value="news">News</option>
+							<option value="event">Event</option>
+						</select>
+					</div>
 				</div>
 				<div class="modal-footer">
 					<button type="button" id="btnSave" onclick="javascript:actionEditCreate()" class="btn btn-primary">Save changes</button>
