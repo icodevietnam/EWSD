@@ -60,11 +60,12 @@ use helpers\session;
 		public function logOut(){
 			if(null!=Session::get('user')){
 				Session::destroy('user');
+				Url::redirect('EWSD/login');
 			}
 			if(null!=Session::get('homeUser')){
 				Session::destroy('homeUser');
+				Url::redirect('EWSD/home');
 			}
-			Url::redirect('EWSD/login');
 		}
 
 		public function getAll(){

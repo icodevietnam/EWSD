@@ -38,9 +38,10 @@ class Article extends \core\controller{
 	public function save(){
 		$name = $_POST['name'];
 		$content = $_POST['content'];
+		$type = $_POST['type'];
 		$createdDate = date('Y-m-d H:i:s');
 		$createdBy = Session::get('user')->id;
-		$obj = array('title'=>$name,'content'=>$content,'created_by'=>$createdBy,'created_date'=>$createdDate);
+		$obj = array('title'=>$name,'content'=>$content,'created_by'=>$createdBy,'created_date'=>$createdDate,'type'=>$type);
 		try{
 			$this->_article->insert($obj);
 			
