@@ -24,8 +24,8 @@ public class RoleController {
 	@RequestMapping(value = { "/admin/role", "/admin/role/list" }, method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
 	@Secured("ROLE_ADMIN")
 	public String displayPage(Model model) {
-		model.addAttribute("pageName", "Quản lý quyền");
-		model.addAttribute("title", "Quản lý quyền");
+		model.addAttribute("pageName", "QuaÌ‰n lyÌ� quyÃªÌ€n");
+		model.addAttribute("title", "QuaÌ‰n lyÌ� quyÃªÌ€n");
 		return "role/index";
 	}
 
@@ -41,9 +41,9 @@ public class RoleController {
 	@ResponseBody
 	public String deleteRole(@RequestParam(value = "itemId") String itemId) {
 		Integer id = Integer.parseInt(itemId);
-		Role role = roleService.getRole(id);
+		Role role = roleService.get(id);
 		if (role.getUserRoles().size() == 0) {
-			roleService.delete(role);
+			roleService.remove(role);
 			return "true";
 		}
 		return "false";
@@ -51,7 +51,8 @@ public class RoleController {
 
 	@RequestMapping(value = "/role/new", method = RequestMethod.POST)
 	@ResponseBody
-	public String addrole(@RequestParam(value = "roleName") String roleName,@RequestParam(value="roleDescription") String roleDescription) {
+	public String addrole(@RequestParam(value = "roleName") String roleName,
+			@RequestParam(value = "roleDescription") String roleDescription) {
 		Role role = new Role();
 		role.setName(roleName);
 		role.setDescription(roleDescription);
@@ -62,12 +63,13 @@ public class RoleController {
 			return "false";
 		}
 	}
-	
+
 	@RequestMapping(value = "/role/update", method = RequestMethod.POST)
 	@ResponseBody
 	public String updaterole(@RequestParam(value = "roleId") String roleId,
-			@RequestParam(value = "roleName") String roleName,@RequestParam(value = "roleDescription") String roleDescription) {
-		Role role = roleService.getRole(Integer.parseInt(roleId));
+			@RequestParam(value = "roleName") String roleName,
+			@RequestParam(value = "roleDescription") String roleDescription) {
+		Role role = roleService.get(Integer.parseInt(roleId));
 		role.setName(roleName);
 		role.setDescription(roleDescription);
 		try {
@@ -81,7 +83,7 @@ public class RoleController {
 	@RequestMapping(value = "/role/get", method = RequestMethod.GET)
 	@ResponseBody
 	public Role getrole(@RequestParam(value = "itemId") String idemId) {
-		Role role = roleService.getRole(Integer.parseInt(idemId));
+		Role role = roleService.get(Integer.parseInt(idemId));
 		return role;
 	}
 

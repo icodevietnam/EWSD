@@ -48,7 +48,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 	}
 
 	public List<String> getRoles(Integer roleId) {
-		Role role = roleDao.getRole(roleId);
+		Role role = roleDao.find(roleId);
 		List<String> roles = new ArrayList<String>();
 		if (role.getName().equalsIgnoreCase("admin")) {
 			roles.add("ROLE_ADMIN");

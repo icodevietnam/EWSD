@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.icoding.domain.Role;
 import com.icoding.domain.User;
 import com.icoding.service.RoleService;
 import com.icoding.service.UserService;
@@ -29,7 +27,6 @@ public class UserController {
 
 	@Autowired
 	private RoleService roleService;
-
 
 	@Autowired
 	private BCryptPasswordEncoder encoder;
@@ -48,7 +45,6 @@ public class UserController {
 			return "true";
 	}
 
-
 	// Response user as json
 	@RequestMapping(value = "/user/getAll", method = RequestMethod.GET, produces = "application/json")
 	@ResponseBody
@@ -58,16 +54,14 @@ public class UserController {
 		return listUsers;
 	}
 
-
-
 	@RequestMapping(value = "/user/delete", method = RequestMethod.POST)
 	@ResponseBody
 	public String deleteUser(@RequestParam(value = "itemId") String itemId) {
 		Integer id = Integer.parseInt(itemId);
-		User user = userService.getUser(id);
+		User user = userService.get(id);
 		if (!itemId.equalsIgnoreCase("1")) {
 			user.setRole(null);
-			userService.delete(user);
+			userService.remove(user);
 			return "true";
 		}
 		return "false";
@@ -76,16 +70,15 @@ public class UserController {
 	@RequestMapping(value = "/user/get", method = RequestMethod.GET)
 	@ResponseBody
 	public User getUser(@RequestParam(value = "itemId") String idemId) {
-		User user = userService.getUser(Integer.parseInt(idemId));
+		User user = userService.get(Integer.parseInt(idemId));
 		return user;
 	}
 
-	
 	@RequestMapping(value = "/user/changePassword", method = RequestMethod.POST)
 	@ResponseBody
 	public String updateUser(@RequestParam(value = "userId") String userId,
 			@RequestParam(value = "password") String password) {
-		User user = userService.getUser(Integer.parseInt(userId));
+		User user = userService.get(Integer.parseInt(userId));
 		user.setPassword(encoder.encode(password));
 		try {
 			userService.update(user);

@@ -22,8 +22,8 @@ public class FileAttachedController {
 
 	@RequestMapping(value = { "/admin/fileAttached", "/admin/fileAttached/list" }, method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
 	public String displayPage(Model model) {
-		model.addAttribute("pageName", "Quản lý Kho");
-		model.addAttribute("title", "Quản lý Kho");
+		model.addAttribute("pageName", "QuaÌ‰n lyÌ� Kho");
+		model.addAttribute("title", "QuaÌ‰n lyÌ� Kho");
 		return "fileAttached/index";
 	}
 
@@ -40,7 +40,7 @@ public class FileAttachedController {
 	@RequestMapping(value = "/fileAttached/get", method = RequestMethod.GET)
 	@ResponseBody
 	public FileAttached getFileAttached(@RequestParam(value = "itemId") String idemId) {
-		FileAttached fileAttached = fileAttachedService.getFileAttached(Integer.parseInt(idemId));
+		FileAttached fileAttached = fileAttachedService.get(Integer.parseInt(idemId));
 		return fileAttached;
 	}
 
