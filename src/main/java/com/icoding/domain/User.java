@@ -47,10 +47,6 @@ public class User {
 	@JoinTable(name = "user_roles", joinColumns = { @JoinColumn(name = "user_id", referencedColumnName = "id") }, inverseJoinColumns = { @JoinColumn(name = "role_id", referencedColumnName = "id") })
 	private Role role;
 
-	@ManyToOne
-	@JoinColumn(name = "department_id")
-	private Department department;
-
 	public Integer getId() {
 		return id;
 	}
@@ -129,14 +125,6 @@ public class User {
 
 	public void setState(String state) {
 		this.state = state;
-	}
-
-	public Department getDepartment() {
-		return department;
-	}
-
-	public void setDepartment(Department department) {
-		this.department = department;
 	}
 
 }

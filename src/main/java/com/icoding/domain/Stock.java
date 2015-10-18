@@ -31,11 +31,6 @@ public class Stock {
 	@Column(name = "position", length = 255)
 	private String position;
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "stock")
-	@JsonIgnore
-	@Fetch(FetchMode.SELECT)
-	private List<Brief> listBriefs;
-
 	public Integer getId() {
 		return id;
 	}
@@ -60,12 +55,4 @@ public class Stock {
 		this.position = position;
 	}
 
-	public List<Brief> getListBriefs() {
-		return listBriefs;
-	}
-
-	public void setListBriefs(List<Brief> listBriefs) {
-		this.listBriefs = listBriefs;
-	}
-	
 }
