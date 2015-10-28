@@ -35,8 +35,7 @@
 
 			<div class="panel panel-primary">
 				<div class="panel-heading">
-					<div class="panel-title text-center">QUẢN LÝ HỒ SƠ ĐIỆN
-						LỰC</div>
+					<div class="panel-title text-center">EXTERNAL EXAMINIER</div>
 				</div>
 
 				<div class="panel-body">
@@ -48,14 +47,14 @@
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-user"></i></span> <input id="j_username"
 								type="text" class="form-control" name="j_username" value=""
-								placeholder="Tên đăng nhập">
+								placeholder="Username">
 						</div>
 
 						<div class="input-group">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-lock"></i></span> <input id="j_password"
 								type="password" class="form-control" name="j_password"
-								placeholder="Mật khẩu">
+								placeholder="Password">
 						</div>
 
 						<div class="form-group">
@@ -64,7 +63,7 @@
 							<!-- Button -->
 							<div class="col-sm-12 controls">
 								<button type="submit" class="btn btn-primary pull-right">
-									<i class="glyphicon glyphicon-log-in"></i> Đăng nhập
+									<i class="glyphicon glyphicon-log-in"></i> Login
 								</button>
 								<span class="error">${error1}</span>
 							</div>

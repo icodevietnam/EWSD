@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.icoding.domain.Role;
 import com.icoding.domain.User;
 import com.icoding.service.RoleService;
 import com.icoding.service.UserService;
@@ -52,6 +54,17 @@ public class UserController {
 		List<User> listUsers = new ArrayList<User>();
 		listUsers = userService.getAll();
 		return listUsers;
+	}
+
+	@RequestMapping(value = { "/admin/user", "/admin/user/list" }, method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
+	@Secured("ROLE_ADMIN")
+	public String displayPage(Model model) {
+		List<Role> listRoles = new ArrayList<Role>();
+		listRoles = roleService.getAll();
+		model.addAttribute("pageName", "Quản lý người dùng");
+		model.addAttribute("title", "Quản lý người dùng");
+		model.addAttribute("listRoles", listRoles);
+		return "user/index";
 	}
 
 	@RequestMapping(value = "/user/delete", method = RequestMethod.POST)

@@ -9,7 +9,7 @@
 				<div class="ibox">
 					<div class="ibox-content">
 						<a href="<c:url value='/admin/role/list'/>" class="btn-link">
-							<h2>Quản lý Quyền</h2>
+							<h2>Quản lý quyền</h2>
 						</a>
 						<button data-toggle="modal" data-target="#newItem"class="btn btn-sm btn-primary">Tạo
 							mới</button>
