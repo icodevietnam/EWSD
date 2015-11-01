@@ -38,9 +38,6 @@ public class Program {
 	@JoinColumn(name = "ee")
 	private User ee;
 
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "listPrograms")
-	private List<User> listStudents;
-
 	@Column(name = "type_grade")
 	private String typeOfGrade;
 
@@ -88,14 +85,6 @@ public class Program {
 
 	public void setEe(User ee) {
 		this.ee = ee;
-	}
-
-	public List<User> getListStudents() {
-		return listStudents;
-	}
-
-	public void setListStudents(List<User> listStudents) {
-		this.listStudents = listStudents;
 	}
 
 	public String getAcademicYear() {
