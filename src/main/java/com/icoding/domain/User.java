@@ -3,6 +3,7 @@ package com.icoding.domain;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -45,6 +46,9 @@ public class User {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinTable(name = "user_roles", joinColumns = { @JoinColumn(name = "user_id", referencedColumnName = "id") }, inverseJoinColumns = { @JoinColumn(name = "role_id", referencedColumnName = "id") })
 	private Role role;
+
+	@OneToOne(fetch = FetchType.LAZY, mappedBy = "student", cascade = CascadeType.ALL)
+	private Certificated certificated;
 
 	public Integer getId() {
 		return id;
@@ -124,6 +128,14 @@ public class User {
 
 	public void setState(String state) {
 		this.state = state;
+	}
+
+	public Certificated getCertificated() {
+		return certificated;
+	}
+
+	public void setCertificated(Certificated certificated) {
+		this.certificated = certificated;
 	}
 
 }
