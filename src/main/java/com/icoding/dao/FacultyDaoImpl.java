@@ -1,5 +1,11 @@
 package com.icoding.dao;
 
-public class FacultyDaoImpl {
+import org.springframework.stereotype.Repository;
+
+import com.icoding.domain.Faculty;
+
+@Repository
+public class FacultyDaoImpl extends GenericDaoImpl<Faculty, Integer> implements
+		FacultyDao {
 
 }

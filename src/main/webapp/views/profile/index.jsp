@@ -76,12 +76,6 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="department" class="col-sm-2 control-label">Phòng ban</label>
-								<div class="col-sm-10">
-									<label for="department" class="col-sm-5 control-label">${currentUser.department.name}</label>
-								</div>
-							</div>
-							<div class="form-group">
     							<div class="col-sm-2">
       								<button type="button" onclick="displayChangeInfo();" class="btn btn-sm btn btn-primary">Đổi thông tin</button>
     							</div>
@@ -144,16 +138,6 @@
 										<option value="active">Đang hoạt động</option>
 										<option value="absent">Nghỉ phép</option>
 										<option value="resign">Từ chức</option>
-									</select>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="department" class="col-sm-2 control-label">Phòng ban</label>
-								<div class="col-sm-10">
-									<select id="departmentBox" name="department" class="form-control combobox" data-style="btn-white">
-										<c:forEach var="department" items="${allDepartments}">
-											<option value="${department.id}">${department.name}</option>
-										</c:forEach>
 									</select>
 								</div>
 							</div>

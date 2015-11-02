@@ -35,8 +35,8 @@ public class ProfileController {
 		UserDetails userDetails = (UserDetails) auth.getPrincipal();
 		User currentUser = userService.getUser(userDetails.getUsername());
 		model.addAttribute("currentUser", currentUser);
-		model.addAttribute("pageName", "ThÃ´ng tin ngÆ°Æ¡Ì€i duÌ€ng");
-		model.addAttribute("title", "ThÃ´ng tin ngÆ°Æ¡Ì€i duÌ€ng");
+		model.addAttribute("pageName", "User Information");
+		model.addAttribute("title", "User Information");
 		return "profile/index";
 	}
 
@@ -47,8 +47,8 @@ public class ProfileController {
 		UserDetails userDetails = (UserDetails) auth.getPrincipal();
 		User currentUser = userService.getUser(userDetails.getUsername());
 		model.addAttribute("currentUser", currentUser);
-		model.addAttribute("pageName", "Ä�Ã´Ì‰i mÃ¢Ì£t khÃ¢Ì‰u ngÆ°Æ¡Ì€i duÌ€ng");
-		model.addAttribute("title", "ThÃ´ng tin ngÆ°Æ¡Ì€i duÌ€ng");
+		model.addAttribute("pageName", "Change password user");
+		model.addAttribute("title", "User Information");
 		return "profile/changePassword";
 	}
 
@@ -62,7 +62,7 @@ public class ProfileController {
 		User currentUser = userService.getUser(userDetails.getUsername());
 		currentUser.setPassword(encoder.encode(newPassword));
 		userService.saveOrUpdate(currentUser);
-		model.addAttribute("success", "BaÌ£n Ä‘aÌƒ Ä‘Ã´Ì‰i mÃ¢Ì£t khÃ¢Ì‰u thaÌ€nh cÃ´ng");
+		model.addAttribute("success", "You changed successfully");
 		return "profile/changePassword";
 	}
 
@@ -73,8 +73,7 @@ public class ProfileController {
 			@RequestParam(value = "address") String address,
 			@RequestParam(value = "phone") String phone,
 			@RequestParam(value = "gender") String gender,
-			@RequestParam(value = "state") String state,
-			@RequestParam(value = "department") String department)
+			@RequestParam(value = "state") String state)
 			throws ParseException {
 
 		Integer userId = Integer.parseInt(id);

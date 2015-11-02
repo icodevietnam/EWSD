@@ -22,27 +22,35 @@
 						<span class="block m-t-xs"> <strong
 								class="font-bold"><%=request.getUserPrincipal().getName()%></strong>
 						</span>
-						<span class="departmentCur text-muted text-xs block">Phòng: Art Director</span>
+						<!-- <span class="departmentCur text-muted text-xs block">Phòng: Art Director</span> -->
 					</span>
 					</a>
 					<ul class="dropdown-menu animated fadeInRight m-t-xs">
-						<li><a href="<c:url value='/admin/profile/'/>">Hồ Sơ Cá Nhân</a></li>
-						<li><a href="<c:url value='/admin/profile/change-password'/>">Thay đổi mật khẩu</a></li>
+						<li><a href="<c:url value='/admin/profile/'/>">Profile</a></li>
+						<li><a href="<c:url value='/admin/profile/change-password'/>">Change Profile</a></li>
 						<li class="divider"></li>
-						<li><a href="<c:url value='/j_spring_security_logout'/>">Thoát</a></li>
+						<li><a href="<c:url value='/j_spring_security_logout'/>">Exit</a></li>
 					</ul>
 				</div>
 				<div class="logo-element">IN+</div>
 			</li>
 			<li class="suply"><a href="index.html"><i class="fa fa-th-large"></i> <span
-				class="nav-label">Quản lý người dùng</span> <span class="fa arrow"></span></a>
+				class="nav-label">Manage User</span> <span class="fa arrow"></span></a>
 				<ul class="nav nav-second-level collapse">
 				<sec:authorize access="hasRole('ROLE_ADMIN')">
-					<li><a href="<c:url value='/admin/user/list'/>">Quản lý người dùng</a></li>
-					<li><a href="<c:url value='/admin/department/list'/>">Phòng ban</a></li>
-					<li><a href="<c:url value='/admin/role/list'/>">Quyền</a></li>
+					<li><a href="<c:url value='/admin/user/list'/>">Manage Users</a></li>
+					<%-- <li><a href="<c:url value='/admin/department/list'/>">Phòng ban</a></li> --%>
+					<li><a href="<c:url value='/admin/role/list'/>">Manage Role</a></li>
 				</sec:authorize>
-				<li><a href="<c:url value='/admin/customer/list'/>">Quản lý khách hàng</a></li>
+				<%-- <li><a href="<c:url value='/admin/customer/list'/>">Quản lý khách hàng</a></li> --%>
+				</ul>
+			</li>
+			<li class="suply"><a href="index.html"><i class="fa fa-th-large"></i> <span
+				class="nav-label">Manage Examiner</span> <span class="fa arrow"></span></a>
+				<ul class="nav nav-second-level collapse">
+					<li><a href="<c:url value='/admin/faculty/list'/>">Manage Faculty</a></li>
+					<li><a href="<c:url value='/admin/briefType/list'/>">Quản lý Loại Hồ Sơ</a></li>
+					<li><a href="<c:url value='/admin/stock/list'/>">Quản lý Kho</a></li>
 				</ul>
 			</li>
 			<li class="suply"><a href="index.html"><i class="fa fa-th-large"></i> <span
