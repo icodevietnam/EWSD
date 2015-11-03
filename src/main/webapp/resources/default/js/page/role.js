@@ -1,5 +1,6 @@
 $(function() {
 	displayTable();
+	
 	$("#newItemForm").validate({
 		rules : {
 			roleName:{
@@ -11,15 +12,12 @@ $(function() {
 		},
 		messages : {
 			roleName:{
-				required:"Name không được để trống"
+				required:"Name is not blank"
 			},
 			roleDescription:{
-				required:"Diễn giải không được để trống"
+				required:"Description is not blank"
 			}
 		},
-		submitHandler : function(form) {
-			form.submit();
-		}
 	});
 	
 	$("#updateItemForm").validate({
@@ -33,15 +31,12 @@ $(function() {
 		},
 		messages : {
 			roleName:{
-				required:"Name không được để trống"
+				required:"Name is not blank"
 			},
 			roleDescription:{
-				required:"Diễn giải không được để trống"
+				required:"Description is not blank"
 			}
 		},
-		submitHandler : function(form) {
-			form.submit();
-		}
 	});
 });
 
@@ -59,9 +54,9 @@ function displayTable() {
 						i,
 						value.name,value.description,
 						"<button class='btn btn-sm btn-primary' onclick='editItem("
-								+ value.id + ")' >Sửa</button>",
+								+ value.id + ")' >Edit</button>",
 						"<button class='btn btn-sm btn-danger' onclick='deleteItem("
-								+ value.id + ")'>Xoá</button>" ]);
+								+ value.id + ")'>Delete</button>" ]);
 			});
 			$('#tblDepartment').dataTable({
 				"bDestroy" : true,
@@ -73,15 +68,15 @@ function displayTable() {
 				"aaData" : dataDepartments,
 				"aaSorting" : [],
 				"aoColumns" : [ {
-					"sTitle" : "STT"
+					"sTitle" : "No"
 				}, {
-					"sTitle" : "Tên"
+					"sTitle" : "Name"
 				}, {
-					"sTitle" : "Chú Thích"
+					"sTitle" : "Description"
 				}, {
-					"sTitle" : "Sửa"
+					"sTitle" : "Edit"
 				}, {
-					"sTitle" : "Xoá"
+					"sTitle" : "Delete"
 				} ]
 			});
 		}
@@ -136,18 +131,18 @@ function editedItem() {
 			},
 			dataType : "JSON",
 			success : function(response) {
+			},complete:function(){
 				displayTable();
+				$("#updateItemForm .roleId").val(" ");
+				$("#updateItemForm .roleName").val(" ");
+				$("#updateItemForm .roleDescription").val(" ");
+				$("#updateItem").modal("hide");
 			}
 		});
 	}
-	$("#updateItemForm .roleId").val(" ");
-	$("#updateItemForm .roleName").val(" ");
-	$("#updateItemForm .roleDescription").val(" ");
-	$("#updateItem").modal("hide");
 }
 
 function insertItem() {
-	
 	if($("#newItemForm").valid()){
 		var roleName = $("#roleName").val();
 		var roleDescription = $("#roleDescription").val();
@@ -160,11 +155,13 @@ function insertItem() {
 			},
 			dataType : "JSON",
 			success : function(response) {
+			},
+			complete : function(){
 				displayTable();
+				$("#newItem").modal("hide");
+				$("#roleName").val(" ");
+				$("#roleDescription").val(" ");
 			}
 		});
 	}
-	$("#newItem").modal("hide");
-	$("#roleName").val(" ");
-	$("#roleDescription").val(" ");
 }

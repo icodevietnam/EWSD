@@ -39,24 +39,6 @@ $(function() {
 	});
 });
 
-/*function showImage(id){
-	var link ="";
-	$.ajax({
-		url : "/ewsd/fileAttached/get",
-		type : "GET",
-		data : {
-			itemId : id
-		},
-		async :false,
-		cache : false,
-		dataType : "JSON",
-		success : function(response) {
-			link = "<img class='thumbnail' src='/resources/default/images/"+ response.name+ "'/>"
-		}
-	});
-	return link;
-}*/
-
 function displayTable() {
 	var dataDepartments = [];
 	$.ajax({

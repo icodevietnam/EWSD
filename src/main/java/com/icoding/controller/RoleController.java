@@ -24,8 +24,8 @@ public class RoleController {
 	@RequestMapping(value = { "/admin/role", "/admin/role/list" }, method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
 	@Secured("ROLE_ADMIN")
 	public String displayPage(Model model) {
-		model.addAttribute("pageName", "QuaÌ‰n lyÌ� quyÃªÌ€n");
-		model.addAttribute("title", "QuaÌ‰n lyÌ� quyÃªÌ€n");
+		model.addAttribute("pageName", "Manage Role");
+		model.addAttribute("title", "Manage Role");
 		return "role/index";
 	}
 

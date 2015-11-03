@@ -21,6 +21,8 @@ $(function() {
 				required:true
 			},birthDate:{
 				required:true
+			},email : {
+				required : true,
 			},
 			address:{
 				required:true
@@ -31,32 +33,29 @@ $(function() {
 		},
 		messages : {
 			userName:{
-				required:"Tên đăng nhập không được để trống"
+				required:"Username is not blank."
 			},
 			password:{
-				required:"Mật khẩu không được để trống",
-				minlength:"Mật khẩu không được bé hơn 5 ký tự"
+				required:"Password is not blank",
+				minlength:"Password is not less than 5 characters."
 			},
 			confirmPassword:{
-				required:"Xác nhận mật khẩu không được để trống",
-				equalTo:"Xác nhận mật khẩu và mật khẩu không giống nhau"
+				required:"Confirm password is not blank",
+				equalTo:"Password and confirm password are not the same"
 			},fullname:{
-				required:"Họ và tên không được để trống"
-			},confirmPassword:{
-				required:"Xác nhận mật khẩu không được để trống"
+				required:"Full name is not blank"
 			},birthDate:{
-				required:"Ngày sinh không được để trống"
+				required:"The birthdate is not blank"
+			},email : {
+				required : "The email is not blank",
 			},
 			address:{
-				required:"Địa chỉ không được để trống"
+				required:"Address is not blank"
 			},
 			phone:{
-				required:"Điện Thoại không được để trống"
+				required:"Phone is not blank"
 			}
 		},
-		submitHandler : function(form) {
-			form.submit();
-		}
 	});
 	
 	$("#changeModalForm").validate({
@@ -72,17 +71,14 @@ $(function() {
 		},
 		messages : {
 			password:{
-				required:"Mật khẩu không được để trống",
-				minlength:"Mật khẩu không được bé hơn 5 ký tự"
+				required:"Password is not blank",
+				minlength:"Password is not less than 5 characters."
 			},
 			confirmPassword:{
-				required:"Xác nhận mật khẩu không được để trống",
-				equalTo:"Xác nhận mật khẩu và mật khẩu không giống nhau"
+				required:"Confirm password is not blank",
+				equalTo:"Password and confirm password are not the same"
 			}
 		},
-		submitHandler : function(form) {
-			form.submit();
-		}
 	});
 	
 	$("#updateItemForm").validate({
@@ -103,22 +99,19 @@ $(function() {
 		},
 		messages : {
 			userName:{
-				required:"Tên đăng nhập không được để trống"
+				required:"Username is not blank."
 			},fullname:{
-				required:"Họ và tên không được để trống"
+				required:"Full name is not blank"
 			},birthDate:{
-				required:"Ngày sinh không được để trống"
+				required:"The birthdate is not blank"
 			},
 			address:{
-				required:"Địa chỉ không được để trống"
+				required:"Address is not blank"
 			},
 			phone:{
-				required:"Điện Thoại không được để trống"
+				required:"Phone is not blank"
 			}
 		},
-		submitHandler : function(form) {
-			form.submit();
-		}
 	});
 });
 
@@ -130,9 +123,9 @@ function insertItem() {
 		var password = $("#password").val();
 		var fullname = $("#fullname").val();
 		var birthDate = $("#birthDate").val();
+		var email = $("#email").val();
 		var address = $("#address").val();
 		var roleId = $("#roleBox").val();
-		var departmentId = $("#departmentBox").val();
 		var gender = $("#genderBox").val();
 		var state = $("#stateBox").val();
 		var phone = $("#phone").val();
@@ -144,9 +137,9 @@ function insertItem() {
 				password : password,
 				fullname : fullname,
 				birthDate : birthDate,
+				email : email,
 				address : address,
 				roleId : roleId,
-				departmentId : departmentId,
 				gender : gender, 
 				state : state,
 				phone : phone
@@ -154,18 +147,21 @@ function insertItem() {
 			dataType : "JSON",
 			success : function(response) {
 				if(response ==="false"){
-					alert("Không thể delete được vì đây là admin root");
+					alert("Can't delete because this is the root admin");
 				} 
+			},
+			complete : function(){
 				displayTable();
+				$("#newItem").modal("hide");
+				$("#userName").val("");
+				$("#fullname").val("");
+				$("#birthDate").val("");
+				$("#email").val("");
+				$("#address").val("");
+				$("#phone").val("");
 			}
 		});
 	}
-	$("#newItem").modal("hide");
-	$("#userName").val("");
-	$("#fullname").val("");
-	$("#birthDate").val("");
-	$("#address").val("");
-	$("#phone").val("");
 }
 
 function displayTable() {
@@ -180,21 +176,21 @@ function displayTable() {
 				i++;
 				var state = "";
 				if(value.state == "active"){
-					state ="Đang hoạt động";
+					state ="Active";
 				}else if(value.state == "absent"){
-					state = "Đang nghỉ phép";
+					state = "Absent";
 				}else{
-					state = "Từ chức";
+					state = "Resign";
 				}
 				dataUsers.push([
 						i,
-						value.username,value.fullName,value.birthDate,value.address,state,value.role.name,value.department.name,
+						value.username,value.fullName,value.birthDate,value.email,value.address,state,value.role.description,
 						"<button class='btn btn-sm btn-primary' onclick='changePass("
-						+ value.id + ")' >Đổi Mật Khẩu</button>",
+						+ value.id + ")' >Change Password</button>",
 						"<button class='btn btn-sm btn-primary' onclick='editItem("
-								+ value.id + ")' >Đổi thông tin</button>",
+								+ value.id + ")' >Change Information</button>",
 						"<button class='btn btn-sm btn-danger' onclick='deleteItem("
-								+ value.id + ")'>Xoá</button>" ]);
+								+ value.id + ")'>Delete</button>" ]);
 			});
 			$('#tblUser').dataTable({
 				"bDestroy" : true,
@@ -206,30 +202,29 @@ function displayTable() {
 				"aaData" : dataUsers,
 				"aaSorting" : [],
 				"aoColumns" : [ {
-					"sTitle" : "STT"
+					"sTitle" : "No"
 				}, {
-					"sTitle" : "Tên Đăng Nhập"
+					"sTitle" : "Username"
 				}, {
-					"sTitle" : "Họ Tên"
-				},  {
-					"sTitle" : "Ngày sinh"
+					"sTitle" : "Full name"
+				},{
+					"sTitle" : "Birth date"
+				},{
+					"sTitle" : "Email"
+				},{
+					"sTitle" : "Address"
+				},{
+					"sTitle" : "State"
+				},{
+					"sTitle" : "Role"
 				},
 				{
-					"sTitle" : "Địa chỉ"
-				},{
-					"sTitle" : "Trạng Thái"
-				},{
-					"sTitle" : "Quyền"
-				},{
-					"sTitle" : "Phòng"
-				},
-				{
-					"sTitle" : "Đổi mật khẩu"
+					"sTitle" : "Change password"
 				}, 
 				{
-					"sTitle" : "Thay đổi"
+					"sTitle" : "Change"
 				}, {
-					"sTitle" : "Xoá"
+					"sTitle" : "Delete"
 				} ]
 			});
 		}
@@ -250,9 +245,9 @@ function editItem(id) {
 			$("#updateItemForm .userName").val(response.username);
 			$("#updateItemForm .fullname").val(response.fullName);
 			$("#updateItemForm .birthDate").val(response.birthDate);
+			$("#updateItemForm .email").val(response.email);
 			$("#updateItemForm .address").val(response.address);
 			$("#updateItemForm .phone").val(response.phone);
-			$("#updateItemForm .departmentBox").selectpicker('val',""+response.department.id);
 			$("#updateItemForm .roleBox").selectpicker('val',""+response.role.id);
 			$("#updateItemForm .genderBox").selectpicker('val',""+response.gender);
 			$("#updateItemForm .stateBox").selectpicker('val',""+response.state);
@@ -283,9 +278,9 @@ function editedItem() {
 		var userName = $("#updateItemForm  .userName").val();
 		var fullname = $("#updateItemForm  .fullname").val();
 		var birthDate = $("#updateItemForm .birthDate").val();
+		var email = $("#updateItemForm .email").val();
 		var address = $("#updateItemForm  .address").val();
 		var roleId = $("#updateItemForm  .roleBox").val();
-		var departmentId = $("#updateItemForm .departmentBox").val();
 		var gender = $("#updateItemForm .genderBox").val();
 		var state = $("#updateItemForm .stateBox").val();
 		var phone = $("#updateItemForm .phone").val();
@@ -297,25 +292,29 @@ function editedItem() {
 				userName : userName,
 				fullname : fullname,
 				birthDate : birthDate,
+				email : email,
 				address : address,
 				roleId : roleId,
-				departmentId : departmentId,
 				gender : gender, 
 				state : state,
 				phone : phone
 			},
 			dataType : "JSON",
 			success : function(response) {
+			},
+			complete : function(){
 				displayTable();
+				$("#updateItemForm .userName").val("");
+				$("#updateItemForm .fullname").val("");
+				$("#updateItemForm .birthDate").val("");
+				$("#updateItemForm .address").val("");
+				$("#updateItemForm .phone").val("");
+				$("#updateItemForm .email").val("");
+				$("#updateItemForm .email").val("");
+				$("#updateItem").modal("hide");
 			}
 		});
 	}
-	$("#userName").val("");
-	$("#fullname").val("");
-	$("#birthDate").val("");
-	$("#address").val("");
-	$("#phone").val("");
-	$("#updateItem").modal("hide");
 }
 
 function changePass(id){
@@ -326,7 +325,6 @@ function changePass(id){
 function changePassProcess(){
 	var userId = $("#changeModalForm .userId").val();
 	var password = $("#changeModalForm .password").val();
-	alert("Dep Trai");
 	$.ajax({
 		url : "/ewsd/user/changePassword",
 		type : "POST",
@@ -336,16 +334,18 @@ function changePassProcess(){
 		},
 		dataType : "JSON",
 		success : function(response) {
+		},
+		complete:function(){
 			if (response == true) {
-				alert("Thay đổi mật khẩu thành công");
+				alert("Change password successfully");
 			}
 			else{
-				alert("Thay đổi mật khẩu thất bại");
+				alert("Change password fail");
 			}
+			$("changeModalForm .password").val(" ");
+			$("changeModalForm .confirmPassword").val(" ");
+			$("#changeModal").modal("hide");
 		}
 	});
-	$("changeModalForm .password").val(" ");
-	$("changeModalForm .confirmPassword").val(" ");
-	$("#changeModal").modal("hide");
 	
 }

@@ -1,5 +1,7 @@
 package com.icoding.domain;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,8 +10,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "user")
@@ -34,6 +42,9 @@ public class User {
 	@Column(name = "gender")
 	private Boolean gender;
 
+	@Column(name = "email")
+	private String email;
+
 	@Column(name = "address", length = 255)
 	private String address;
 
@@ -49,6 +60,16 @@ public class User {
 
 	@OneToOne(fetch = FetchType.LAZY, mappedBy = "student", cascade = CascadeType.ALL)
 	private Certificated certificated;
+
+	@JsonIgnore
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "ee")
+	@Fetch(FetchMode.SELECT)
+	private List<Program> listProgramsByEE;
+
+	@JsonIgnore
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "pl")
+	@Fetch(FetchMode.SELECT)
+	private List<Program> listProgramsByPL;
 
 	public Integer getId() {
 		return id;
@@ -138,4 +159,28 @@ public class User {
 		this.certificated = certificated;
 	}
 
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public List<Program> getListProgramsByEE() {
+		return listProgramsByEE;
+	}
+
+	public void setListProgramsByEE(List<Program> listProgramsByEE) {
+		this.listProgramsByEE = listProgramsByEE;
+	}
+
+	public List<Program> getListProgramsByPL() {
+		return listProgramsByPL;
+	}
+
+	public void setListProgramsByPL(List<Program> listProgramsByPL) {
+		this.listProgramsByPL = listProgramsByPL;
+	}
+	
 }

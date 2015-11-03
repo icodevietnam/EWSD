@@ -8,7 +8,7 @@
 			<div class="col-lg-8">
 				<div class="ibox">
 					<div class="ibox-content">
-						<a href="<c:url value='/admin/document/list'/>" class="btn-link">
+						<a href="<c:url value='/admin/faculty/list'/>" class="btn-link">
 							<h2>Manage Faculty</h2>
 						</a>
 						<button data-toggle="modal" data-target="#newItem"class="btn btn-sm btn-primary">Create Faculty</button>
@@ -21,9 +21,9 @@
 				</div>
 			</div>
 		</div>
-		<div class="modal fade" id="newItem" tabindex="-1" role="dialog"
+		<div class="modal fade" id="newItem" tabindex="-1" faculty="dialog"
 			aria-labelledby="myModalLabel">
-			<div class="modal-dialog" role="document">
+			<div class="modal-dialog" role="faculty">
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal"
@@ -32,75 +32,59 @@
 						</button>
 						<h4 class="modal-title" id="myModalLabel">Add Faculty</h4>
 					</div>
-					<form id="newItemForm" class="form-horizontal" action="<c:url value='/admin/faculty/new'/>" method="POST" enctype="multipart/form-data">
+					<form id="newItemForm" class="form-horizontal" action="<c:url value='/admin/faculty/new'/>" method="POST">
 					<div class="modal-body">
 						<div class="form-group">
-							<label for="name" class="col-sm-2 control-label">Nội dung</label>
+							<label for="name" class="col-sm-2 control-label">Name</label>
 							<div class="col-sm-10">
-							<textarea class="form-control" id="content" name="content" ></textarea>
+							<input type="text" class="form-control" id="facultyName" name="name" >
 							</div>
 						</div>
-						<div class="modal-footer">
-							<button type="button" onclick="insertItem();" class="btn btn-primary">Lưu</button>
-							<button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+						<div class="form-group">
+							<label for="name" class="col-sm-2 control-label">Description</label>
+							<div class="col-sm-10">
+							<input type="text" class="form-control" id="facultyDescription" name="description" >
+							</div>
 						</div>
 					</div>
+					<div class="modal-footer">
+						<button type="button" onclick="insertItem();" class="btn btn-primary">Save</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
 					</form>
-					
 				</div>
 			</div>
 		</div>
-		
-		<div class="modal fade" id="updateItem" tabindex="-1" role="dialog"
+		<div class="modal fade" id="updateItem" tabindex="-1" faculty="dialog"
 			aria-labelledby="myModalLabel">
-			<div class="modal-dialog" role="document">
+			<div class="modal-dialog" role="faculty">
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal"
 							aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
-						<h4 class="modal-title" id="myModalLabel">Sửa Đơn Từ</h4>
+						<h4 class="modal-title" id="myModalLabel">Edit Faculty</h4>
 					</div>
-					<form id="updateItemForm" class="form-horizontal" action="<c:url value='/admin/profile/updateProfile'/>" enctype="multipart/form-data" method="POST">
+					<form id="updateItemForm" class="form-horizontal" action="<c:url value='/admin/profile/updateProfile'/>" method="POST">
 					<div class="modal-body">
-								<input type="text" class="documentId form-control hide" id="documentId" name="documentId" >
-						<div class="form-group">
-							<label for="name" class="col-sm-2 control-label">Nội dung</label>
-							<div class="col-sm-10">
-							<textarea class="content form-control" id="content" name="content" ></textarea>
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="customer" class="col-sm-2 control-label">Hồ Sơ</label>
-							<div class="col-sm-10">
-								<select id="briefBox" name="briefBox" class="briefBox form-control combobox" data-live-search="true" data-style="btn-white">
-									<c:forEach var="brief" items="${listBriefs}">
-										<option value="${brief.id}">${brief.content}</option>
-									</c:forEach>
-								</select>
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="document" class="col-sm-2 control-label">Loại đơn từ</label>
-							<div class="col-sm-10">
-								<select id="documentTypeA" name="documentTypeA" class="documentTypeA form-control combobox" data-live-search="true" data-style="btn-white">
-									<c:forEach var="documentType" items="${listDocumentTypes}">
-										<option value="${documentType.id}">${documentType.name}</option>
-									</c:forEach>
-								</select>
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="document" class="col-sm-2 control-label">Loại đơn từ</label>
-							<div class="col-sm-10">
-								File to upload: <input id="fileUpload" class="fileUpload" type="file" name="fileUpload"><br /> 
-							</div>
-						</div>
+								<input type="text" class="facultyId form-control hide" class="facultyId" name="facultyId" >
+								<div class="form-group">
+									<label for="name" class="col-sm-2 control-label">Name</label>
+									<div class="col-sm-10">
+										<input type="text" class="facultyName form-control" class="facultyName" name="name" >
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="name" class="col-sm-2 control-label">Description</label>
+									<div class="col-sm-10">
+										<input type="text" class="facultyDescription form-control" class="facultyDescription" name="description" >
+									</div>
+								</div>
 					</div>
 					<div class="modal-footer">
-						<button type="button" onclick="editedItem();" class="btn btn-primary">Chỉnh sửa</button>
-						<button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+						<button type="button" onclick="editedItem();" class="btn btn-primary">Edit</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 					</div>
 					</form>
 				</div>

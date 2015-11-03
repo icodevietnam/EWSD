@@ -49,7 +49,7 @@
 				class="nav-label">Manage Examiner</span> <span class="fa arrow"></span></a>
 				<ul class="nav nav-second-level collapse">
 					<li><a href="<c:url value='/admin/faculty/list'/>">Manage Faculty</a></li>
-					<li><a href="<c:url value='/admin/briefType/list'/>">Quản lý Loại Hồ Sơ</a></li>
+					<li><a href="<c:url value='/admin/program/list'/>">Manage Program</a></li>
 					<li><a href="<c:url value='/admin/stock/list'/>">Quản lý Kho</a></li>
 				</ul>
 			</li>

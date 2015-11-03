@@ -8,10 +8,10 @@
 			<div class="col-lg-8">
 				<div class="ibox">
 					<div class="ibox-content">
-						<a href="<c:url value='/admin/role/list'/>" class="btn-link">
-							<h2>Manage Role</h2>
+						<a href="<c:url value='/admin/program/list'/>" class="btn-link">
+							<h2>Manage Program</h2>
 						</a>
-						<button data-toggle="modal" data-target="#newItem"class="btn btn-sm btn-primary">Create New</button>
+						<button data-toggle="modal" data-target="#newItem"class="btn btn-sm btn-primary">Create Program</button>
 						<div class="table-responsive">
 							<table id="tblDepartment"
 								class="table table-bordered table-hover table-striped">
@@ -23,27 +23,27 @@
 		</div>
 		<div class="modal fade" id="newItem" tabindex="-1" role="dialog"
 			aria-labelledby="myModalLabel">
-			<div class="modal-dialog" role="document">
+			<div class="modal-dialog" role="program">
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal"
 							aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
-						<h4 class="modal-title" id="myModalLabel">Add Role</h4>
+						<h4 class="modal-title" id="myModalLabel">Add Program</h4>
 					</div>
-					<form id="newItemForm" class="form-horizontal" method="POST">
+					<form id="newItemForm" class="form-horizontal" action="<c:url value='/admin/program/new'/>" method="POST">
 					<div class="modal-body">
 						<div class="form-group">
 							<label for="name" class="col-sm-2 control-label">Name</label>
 							<div class="col-sm-10">
-							<input type="text" class="form-control" id="roleName" name="roleName" >
+							<input type="text" class="form-control" id="programName" name="name" >
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="name" class="col-sm-2 control-label">Description</label>
 							<div class="col-sm-10">
-							<input type="text" class="form-control" id="roleDescription" name="roleDescription" >
+							<input type="text" class="form-control" id="programDescription" name="description" >
 							</div>
 						</div>
 					</div>
@@ -55,30 +55,30 @@
 				</div>
 			</div>
 		</div>
-		<div class="modal fade" id="updateItem" tabindex="-1" role="dialog"
+		<div class="modal fade" id="updateItem" tabindex="-1" program="dialog"
 			aria-labelledby="myModalLabel">
-			<div class="modal-dialog" role="document">
+			<div class="modal-dialog" role="program">
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal"
 							aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
-						<h4 class="modal-title" id="myModalLabel">Edit Role</h4>
+						<h4 class="modal-title" id="myModalLabel">Edit Program</h4>
 					</div>
-					<form id="updateItemForm" class="form-horizontal" method="POST">
+					<form id="updateItemForm" class="form-horizontal" action="<c:url value='/admin/profile/updateProfile'/>" method="POST">
 					<div class="modal-body">
-								<input type="text" class="roleId form-control hide" id="roleId" name="roleId" >
+								<input type="text" class="programId form-control hide" class="programId" name="programId" >
 								<div class="form-group">
 									<label for="name" class="col-sm-2 control-label">Name</label>
 									<div class="col-sm-10">
-										<input type="text" class="roleName form-control" id="roleName" name="roleName" >
+										<input type="text" class="programName form-control" class="programName" name="name" >
 									</div>
 								</div>
 								<div class="form-group">
 									<label for="name" class="col-sm-2 control-label">Description</label>
 									<div class="col-sm-10">
-										<input type="text" class="roleDescription form-control" id="roleDescription" name="roleDescription" >
+										<input type="text" class="programDescription form-control" class="programDescription" name="description" >
 									</div>
 								</div>
 					</div>
@@ -91,6 +91,6 @@
 			</div>
 		</div>
 		<script
-			src="<c:url value='/resources/default/js/page/role.js'/>"></script>
+			src="<c:url value='/resources/default/js/page/program.js'/>"></script>
 	</tiles:putAttribute>
 </tiles:insertDefinition>

@@ -61,8 +61,8 @@ public class UserController {
 	public String displayPage(Model model) {
 		List<Role> listRoles = new ArrayList<Role>();
 		listRoles = roleService.getAll();
-		model.addAttribute("pageName", "Quản lý người dùng");
-		model.addAttribute("title", "Quản lý người dùng");
+		model.addAttribute("pageName", "Manage User");
+		model.addAttribute("title", "Manage User");
 		model.addAttribute("listRoles", listRoles);
 		return "user/index";
 	}
@@ -95,6 +95,72 @@ public class UserController {
 		user.setPassword(encoder.encode(password));
 		try {
 			userService.update(user);
+			return "true";
+		} catch (Exception e) {
+			return "false";
+		}
+	}
+	
+	@RequestMapping(value = "/user/update", method = RequestMethod.POST)
+	@ResponseBody
+	public String updateUser(@RequestParam(value = "userId") String userId,
+			@RequestParam(value = "fullname") String fullname,
+			@RequestParam(value = "birthDate") String birthDate,
+			@RequestParam(value = "address") String address,
+			@RequestParam(value = "roleId") String roleId,
+			@RequestParam(value = "phone") String phone,
+			@RequestParam(value = "email") String email,
+			@RequestParam(value = "state") String state,
+			@RequestParam(value = "gender") String gender) {
+		User user = userService.get(Integer.parseInt(userId));
+		user.setFullName(fullname);
+		user.setBirthDate(birthDate);
+		user.setAddress(address);
+		user.setEmail(email);
+		user.setRole(roleService.get(Integer.parseInt(roleId)));
+		user.setState(state);
+		if (gender.equalsIgnoreCase("true")) {
+			user.setGender(true);
+		}
+		user.setGender(false);
+		user.setPhone(phone);
+		try {
+			userService.update(user);
+			return "true";
+		} catch (Exception e) {
+			return "false";
+		}
+	}
+	
+	@RequestMapping(value = "/user/new", method = RequestMethod.POST)
+	@ResponseBody
+	public String addUser(@RequestParam(value = "password") String password,
+			@RequestParam(value = "userName") String userName,
+			@RequestParam(value = "fullname") String fullname,
+			@RequestParam(value = "birthDate") String birthDate,
+			@RequestParam(value = "email") String email,
+			@RequestParam(value = "address") String address,
+			@RequestParam(value = "roleId") String roleId,
+			@RequestParam(value = "phone") String phone,
+			@RequestParam(value = "state") String state,
+			@RequestParam(value = "gender") String gender) {
+
+		User user = new User();
+		user.setUsername(userName);
+		user.setPassword(encoder.encode(password));
+		user.setFullName(fullname);
+		user.setBirthDate(birthDate);
+		user.setAddress(address);
+		user.setEmail(email);
+		user.setRole(roleService.get(Integer.parseInt(roleId)));
+		user.setState(state);
+		if (gender.equalsIgnoreCase("true")) {
+			user.setGender(true);
+		}
+		user.setGender(false);
+		user.setPhone(phone);
+		try {
+			userService.saveOrUpdate(user);
 			return "true";
 		} catch (Exception e) {
 			return "false";

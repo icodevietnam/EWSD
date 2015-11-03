@@ -1,14 +1,10 @@
 package com.icoding.domain;
 
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -37,6 +33,10 @@ public class Program {
 	@ManyToOne
 	@JoinColumn(name = "ee")
 	private User ee;
+	
+	@ManyToOne
+	@JoinColumn(name = "pl")
+	private User pl;
 
 	@Column(name = "type_grade")
 	private String typeOfGrade;
@@ -95,4 +95,28 @@ public class Program {
 		this.academicYear = academicYear;
 	}
 
+	public User getPl() {
+		return pl;
+	}
+
+	public void setPl(User pl) {
+		this.pl = pl;
+	}
+
+	public String getTypeOfGrade() {
+		return typeOfGrade;
+	}
+
+	public void setTypeOfGrade(String typeOfGrade) {
+		this.typeOfGrade = typeOfGrade;
+	}
+
+	public String getTypeOfConduct() {
+		return typeOfConduct;
+	}
+
+	public void setTypeOfConduct(String typeOfConduct) {
+		this.typeOfConduct = typeOfConduct;
+	}
+	
 }

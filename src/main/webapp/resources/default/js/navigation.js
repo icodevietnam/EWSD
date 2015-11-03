@@ -1,8 +1,8 @@
 $(function(){
-	loadDepartment();
+	/*loadDepartment();*/
 });
 
-function loadDepartment(){
+/*function loadDepartment(){
 	$.ajax({
 		url : "/ewsd/deparment/getCurrentUserDepartment",
 		type:"GET",
@@ -11,4 +11,4 @@ function loadDepartment(){
 			$("span.departmentCur").html(data);
 		}
 	});
-}
+}*/

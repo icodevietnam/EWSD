@@ -17,7 +17,7 @@
 			</form>
 		</div>
 		<ul class="nav navbar-top-links navbar-right">
-			<li><span class="m-r-sm text-muted welcome-message">Xin chào,
+			<li><span class="m-r-sm text-muted welcome-message">Hello,
 					<strong><%= request.getUserPrincipal().getName() %>  </strong> ! </span></li>
 			<li class="dropdown"><a class="dropdown-toggle count-info"
 				data-toggle="dropdown" href="#"> <i class="fa fa-bell"></i> <span
@@ -56,7 +56,7 @@
 
 
 			<li><a href="<c:url value='/j_spring_security_logout'/>"> <i
-					class="fa fa-sign-out"></i> Thoát
+					class="fa fa-sign-out"></i> Log out
 			</a></li>
 		</ul>
 
