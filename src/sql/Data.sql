@@ -41,6 +41,7 @@ CREATE TABLE `certificated` (
 
 LOCK TABLES `certificated` WRITE;
 /*!40000 ALTER TABLE `certificated` DISABLE KEYS */;
+INSERT INTO `certificated` VALUES (10,28,99,'best',100,77,88,88);
 /*!40000 ALTER TABLE `certificated` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -56,7 +57,7 @@ CREATE TABLE `faculty` (
   `description` varchar(255) DEFAULT NULL,
   `name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -65,6 +66,7 @@ CREATE TABLE `faculty` (
 
 LOCK TABLES `faculty` WRITE;
 /*!40000 ALTER TABLE `faculty` DISABLE KEYS */;
+INSERT INTO `faculty` VALUES (1,'Everything about Business Analysis','Business Analysis'),(3,'Mathematics Faculty Of Greenwich University','Mathematics'),(4,'Bachelor of Computing','Bachelor of Computing'),(18,'Everything it reaches chemistry','Chemistry');
 /*!40000 ALTER TABLE `faculty` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -110,6 +112,7 @@ CREATE TABLE `program` (
   `academic_year` varchar(255) DEFAULT NULL,
   `type_conduct` varchar(255) DEFAULT NULL,
   `type_grade` varchar(255) DEFAULT NULL,
+  `isHot` bit(1) DEFAULT NULL,
   PRIMARY KEY (`code`),
   KEY `FK_9q2aao5u4l1mnqx43m0huwxnn` (`ee`),
   KEY `FK_jf832u9j9sckmlpsl2mr3jets` (`faculty`),
@@ -126,6 +129,7 @@ CREATE TABLE `program` (
 
 LOCK TABLES `program` WRITE;
 /*!40000 ALTER TABLE `program` DISABLE KEYS */;
+INSERT INTO `program` VALUES ('P000001','sacsacas','cascas',5,1,4,'2015','best','21',NULL),('P000002','vasvasvas','svdsvsvs',5,1,4,'2015','best','12',NULL),('P000003','vsấvsa','vavsvá',5,1,4,'2015','best','80',NULL),('P000004',' vsavsavá',' vsavá',5,3,4,'2015','good','89',NULL),('P000005',' vcxvcxvcx',' vaáđsdsds',5,1,4,'2015','normal','90',NULL);
 /*!40000 ALTER TABLE `program` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -138,7 +142,14 @@ DROP TABLE IF EXISTS `report`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `report` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`id`)
+  `isApproved` bit(1) DEFAULT NULL,
+  `program` varchar(20) DEFAULT NULL,
+  `student` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_9s065l8i674emofwtdmwf4xae` (`program`),
+  KEY `FK_j7krnuix5au29ief4mdaiir0a` (`student`),
+  CONSTRAINT `FK_9s065l8i674emofwtdmwf4xae` FOREIGN KEY (`program`) REFERENCES `program` (`code`),
+  CONSTRAINT `FK_j7krnuix5au29ief4mdaiir0a` FOREIGN KEY (`student`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -193,8 +204,9 @@ CREATE TABLE `user` (
   `phone` varchar(255) DEFAULT NULL,
   `state` varchar(255) DEFAULT NULL,
   `username` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -203,7 +215,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'190/3 Sư Vạn Hạnh, P9, Q5','04/01/2015','Nguyễn Trọng Nghĩa','\0','$2a$11$LVQPqJt6o.vwrKBg9DARHONbkJZOnhDNyKUDyzziRCN0.KYZkH93y','0909076619',NULL,'admin');
+INSERT INTO `user` VALUES (1,'190/3 Sư Vạn Hạnh, P9, Q5','11/03/2015','Nguyễn Trọng Nghĩa','\0','$2a$11$iZ4OP67cmyFH96MONZN7zOD1nHb4vZvH3PDJxhSpQECNWVO0yYiLe','0909076619','active','admin','trongnghia@gmail.com'),(2,'7A Tan Trao Quan 7','11/03/1973','Vu Quoc Hoan','\0','$2a$11$W8kJD8tikwfsil0zAXvyReFfX5P817MyS/7CNXiiVI/Rbtj3BwYgG','0909079922','active','hoan.vu','hoan.vu2@gmail.com'),(3,'7A Tran Hung Dao','02/02/1987','Nguyen Quang Binh','\0','$2a$11$oXCplC3Due0NE.POnMD.TOyBW7qn0J5JBcfCTbrMrLm/kAOdKfqpe','0909080808','active','binh.nguyen','quang.binh@gmail.com'),(4,'2 Le Duan ','11/03/2015','Quang Nhat','\0','$2a$11$q8kEvw8sfRGxbEMXS2bipucdfdv4/EMXUBJrXQVY0pL7FknUvq0vq','0909020304','active','quang.nhat','quang.nhat@gmail.com'),(5,'12 Le Duan','01/01/1987','Hong Thuy','\0','$2a$11$lS15PYBecdDWOYUjBBsr9u7EPCoIyLwMs3Nz4D/zlfMh1UdO605Wi','0907989891','active','hong.thuy','hong.thuy@gmail.com'),(6,'11 Thanh Duc','11/10/1986','Thanh Duc a b c','\0','$2a$11$e7zF2KixEZ7BdLZIv0HC4eqJdlnSg7a.oVRfTp/Bggxr43EKiWAm2','0123111222','active','thanh.duc','thanh.duc@gmail.con'),(8,'1 Alexander Rhodes','11/10/2015','Khue Nguyen','\0','$2a$11$kLr17vQXciveLa3p3oPcH.c1Y1SgOCb978753d1pIekvmuwBMUt9K','0121345123','active','khue.nguyen','icoding.active@gmail.com'),(9,'1 Thanh Do','12/12/1993','Thanh Do ','\0','$2a$11$WiOmyc6bhUXY3vpWOUwOJ.Kda3ZluwPyDlNGCyKYoEyGriVTlkWj2','0909333222','active','thanh.do','thanh.do@gmail.com'),(10,'12 Anh Tu','12/12/1991','Nguyen Anh Tu','\0','$2a$11$Y7e9Hin4UH76f.jkowbaAeWdmaSwYZOo/cYmuiqFL8o3eeIy015TS','01234124124','active','anh.tu','anh.tu@gmail.com'),(11,'12 Anh Tu','12/12/1991','Nguyen Anh Tu','\0','$2a$11$hOiugoGKQe9zb1HPdjU8NOn5MI/hMQMheRo5EET4jChW4qDqJqEgO','01234124124','active','anh.tu','anh.tu@gmail.com'),(13,'12 Lanh Luu','01/01/1981','Luu Lanh','\0','$2a$11$RCG8/2GT1rHzvCqvhrJd0e4/RTgDFjVVQIQUxwe1R.a34kaAOnalW','0909090909','active','lanh.luu','lanh.luu@gmail.com'),(14,'12 Abavá','12/01/1984','Nguyen Nhat','\0','$2a$11$JPn/d/WBX1.0OHtR9xZJ2uaZXkPlna6wE0hbQmWKZvPI.clBIDzl.','0123124112','active','nhat.nguyen','nhat.nguyen@gmail.com');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -230,7 +242,7 @@ CREATE TABLE `user_roles` (
 
 LOCK TABLES `user_roles` WRITE;
 /*!40000 ALTER TABLE `user_roles` DISABLE KEYS */;
-INSERT INTO `user_roles` VALUES (1,1);
+INSERT INTO `user_roles` VALUES (1,1),(2,2),(3,3),(4,4),(5,5),(6,6),(6,8),(6,9),(6,10),(6,11),(6,13),(6,14);
 /*!40000 ALTER TABLE `user_roles` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -243,4 +255,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-11-01 13:15:17
+-- Dump completed on 2015-11-11 19:47:13
