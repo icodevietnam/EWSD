@@ -41,4 +41,67 @@ public class UserDaoImpl extends GenericDaoImpl<User, Integer> implements
 			return null;
 	}
 
+	@Override
+	public List<User> getListUserEE() {
+		List<User> listAll = getAll();
+		List<User> userList = new ArrayList<User>();
+		for (User u : listAll) {
+			if (u.getRole().getName().equalsIgnoreCase("ee")) {
+				userList.add(u);
+			}
+		}
+		return userList;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<User> getListUserPL() {
+		List<User> listAll = getAll();
+		List<User> userList = new ArrayList<User>();
+		for (User u : listAll) {
+			if (u.getRole().getName().equalsIgnoreCase("pl")) {
+				userList.add(u);
+			}
+		}
+		return userList;
+	}
+
+	@Override
+	public List<User> getEmployee() {
+		List<User> listAll = getAll();
+		List<User> userList = new ArrayList<User>();
+		for (User u : listAll) {
+			if (!u.getRole().getName().equalsIgnoreCase("student")) {
+				userList.add(u);
+			}
+		}
+		return userList;
+	}
+
+	@Override
+	public List<User> getStudent() {
+		List<User> listAll = getAll();
+		List<User> userList = new ArrayList<User>();
+		for (User u : listAll) {
+			if (u.getRole().getName().equalsIgnoreCase("student")) {
+				userList.add(u);
+			}
+		}
+		return userList;
+	}
+
+	@Override
+	public User loginStudent(String username, String password) {
+		List<User> listStudent = getAll();
+		User getUser = null;
+		for(User u : listStudent){
+			if (u.getUsername().equalsIgnoreCase(username) && u.getPassword().equalsIgnoreCase(password)) {
+				getUser = u;
+			}
+		}
+		return getUser;
+	}
+	
+	
+
 }

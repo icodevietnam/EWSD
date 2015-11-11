@@ -16,13 +16,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.icoding.domain.Role;
 import com.icoding.domain.User;
 import com.icoding.service.RoleService;
 import com.icoding.service.UserService;
+import com.icoding.utils.SendMailSSL;
 
 @Controller
-public class UserController {
+public class StudentController {
 
 	@Autowired
 	private UserService userService;
@@ -33,10 +33,11 @@ public class UserController {
 	@Autowired
 	private BCryptPasswordEncoder encoder;
 
-	@RequestMapping(value = "/user/checkPasswordExist", method = RequestMethod.GET)
+	@RequestMapping(value = "/student/checkPasswordExist", method = RequestMethod.GET)
 	@ResponseBody
 	public String checkPasswordExist(
-			@RequestParam(value = "oldpassword") String oldPassword) {
+
+	@RequestParam(value = "oldpassword") String oldPassword) {
 		Authentication auth = SecurityContextHolder.getContext()
 				.getAuthentication();
 		UserDetails userDetails = (UserDetails) auth.getPrincipal();
@@ -47,50 +48,64 @@ public class UserController {
 			return "true";
 	}
 
+	@RequestMapping(value = "/student/resetPassword", method = RequestMethod.GET)
+	@ResponseBody
+	public String resetPassword(@RequestParam(value = "itemId") String itemId) {
+		Integer id = Integer.parseInt(itemId);
+		User student = userService.get(id);
+		student.setPassword(encoder.encode("EE223344@5"));
+		userService.saveOrUpdate(student);
+		try {
+			SendMailSSL.sendMailTLSResetPassword(student.getEmail());
+			return "true";
+		} catch (Exception e) {
+			e.printStackTrace();
+;			return "false";
+		}
+	}
+
 	// Response user as json
-	@RequestMapping(value = "/user/getAll", method = RequestMethod.GET, produces = "application/json")
+	@RequestMapping(value = "/student/getAll", method = RequestMethod.GET, produces = "application/json")
 	@ResponseBody
 	public List<User> getAll(Model model) {
 		List<User> listUsers = new ArrayList<User>();
-		listUsers = userService.getEmployee();
+		listUsers = userService.getStudent();
 		return listUsers;
 	}
 
-	@RequestMapping(value = { "/admin/user", "/admin/user/list" }, method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
+	@RequestMapping(value = { "/admin/student", "/admin/student/list" }, method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
 	@Secured("ROLE_ADMIN")
 	public String displayPage(Model model) {
-		List<Role> listRoles = new ArrayList<Role>();
-		listRoles = roleService.getAllNotStudent();
-		model.addAttribute("pageName", "Manage User");
-		model.addAttribute("title", "Manage User");
-		model.addAttribute("listRoles", listRoles);
-		return "user/index";
+		model.addAttribute("pageName", "Manage Student");
+		model.addAttribute("title", "Manage Student");
+		return "student/index";
 	}
 
-	@RequestMapping(value = "/user/delete", method = RequestMethod.POST)
+	@RequestMapping(value = "/student/delete", method = RequestMethod.POST)
 	@ResponseBody
-	public String deleteUser(@RequestParam(value = "itemId") String itemId) {
+	public String deleteStudent(@RequestParam(value = "itemId") String itemId) {
 		Integer id = Integer.parseInt(itemId);
-		User user = userService.get(id);
+		User student = userService.get(id);
 		if (!itemId.equalsIgnoreCase("1")) {
-			user.setRole(null);
-			userService.remove(user);
+			student.setRole(null);
+			userService.remove(student);
 			return "true";
 		}
 		return "false";
 	}
 
-	@RequestMapping(value = "/user/get", method = RequestMethod.GET)
+	@RequestMapping(value = "/student/get", method = RequestMethod.GET)
 	@ResponseBody
-	public User getUser(@RequestParam(value = "itemId") String idemId) {
+	public User getStudent(@RequestParam(value = "itemId") String idemId) {
 		User user = userService.get(Integer.parseInt(idemId));
 		return user;
 	}
 
-	@RequestMapping(value = "/user/changePassword", method = RequestMethod.POST)
+	@RequestMapping(value = "/student/changePassword", method = RequestMethod.POST)
 	@ResponseBody
-	public String updateUser(@RequestParam(value = "userId") String userId,
-			@RequestParam(value = "password") String password) {
+	public String changePassword(@RequestParam(value = "userId") String userId,
+
+	@RequestParam(value = "password") String password) {
 		User user = userService.get(Integer.parseInt(userId));
 		user.setPassword(encoder.encode(password));
 		try {
@@ -101,13 +116,12 @@ public class UserController {
 		}
 	}
 
-	@RequestMapping(value = "/user/update", method = RequestMethod.POST)
+	@RequestMapping(value = "/student/update", method = RequestMethod.POST)
 	@ResponseBody
-	public String updateUser(@RequestParam(value = "userId") String userId,
+	public String updateStudent(@RequestParam(value = "userId") String userId,
 			@RequestParam(value = "fullname") String fullname,
 			@RequestParam(value = "birthDate") String birthDate,
 			@RequestParam(value = "address") String address,
-			@RequestParam(value = "roleId") String roleId,
 			@RequestParam(value = "phone") String phone,
 			@RequestParam(value = "email") String email,
 			@RequestParam(value = "state") String state,
@@ -117,7 +131,6 @@ public class UserController {
 		user.setBirthDate(birthDate);
 		user.setAddress(address);
 		user.setEmail(email);
-		user.setRole(roleService.get(Integer.parseInt(roleId)));
 		user.setState(state);
 		if (gender.equalsIgnoreCase("true")) {
 			user.setGender(true);
@@ -132,19 +145,17 @@ public class UserController {
 		}
 	}
 
-	@RequestMapping(value = "/user/new", method = RequestMethod.POST)
+	@RequestMapping(value = "/student/new", method = RequestMethod.POST)
 	@ResponseBody
-	public String addUser(@RequestParam(value = "password") String password,
+	public String addStudent(@RequestParam(value = "password") String password,
 			@RequestParam(value = "userName") String userName,
 			@RequestParam(value = "fullname") String fullname,
 			@RequestParam(value = "birthDate") String birthDate,
 			@RequestParam(value = "email") String email,
 			@RequestParam(value = "address") String address,
-			@RequestParam(value = "roleId") String roleId,
 			@RequestParam(value = "phone") String phone,
 			@RequestParam(value = "state") String state,
 			@RequestParam(value = "gender") String gender) {
-
 		User user = new User();
 		user.setUsername(userName);
 		user.setPassword(encoder.encode(password));
@@ -152,7 +163,7 @@ public class UserController {
 		user.setBirthDate(birthDate);
 		user.setAddress(address);
 		user.setEmail(email);
-		user.setRole(roleService.get(Integer.parseInt(roleId)));
+		user.setRole(roleService.getRoleStudent());
 		user.setState(state);
 		if (gender.equalsIgnoreCase("true")) {
 			user.setGender(true);
@@ -166,4 +177,5 @@ public class UserController {
 			return "false";
 		}
 	}
+
 }

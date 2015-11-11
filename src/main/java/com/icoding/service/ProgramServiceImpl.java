@@ -21,4 +21,19 @@ public class ProgramServiceImpl extends GenericServiceImpl<Program, Integer>
 		return programDao;
 	}
 
+	@Override
+	public Program getProgram(String code) {
+		return programDao.getProgram(code);
+	}
+
+	@Override
+	public void deleteProgram(String code) {
+		programDao.deleteProgram(code);
+	}
+
+	@Override
+	public void updateProgram(String code) {
+		programDao.updateProgram(code);
+	}
+
 }

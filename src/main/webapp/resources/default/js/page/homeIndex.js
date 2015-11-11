@@ -1,7 +1,7 @@
 $(function() {
 });
 
-function displayTable() {
+/*function displayTable() {
 	var name = $("#customerName").val() ;
 	var email = $("#customerEmail").val() ;
 	var dataDepartments = [];
@@ -97,3 +97,4 @@ function displayBrief(cusId){
 	});
 }
 
+*/

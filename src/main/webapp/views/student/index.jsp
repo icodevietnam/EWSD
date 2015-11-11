@@ -9,7 +9,7 @@
 				<div class="ibox">
 					<div class="ibox-content">
 						<a href="<c:url value='/admin/user/list'/>" class="btn-link">
-							<h2>Manage User</h2>
+							<h2>Manage Student</h2>
 						</a>
 						<button data-toggle="modal" data-target="#newItem"class="btn btn-sm btn-primary">Create
 							new</button>
@@ -102,16 +102,6 @@
 									</select>
 								</div>
 						</div>
-						<div class="form-group">
-							<label for="role" class="col-sm-2 control-label">Role</label>
-							<div class="col-sm-10">
-								<select id="roleBox" name="roleBox" class="form-control combobox" data-style="btn-white">
-									<c:forEach var="role" items="${listRoles}">
-										<option value="${role.id}">${role.description}</option>
-									</c:forEach>
-								</select>
-							</div>
-						</div>
 					</div>
 					<div class="modal-footer">
 						<button type="button" onclick="insertItem();" class="btn btn-primary">Save</button>
@@ -190,16 +180,6 @@
 									</select>
 								</div>
 						</div>
-						<div class="form-group">
-							<label for="department" class="col-sm-2 control-label">Role</label>
-							<div class="col-sm-10">
-								<select id="roleBox" name="roleBox" class="roleBox form-control combobox" data-style="btn-white">
-									<c:forEach var="role" items="${listRoles}">
-										<option value="${role.id}">${role.description}</option>
-									</c:forEach>
-								</select>
-							</div>
-						</div>
 					</div>
 					<div class="modal-footer">
 						<button type="button" onclick="editedItem();" class="btn btn-primary">Update</button>
@@ -245,6 +225,6 @@
 			</div>
 		</div>
 		<script
-			src="<c:url value='/resources/default/js/page/user.js'/>"></script>
+			src="<c:url value='/resources/default/js/page/student.js'/>"></script>
 	</tiles:putAttribute>
 </tiles:insertDefinition>

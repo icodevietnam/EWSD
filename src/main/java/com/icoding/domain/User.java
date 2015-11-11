@@ -70,6 +70,11 @@ public class User {
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "pl")
 	@Fetch(FetchMode.SELECT)
 	private List<Program> listProgramsByPL;
+	
+	@JsonIgnore
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "student")
+	@Fetch(FetchMode.SELECT)
+	private List<Report> listReportsByStudent;
 
 	public Integer getId() {
 		return id;

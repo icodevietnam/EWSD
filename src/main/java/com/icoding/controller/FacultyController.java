@@ -84,8 +84,8 @@ public class FacultyController {
 
 	@RequestMapping(value = "/faculty/get", method = RequestMethod.GET)
 	@ResponseBody
-	public Faculty getFaculty(@RequestParam(value = "itemId") String idemId) {
-		Faculty faculty = facultyService.get(Integer.parseInt(idemId));
+	public Faculty getFaculty(@RequestParam(value = "itemId") String itemId) {
+		Faculty faculty = facultyService.get(Integer.parseInt(itemId));
 		return faculty;
 	}
 }

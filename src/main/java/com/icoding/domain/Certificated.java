@@ -16,7 +16,7 @@ import org.hibernate.annotations.Parameter;
 @Table(name = "certificated")
 public class Certificated {
 
-	@GenericGenerator(name = "generator", strategy = "foreign", parameters = @Parameter(name = "property", value = "stock"))
+	@GenericGenerator(name = "generator", strategy = "foreign", parameters = @Parameter(name = "property", value = "student"))
 	@Id
 	@GeneratedValue(generator = "generator")
 	@Column(name = "id")

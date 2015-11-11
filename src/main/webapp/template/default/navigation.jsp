@@ -50,22 +50,13 @@
 				<ul class="nav nav-second-level collapse">
 					<li><a href="<c:url value='/admin/faculty/list'/>">Manage Faculty</a></li>
 					<li><a href="<c:url value='/admin/program/list'/>">Manage Program</a></li>
-					<li><a href="<c:url value='/admin/stock/list'/>">Quản lý Kho</a></li>
 				</ul>
 			</li>
 			<li class="suply"><a href="index.html"><i class="fa fa-th-large"></i> <span
-				class="nav-label">Quản lý Hồ Sơ</span> <span class="fa arrow"></span></a>
+				class="nav-label">Employee</span> <span class="fa arrow"></span></a>
 				<ul class="nav nav-second-level collapse">
-					<li><a href="<c:url value='/admin/brief/list'/>">Quản lý Hồ Sơ</a></li>
-					<li><a href="<c:url value='/admin/briefType/list'/>">Quản lý Loại Hồ Sơ</a></li>
-					<li><a href="<c:url value='/admin/stock/list'/>">Quản lý Kho</a></li>
-				</ul>
-			</li>
-			<li class="suply"><a href="index.html"><i class="fa fa-th-large"></i> <span
-				class="nav-label">Quản lý Đơn từ</span> <span class="fa arrow"></span></a>
-				<ul class="nav nav-second-level collapse">
-					<li><a href="<c:url value='/admin/document/list'/>">Quản lý Đơn từ</a></li>
-					<li><a href="<c:url value='/admin/documentType/list'/>">Quản lý Loại Đơn từ</a></li>
+					<li><a href="<c:url value='/admin/student/list'/>">Manage Student</a></li>
+					<li><a href="<c:url value='/admin/report/list'/>">Manage Report</a></li>
 				</ul>
 			</li>
 		</ul>

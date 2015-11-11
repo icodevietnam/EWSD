@@ -1,5 +1,7 @@
 package com.icoding.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,6 +31,31 @@ public class UserServiceImpl extends GenericServiceImpl<User, Integer>
 	@Override
 	GenericDao<User, Integer> getDao() {
 		return userDao;
+	}
+
+	@Override
+	public List<User> getListUserEE() {
+		return userDao.getListUserEE();
+	}
+
+	@Override
+	public List<User> getListUserPL() {
+		return userDao.getListUserPL();
+	}
+
+	@Override
+	public List<User> getEmployee() {
+		return userDao.getEmployee();
+	}
+
+	@Override
+	public List<User> getStudent() {
+		return userDao.getStudent();
+	}
+
+	@Override
+	public User loginStudent(String username, String password) {
+		return userDao.loginStudent(username, password);
 	}
 
 }

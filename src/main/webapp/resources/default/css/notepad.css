@@ -11,7 +11,27 @@ for IE  */
 
 
 body  {
-background:#4C1818;
+background:url("../img/student.jpg") ;
+background-size : 100%;
+background-repeat: no-repeat;
+background-attachment: fixed;
+}
+
+.home .title{
+	font-weight: 800;
+	font-size: 35px;
+	display: block;
+	margin-bottom: 20px;
+}
+
+.home .content{
+	display: block;
+	margin-bottom: 20px;
+}
+
+#navigation{
+	margin: auto;
+	width: 980px;
 }
 
 
@@ -21,7 +41,7 @@ background:#4C1818;
 #header {
 
 margin-left:5px;
-width:581px;
+width:100%;
 padding-bottom:1px;
 padding-left:70px;
 
@@ -45,7 +65,7 @@ font-weight:normal;
 background-color : white;
 width:980px;
 margin:auto;
-margin-top:30px;
+margin-top:-20px;
 }
 
 #box p  {
@@ -93,7 +113,7 @@ font-size:15px;
 }
 
 #nav a, #content a {
-color:#808080;
+color: orange;
 text-decoration:none;
 
 }
@@ -103,6 +123,24 @@ text-decoration:underline;
 color:#000;
 }
 
+#title{
+	margin: auto;
+	width: 980px;
+	color: white;	
+}
+
+.error{
+	color:red;
+}
+
+#title .title-text{
+	font-size: 25px;
+	display: block;
+	color: white;
+	margin-top: 15px;
+	margin-left: 30px;
+	margin-bottom: 20px;
+}
 
 .sub  {
 font-size:18px;
@@ -120,7 +158,7 @@ color:#000;
 #footer {
 width:581px;
 color:#000;
-padding-bottom:10px;
+padding-bottom:60px;
 padding-top:3px;
 font-family:verdana, arial, times, helvetica, arial, sans-serif;
 font-size:12px;
