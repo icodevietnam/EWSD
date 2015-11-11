@@ -59,6 +59,7 @@ public class User {
 	private Role role;
 
 	@OneToOne(fetch = FetchType.LAZY, mappedBy = "student", cascade = CascadeType.ALL)
+	@JsonIgnore
 	private Certificated certificated;
 
 	@JsonIgnore
