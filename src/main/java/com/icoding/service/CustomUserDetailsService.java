@@ -54,13 +54,13 @@ public class CustomUserDetailsService implements UserDetailsService {
 			roles.add("ROLE_ADMIN");
 		} else if (role.getName().equalsIgnoreCase("pvc")) {
 			roles.add("ROLE_PVC");
-		}else if (role.getName().equalsIgnoreCase("dlt")) {
+		} else if (role.getName().equalsIgnoreCase("dlt")) {
 			roles.add("ROLE_DLT");
-		}else if(role.getName().equalsIgnoreCase("pl")){ 
+		} else if (role.getName().equalsIgnoreCase("pl")) {
 			roles.add("ROLE_PL");
-		}else if(role.getName().equalsIgnoreCase("ee")){ 
+		} else if (role.getName().equalsIgnoreCase("ee")) {
 			roles.add("ROLE_EE");
-		}else {
+		} else {
 			roles.add("ROLE_STUDENT");
 		}
 		return roles;

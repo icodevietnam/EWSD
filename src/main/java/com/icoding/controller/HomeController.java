@@ -95,9 +95,14 @@ public class HomeController {
 
 	@RequestMapping(value = { "/member/logout" }, method = RequestMethod.GET)
 	public String loginStudent(Model model, HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		session.setAttribute("student", null);
-		session.invalidate();
+		HttpSession session = request.getSession(false);
+		if(session!=null)
+		{
+			User student = (User) session.getAttribute("student");
+			if(student!=null){
+				session.setAttribute("student",null);
+			}
+		}
 		return "redirect:/home";
 	}
 

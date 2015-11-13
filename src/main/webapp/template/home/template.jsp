@@ -162,11 +162,12 @@
 
 						<div class="input-group">
 							<span class="input-group-addon"><i
-								class="glyphicon glyphicon-lock"></i></span> <input id=""
-								password""
+								class="glyphicon glyphicon-lock"></i></span> <input id="password"
 								type="password" class="form-control"
 								name="password" placeholder="Password">
 						</div>
+						<input type="hidden" name="${_csrf.parameterName}"
+								value="${_csrf.token}" />
 					</div>
 					<div class="modal-footer">
 						<button type="submit" class="btn btn-primary">Login</button>
