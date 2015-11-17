@@ -7,6 +7,7 @@ import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 
 import com.icoding.domain.Program;
+import com.icoding.domain.User;
 
 @Repository
 public class ProgramDaoImpl extends GenericDaoImpl<Program, Integer> implements

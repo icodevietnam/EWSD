@@ -94,14 +94,34 @@ public class UserDaoImpl extends GenericDaoImpl<User, Integer> implements
 	public User loginStudent(String username, String password) {
 		List<User> listStudent = getAll();
 		User getUser = null;
-		for(User u : listStudent){
-			if (u.getUsername().equalsIgnoreCase(username) && u.getPassword().equalsIgnoreCase(password)) {
+		for (User u : listStudent) {
+			if (u.getUsername().equalsIgnoreCase(username)
+					&& u.getPassword().equalsIgnoreCase(password)) {
 				getUser = u;
 			}
 		}
 		return getUser;
 	}
-	
-	
+
+	@Override
+	public Boolean checkUsernameExist(String username) {
+		User user = getUser(username);
+		if (user != null) {
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public Boolean checkEmailExist(String email) {
+		List<User> userList = new ArrayList<User>();
+		Query query = currentSession().createQuery(
+				"from User u where u.email = :email");
+		query.setParameter("email", email);
+		userList = query.list();
+		if (userList.size() > 0)
+			return true;
+		return false;
+	}
 
 }

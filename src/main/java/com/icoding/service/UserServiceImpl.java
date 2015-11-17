@@ -58,4 +58,14 @@ public class UserServiceImpl extends GenericServiceImpl<User, Integer>
 		return userDao.loginStudent(username, password);
 	}
 
+	@Override
+	public Boolean checkUsernameExist(String username) {
+		return userDao.checkUsernameExist(username);
+	}
+
+	@Override
+	public Boolean checkEmailExist(String email) {
+		return userDao.checkEmailExist(email);
+	}
+
 }

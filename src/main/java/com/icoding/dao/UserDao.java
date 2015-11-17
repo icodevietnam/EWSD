@@ -18,4 +18,8 @@ public interface UserDao extends GenericDao<User, Integer> {
 	List<User> getStudent();
 	
 	User loginStudent(String username,String password);
+	
+	Boolean checkUsernameExist(String username);
+	
+	Boolean checkEmailExist(String email);
 }

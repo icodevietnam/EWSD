@@ -166,4 +166,24 @@ public class UserController {
 			return "false";
 		}
 	}
+
+	@RequestMapping(value = "/user/checkUsername", method = RequestMethod.POST)
+	@ResponseBody
+	public String checkUsername(
+			@RequestParam(value = "username") String username) {
+		if (userService.checkUsernameExist(username)) {
+			return "false";
+		}
+		return "true";
+	}
+
+	@RequestMapping(value = "/user/checkEmail", method = RequestMethod.POST)
+	@ResponseBody
+	public String checkEmail(@RequestParam(value = "email") String email) {
+		if (userService.checkEmailExist(email)) {
+			return "false";
+		}
+		return "true";
+	}
+
 }

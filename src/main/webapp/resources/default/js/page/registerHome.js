@@ -5,7 +5,16 @@ $(function() {
 	$("#newItemForm").validate({
 		rules : {
 			userName : {
-				required : true
+				required : true,
+				remote : {
+					url : '/ewsd/user/checkUsername',
+					type : 'post',
+					data :{
+						username : function(){
+							return $("#userName").val();
+						}
+					}
+				}
 			},
 			password : {
 				required : true,
@@ -26,6 +35,15 @@ $(function() {
 			},
 			email : {
 				required : true,
+				remote : {
+					url : '/ewsd/user/checkEmail',
+					type : 'post',
+					data :{
+						email : function(){
+							return $("#email").val();
+						}
+					}
+				}
 			},
 			address : {
 				required : true
@@ -36,7 +54,8 @@ $(function() {
 		},
 		messages : {
 			userName : {
-				required : "Username is not blank."
+				required : "Username is not blank.",
+				remote : "The Username is existed."
 			},
 			password : {
 				required : "Password is not blank",
@@ -54,6 +73,7 @@ $(function() {
 			},
 			email : {
 				required : "The email is not blank",
+				remote : "The Username is existed."
 			},
 			address : {
 				required : "Address is not blank"

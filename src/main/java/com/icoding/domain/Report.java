@@ -1,5 +1,7 @@
 package com.icoding.domain;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -27,6 +29,9 @@ public class Report {
 
 	@Column(name = "isApproved")
 	private Boolean isApproved;
+
+	@Column(name = "createdDate")
+	private Date createDate;
 
 	public Integer getId() {
 		return id;
@@ -58,6 +63,14 @@ public class Report {
 
 	public void setIsApproved(Boolean isApproved) {
 		this.isApproved = isApproved;
+	}
+
+	public Date getCreateDate() {
+		return createDate;
+	}
+
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
 	}
 
 }

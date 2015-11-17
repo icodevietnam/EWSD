@@ -1,6 +1,7 @@
 package com.icoding.controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -17,15 +18,20 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.icoding.domain.Certificated;
 import com.icoding.domain.Faculty;
+import com.icoding.domain.Notification;
 import com.icoding.domain.Program;
+import com.icoding.domain.Report;
 import com.icoding.domain.User;
 import com.icoding.service.CertificateService;
 import com.icoding.service.FacultyService;
+import com.icoding.service.NotificationService;
 import com.icoding.service.ProgramService;
+import com.icoding.service.ReportService;
 import com.icoding.service.UserService;
 
 /**
@@ -52,6 +58,12 @@ public class HomeController {
 
 	@Autowired
 	private UserService userService;
+
+	@Autowired
+	private ReportService reportService;
+
+	@Autowired
+	private NotificationService notificationService;
 
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -86,7 +98,12 @@ public class HomeController {
 		User student = userService.getUser(username);
 		HttpSession session = request.getSession();
 		if (encoder.matches(password, student.getPassword())) {
-			session.setAttribute("student", student);
+			// session.setAttribute("student", student);
+			if (student.getRole().getName().equalsIgnoreCase("student")) {
+				session.setAttribute("student", student);
+			} else {
+				session.setAttribute("student", null);
+			}
 		} else {
 			session.setAttribute("student", null);
 		}
@@ -96,11 +113,10 @@ public class HomeController {
 	@RequestMapping(value = { "/member/logout" }, method = RequestMethod.GET)
 	public String loginStudent(Model model, HttpServletRequest request) {
 		HttpSession session = request.getSession(false);
-		if(session!=null)
-		{
+		if (session != null) {
 			User student = (User) session.getAttribute("student");
-			if(student!=null){
-				session.setAttribute("student",null);
+			if (student != null) {
+				session.setAttribute("student", null);
 			}
 		}
 		return "redirect:/home";
@@ -119,6 +135,21 @@ public class HomeController {
 				listByFaculty.add(p);
 			}
 		}
+		// Get Program from Session User:
+		HttpSession session = request.getSession();
+		double average = 0;
+		if (session != null) {
+			User student = (User) session.getAttribute("student");
+			if (student != null) {
+				Certificated score = student.getCertificated();
+				if (score != null) {
+					average = (score.getBiological() + score.getChemistry()
+							+ score.getEnglish() + score.getMath()
+							+ score.getPhysical() + score.getLiterity()) / 6;
+				}
+			}
+		}
+		model.addAttribute("average", average);
 		model.addAttribute("listPrograms", listByFaculty);
 		return "home/program";
 	}
@@ -163,6 +194,41 @@ public class HomeController {
 
 	private List<Faculty> listFaculties() {
 		return facultyService.getAll();
+	}
+
+	@RequestMapping(value = { "/report/joinProgram" }, method = RequestMethod.POST)
+	@ResponseBody
+	public String joinProgram(@RequestParam(value = "stuId") String stuId,
+			@RequestParam(value = "code") String code) {
+		Integer studentId = Integer.parseInt(stuId);
+		User student = userService.get(studentId);
+		Program program = programService.getProgram(code);
+		if (student != null && program != null) {
+			if(reportService.isReportExist(studentId, code)){
+				return "false";
+			}else{
+				Report report = new Report();
+				report.setStudent(student);
+				report.setProgram(program);
+				report.setCreateDate(new Date());
+				report.setIsApproved(false);
+				reportService.add(report);
+
+				Notification notification = new Notification();
+				notification.setName("New Report Added: " + student.getFullName()
+						+ " join program " + program.getName());
+				notification.setContent("New Report: \n"
+						+ " Url: http://localhost/ewsd/report/" + report.getId());
+				notification.setIsEERead(false);
+				notification.setIsDLTRead(false);
+				notification.setIsPLRead(false);
+				notification.setIsPVCRead(false);
+				notificationService.add(notification);
+				return "true";
+			}
+		} else {
+			return "false";
+		}
 	}
 
 }

@@ -3,6 +3,9 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:if test="${student != null }">
+	<c:redirect url="/accessDenied" />
+</c:if>
 <tiles:insertDefinition name="homeTemplate">
 	<tiles:putAttribute name="body">
 		<div class="row">
