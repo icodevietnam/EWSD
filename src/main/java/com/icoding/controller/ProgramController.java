@@ -22,7 +22,7 @@ import com.icoding.service.ProgramService;
 import com.icoding.service.UserService;
 
 @Controller
-public class ProgramController {
+public class ProgramController extends GenericController{
 
 	@Autowired
 	private ProgramService programService;
@@ -34,7 +34,7 @@ public class ProgramController {
 	private UserService userService;
 
 	@RequestMapping(value = { "/admin/program", "/admin/program/list" }, method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
-	@Secured("ROLE_ADMIN")
+	@Secured({"ROLE_ADMIN","ROLE_PVC","ROLE_DLT","ROLE_PL"})
 	public String displayPage(Model model) {
 		List<Faculty> listFaculties = facultyService.getAll();
 		List<User> listUserEE = userService.getListUserEE();
@@ -45,6 +45,7 @@ public class ProgramController {
 		model.addAttribute("listYear", listYearNow());
 		model.addAttribute("pageName", "Manage Program");
 		model.addAttribute("title", "Manage Program");
+		model.addAttribute("countNav", countNotifications());
 		return "program/index";
 	}
 
@@ -61,10 +62,18 @@ public class ProgramController {
 		Program program = new Program();
 		program.setName(programName);
 		program.setDescription(programDescription);
-		User pl = userService.get(Integer.parseInt(plId));
-		program.setPl(pl);
-		User ee = userService.get(Integer.parseInt(eeId));
-		program.setEe(ee);
+		if (plId.equalsIgnoreCase("none")) {
+			program.setPl(null);
+		} else {
+			User pl = userService.get(Integer.parseInt(plId));
+			program.setPl(pl);
+		}
+		if (eeId.equalsIgnoreCase("none")) {
+			program.setEe(null);
+		} else {
+			User ee = userService.get(Integer.parseInt(eeId));
+			program.setEe(ee);
+		}
 		program.setTypeOfGrade(typeOfGrade);
 		program.setAcademicYear(academicYear);
 		Faculty faculty = facultyService.get(Integer.parseInt(facultyId));
@@ -93,25 +102,22 @@ public class ProgramController {
 		Program program = programService.getProgram(itemId);
 		return program;
 	}
-	
+
 	@RequestMapping(value = "/program/delete", method = RequestMethod.POST)
 	@ResponseBody
 	public String deleteProgram(@RequestParam(value = "itemId") String itemId) {
-		//Integer id = Integer.parseInt(itemId);
-		/*Program program = programService.get(id);
-		if (program!=null) {
-			programService.remove(faculty);
-			return "true";
-		}
-		return "false";*/
+		// Integer id = Integer.parseInt(itemId);
+		/*
+		 * Program program = programService.get(id); if (program!=null) {
+		 * programService.remove(faculty); return "true"; } return "false";
+		 */
 		programService.deleteProgram(itemId);
 		return "true";
 	}
-	
+
 	@RequestMapping(value = "/program/update", method = RequestMethod.POST)
 	@ResponseBody
-	public String updaterole(
-			@RequestParam(value = "itemId") String itemId,
+	public String updaterole(@RequestParam(value = "itemId") String itemId,
 			@RequestParam(value = "name") String programName,
 			@RequestParam(value = "description") String programDescription,
 			@RequestParam(value = "plBox") String plId,
@@ -123,10 +129,18 @@ public class ProgramController {
 		Program program = programService.getProgram(itemId);
 		program.setName(programName);
 		program.setDescription(programDescription);
-		User pl = userService.get(Integer.parseInt(plId));
-		program.setPl(pl);
-		User ee = userService.get(Integer.parseInt(eeId));
-		program.setEe(ee);
+		if (plId.equalsIgnoreCase("none")) {
+			program.setPl(null);
+		} else {
+			User pl = userService.get(Integer.parseInt(plId));
+			program.setPl(pl);
+		}
+		if (eeId.equalsIgnoreCase("none")) {
+			program.setEe(null);
+		} else {
+			User ee = userService.get(Integer.parseInt(eeId));
+			program.setEe(ee);
+		}
 		program.setTypeOfGrade(typeOfGrade);
 		program.setAcademicYear(academicYear);
 		Faculty faculty = facultyService.get(Integer.parseInt(facultyId));

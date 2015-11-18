@@ -16,16 +16,17 @@ import com.icoding.domain.Role;
 import com.icoding.service.RoleService;
 
 @Controller
-public class RoleController {
+public class RoleController extends GenericController {
 
 	@Autowired
 	private RoleService roleService;
 
 	@RequestMapping(value = { "/admin/role", "/admin/role/list" }, method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
-	@Secured("ROLE_ADMIN")
+	@Secured({ "ROLE_ADMIN", "ROLE_PVC" })
 	public String displayPage(Model model) {
 		model.addAttribute("pageName", "Manage Role");
 		model.addAttribute("title", "Manage Role");
+		model.addAttribute("countNav", countNotifications());
 		return "role/index";
 	}
 

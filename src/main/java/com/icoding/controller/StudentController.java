@@ -22,7 +22,7 @@ import com.icoding.service.UserService;
 import com.icoding.utils.SendMailSSL;
 
 @Controller
-public class StudentController {
+public class StudentController extends GenericController {
 
 	@Autowired
 	private UserService userService;
@@ -75,10 +75,11 @@ public class StudentController {
 	}
 
 	@RequestMapping(value = { "/admin/student", "/admin/student/list" }, method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
-	@Secured("ROLE_ADMIN")
+	@Secured({"ROLE_ADMIN","ROLE_PVC","ROLE_DLT","ROLE_PL","ROLE_EE"})
 	public String displayPage(Model model) {
 		model.addAttribute("pageName", "Manage Student");
 		model.addAttribute("title", "Manage Student");
+		model.addAttribute("countNav", countNotifications());
 		return "student/index";
 	}
 

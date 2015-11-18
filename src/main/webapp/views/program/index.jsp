@@ -60,6 +60,7 @@
 							<label for="programerLeader" class="col-sm-2 control-label">Programer Leader</label>
 							<div class="col-sm-10">
 								<select id="plBox" name="plBox" class="form-control combobox" data-style="btn-white">
+									<option value="none">No selected</option>
 									<c:forEach var="pl" items="${listUsersPL}">
 										<option value="${pl.id}">${pl.fullName}</option>
 									</c:forEach>
@@ -70,6 +71,7 @@
 							<label for="programerLeader" class="col-sm-2 control-label">External Examiner</label>
 							<div class="col-sm-10">
 								<select id="eeBox" name="eeBox" class="form-control combobox" data-style="btn-white">
+									<option value="none">No selected</option>
 									<c:forEach var="ee" items="${listUsersEE}">
 										<option value="${ee.id}">${ee.fullName}</option>
 									</c:forEach>

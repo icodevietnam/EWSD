@@ -34,17 +34,18 @@
 				</div>
 				<div class="logo-element">IN+</div>
 			</li>
+			<sec:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_PVC')">
 			<li class="suply"><a href="index.html"><i class="fa fa-th-large"></i> <span
 				class="nav-label">Manage User</span> <span class="fa arrow"></span></a>
 				<ul class="nav nav-second-level collapse">
-				<sec:authorize access="hasRole('ROLE_ADMIN')">
 					<li><a href="<c:url value='/admin/user/list'/>">Manage Users</a></li>
 					<%-- <li><a href="<c:url value='/admin/department/list'/>">Phòng ban</a></li> --%>
 					<li><a href="<c:url value='/admin/role/list'/>">Manage Role</a></li>
-				</sec:authorize>
 				<%-- <li><a href="<c:url value='/admin/customer/list'/>">Quản lý khách hàng</a></li> --%>
 				</ul>
 			</li>
+			</sec:authorize>
+			<sec:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_PVC','ROLE_DLT','ROLE_PL')">
 			<li class="suply"><a href="index.html"><i class="fa fa-th-large"></i> <span
 				class="nav-label">Manage Examiner</span> <span class="fa arrow"></span></a>
 				<ul class="nav nav-second-level collapse">
@@ -52,13 +53,17 @@
 					<li><a href="<c:url value='/admin/program/list'/>">Manage Program</a></li>
 				</ul>
 			</li>
+			</sec:authorize>
+			<sec:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_PVC','ROLE_DLT','ROLE_PL','ROLE_EE')">
 			<li class="suply"><a href="index.html"><i class="fa fa-th-large"></i> <span
 				class="nav-label">Employee</span> <span class="fa arrow"></span></a>
 				<ul class="nav nav-second-level collapse">
 					<li><a href="<c:url value='/admin/student/list'/>">Manage Student</a></li>
 					<li><a href="<c:url value='/admin/report/list'/>">Manage Report</a></li>
+					<li><a href="<c:url value='/admin/home'/>">Dashboard</a></li>
 				</ul>
 			</li>
+			</sec:authorize>
 		</ul>
 	</div>
 	<script src="<c:url value='/resources/default/js/navigation.js'/>"></script>

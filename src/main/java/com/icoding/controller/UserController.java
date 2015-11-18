@@ -22,7 +22,7 @@ import com.icoding.service.RoleService;
 import com.icoding.service.UserService;
 
 @Controller
-public class UserController {
+public class UserController extends GenericController {
 
 	@Autowired
 	private UserService userService;
@@ -57,13 +57,14 @@ public class UserController {
 	}
 
 	@RequestMapping(value = { "/admin/user", "/admin/user/list" }, method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
-	@Secured("ROLE_ADMIN")
+	@Secured({ "ROLE_ADMIN", "ROLE_PVC"})
 	public String displayPage(Model model) {
 		List<Role> listRoles = new ArrayList<Role>();
 		listRoles = roleService.getAllNotStudent();
 		model.addAttribute("pageName", "Manage User");
 		model.addAttribute("title", "Manage User");
 		model.addAttribute("listRoles", listRoles);
+		model.addAttribute("countNav", countNotifications());
 		return "user/index";
 	}
 

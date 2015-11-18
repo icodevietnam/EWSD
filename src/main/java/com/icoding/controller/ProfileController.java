@@ -19,7 +19,7 @@ import com.icoding.domain.User;
 import com.icoding.service.UserService;
 
 @Controller
-public class ProfileController {
+public class ProfileController extends GenericController {
 
 	@Autowired
 	private BCryptPasswordEncoder encoder;
@@ -37,6 +37,7 @@ public class ProfileController {
 		model.addAttribute("currentUser", currentUser);
 		model.addAttribute("pageName", "User Information");
 		model.addAttribute("title", "User Information");
+		model.addAttribute("countNav", countNotifications());
 		return "profile/index";
 	}
 

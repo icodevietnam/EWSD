@@ -11,9 +11,11 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -39,7 +41,7 @@ import com.icoding.service.UserService;
  */
 @Controller
 @SessionAttributes("student")
-public class HomeController {
+public class HomeController extends GenericController{
 
 	private static final Logger logger = LoggerFactory
 			.getLogger(HomeController.class);
@@ -72,6 +74,8 @@ public class HomeController {
 	public String adminHome(Locale locale, Model model) {
 		logger.warn("Test xem co vao khong ?");
 		model.addAttribute("pageName", "Quản trị người dùng");
+		model.addAttribute("countNav", countNotifications());
+		model.addAttribute("listAcademicYear", reportService.listReportsYear());
 		return "home";
 	}
 
@@ -92,7 +96,7 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = { "/member/login" }, method = RequestMethod.POST)
-	public String loginStudent(Model model, HttpServletRequest request,
+	public String loginStudent(ModelMap model, HttpServletRequest request,
 			@RequestParam(value = "username") String username,
 			@RequestParam(value = "password") String password) {
 		User student = userService.getUser(username);
@@ -119,6 +123,7 @@ public class HomeController {
 				session.setAttribute("student", null);
 			}
 		}
+		SecurityContextHolder.clearContext();
 		return "redirect:/home";
 	}
 
@@ -204,21 +209,24 @@ public class HomeController {
 		User student = userService.get(studentId);
 		Program program = programService.getProgram(code);
 		if (student != null && program != null) {
-			if(reportService.isReportExist(studentId, code)){
+			if (reportService.isReportExist(studentId, code)) {
 				return "false";
-			}else{
+			} else {
 				Report report = new Report();
 				report.setStudent(student);
 				report.setProgram(program);
 				report.setCreateDate(new Date());
 				report.setIsApproved(false);
+				report.setIsOverdue(false);
 				reportService.add(report);
 
 				Notification notification = new Notification();
-				notification.setName("New Report Added: " + student.getFullName()
-						+ " join program " + program.getName());
+				notification.setName("New Report Added: "
+						+ student.getFullName() + " join program "
+						+ program.getName());
 				notification.setContent("New Report: \n"
-						+ " Url: http://localhost/ewsd/report/" + report.getId());
+						+ " Url: http://localhost/ewsd/report/"
+						+ report.getId());
 				notification.setIsEERead(false);
 				notification.setIsDLTRead(false);
 				notification.setIsPLRead(false);
@@ -229,6 +237,10 @@ public class HomeController {
 		} else {
 			return "false";
 		}
+	}
+	
+	private int countReportEachYear(){
+		return 0;
 	}
 
 }

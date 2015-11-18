@@ -30,6 +30,9 @@ public class Report {
 	@Column(name = "isApproved")
 	private Boolean isApproved;
 
+	@Column(name = "isOverdue")
+	private Boolean isOverdue;
+
 	@Column(name = "createdDate")
 	private Date createDate;
 
@@ -71,6 +74,14 @@ public class Report {
 
 	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;
+	}
+
+	public Boolean getIsOverdue() {
+		return isOverdue;
+	}
+
+	public void setIsOverdue(Boolean isOverdue) {
+		this.isOverdue = isOverdue;
 	}
 
 }

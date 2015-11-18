@@ -16,16 +16,17 @@ import com.icoding.domain.Faculty;
 import com.icoding.service.FacultyService;
 
 @Controller
-public class FacultyController {
+public class FacultyController extends GenericController{
 
 	@Autowired
 	private FacultyService facultyService;
 
 	@RequestMapping(value = { "/admin/faculty", "/admin/faculty/list" }, method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
-	@Secured("ROLE_ADMIN")
+	@Secured({"ROLE_ADMIN","ROLE_PVC","ROLE_DLT","ROLE_PL"})
 	public String displayPage(Model model) {
 		model.addAttribute("pageName", "Manage Faculty");
 		model.addAttribute("title", "Manage Faculty");
+		model.addAttribute("countNav", countNotifications());
 		return "faculty/index";
 	}
 
