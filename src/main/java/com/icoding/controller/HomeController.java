@@ -79,7 +79,19 @@ public class HomeController extends GenericController {
 		// reportService.listReportsYear());
 		model.addAttribute("allTaskCount", reportService.getAll().size());
 		model.addAttribute("completedReportCount", getCompletedReport().size());
+		model.addAttribute("programNoEENoPL", listProgramError().size());
 		return "home";
+	}
+	
+	private List<Program> listProgramError(){
+		List<Program> listPrograms = programService.getAll();
+		List<Program> listProgramError = new ArrayList<Program>();
+		for(Program p : listPrograms){
+			if(p.getEe() == null || p.getPl() == null){
+				listProgramError.add(p);
+			}
+		}
+		return listProgramError;
 	}
 
 	private List<Report> getCompletedReport() {
