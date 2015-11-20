@@ -27,9 +27,6 @@ $(function() {
 			fullname : {
 				required : true
 			},
-			confirmPassword : {
-				required : true
-			},
 			birthDate : {
 				required : true
 			},

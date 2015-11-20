@@ -79,14 +79,15 @@
 								data-target="#loginModal">Login</a></li>
 						</c:if>
 						<c:if test="${student != null}">
-							<li><a href="<c:url value='/member/score'/>">Score & Conduct</a></li>
+							<li><a href="<c:url value='/member/score'/>">Score &
+									Conduct</a></li>
 						</c:if>
 						<c:forEach var="faculty" items="${listFaculties}">
 							<li><a href="<c:url value='/program/${faculty.id}'/>">${faculty.name}</a></li>
 						</c:forEach>
 						<c:if test="${student != null}">
-							<li><a href="<c:url value='/member/logout'/>">Log
-									Out [${student.fullName}]</a></li>
+							<li><a href="<c:url value='/member/logout'/>">Log Out
+									[${student.fullName}]</a></li>
 						</c:if>
 						<!-- <li class="dropdown"><a href="#" class="dropdown-toggle"
 							data-toggle="dropdown" role="button" aria-haspopup="true"
@@ -128,6 +129,7 @@
 	</div>
 	<div id="box">
 		<div id="header">
+			<span class="error">${message}</span>
 			<h1>${title}</h1>
 		</div>
 		<!--TOP NAVIGATION-->
@@ -163,12 +165,13 @@
 						<div class="input-group">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-lock"></i></span> <input id="password"
-								type="password" class="form-control"
-								name="password" placeholder="Password">
+								type="password" class="form-control" name="password"
+								placeholder="Password">
 						</div>
 						<input type="hidden" name="${_csrf.parameterName}"
-								value="${_csrf.token}" />
+							value="${_csrf.token}" />
 					</div>
+					<span class="errot">${message}</span>
 					<div class="modal-footer">
 						<button type="submit" class="btn btn-primary">Login</button>
 					</div>

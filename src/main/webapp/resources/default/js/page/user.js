@@ -26,8 +26,6 @@ $(function() {
 				equalTo:"#password"
 			},fullname:{
 				required:true
-			},confirmPassword:{
-				required:true
 			},birthDate:{
 				required:true
 			},email : {

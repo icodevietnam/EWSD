@@ -80,14 +80,15 @@ public class HomeController extends GenericController {
 		model.addAttribute("allTaskCount", reportService.getAll().size());
 		model.addAttribute("completedReportCount", getCompletedReport().size());
 		model.addAttribute("programNoEENoPL", listProgramError().size());
+		model.addAttribute("message","");
 		return "home";
 	}
-	
-	private List<Program> listProgramError(){
+
+	private List<Program> listProgramError() {
 		List<Program> listPrograms = programService.getAll();
 		List<Program> listProgramError = new ArrayList<Program>();
-		for(Program p : listPrograms){
-			if(p.getEe() == null || p.getPl() == null){
+		for (Program p : listPrograms) {
+			if (p.getEe() == null || p.getPl() == null) {
 				listProgramError.add(p);
 			}
 		}
@@ -127,15 +128,21 @@ public class HomeController extends GenericController {
 			@RequestParam(value = "password") String password) {
 		User student = userService.getUser(username);
 		HttpSession session = request.getSession();
-		if (encoder.matches(password, student.getPassword())) {
-			// session.setAttribute("student", student);
-			if (student.getRole().getName().equalsIgnoreCase("student")) {
-				session.setAttribute("student", student);
+		if (student != null) {
+			if (encoder.matches(password, student.getPassword())) {
+				// session.setAttribute("student", student);
+				if (student.getRole().getName().equalsIgnoreCase("student")) {
+					session.setAttribute("message","");
+					session.setAttribute("student", student);
+				} else {
+					session.setAttribute("student",null);
+				}
 			} else {
-				session.setAttribute("student", null);
+				session.setAttribute("student",null);
 			}
-		} else {
-			session.setAttribute("student", null);
+		}
+		else{
+			session.setAttribute("message","Login Fail");
 		}
 		return "redirect:/home";
 	}
@@ -220,6 +227,7 @@ public class HomeController extends GenericController {
 			e.printStackTrace();
 		}
 		userService.saveOrUpdate(student);
+		session.setAttribute("student", student);
 		return "home/score";
 	}
 
