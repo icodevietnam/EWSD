@@ -9,9 +9,14 @@
 						<a href="article.html" class="btn-link">
 							<h2>Statistics</h2>
 						</a>
-						<p>Number Of Completed Report</p>
+						<p>
+							Number Of All Report:<span style="">${allTaskCount}</span>
+						</p>
+						<p>
+							Number Of Complete Report:<span style="">${completedReportCount}</span>
+						</p>
 						<c:forEach var="report" items="${listAcademicYear}">
-							<p> ${report.academicYear} - ${report.numReport} reports.
+							<p>${report.academicYear} - ${report.numReport} reports.
 						</c:forEach>
 					</div>
 				</div>

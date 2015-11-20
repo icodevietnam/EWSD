@@ -41,7 +41,7 @@ import com.icoding.service.UserService;
  */
 @Controller
 @SessionAttributes("student")
-public class HomeController extends GenericController{
+public class HomeController extends GenericController {
 
 	private static final Logger logger = LoggerFactory
 			.getLogger(HomeController.class);
@@ -75,8 +75,22 @@ public class HomeController extends GenericController{
 		logger.warn("Test xem co vao khong ?");
 		model.addAttribute("pageName", "Quản trị người dùng");
 		model.addAttribute("countNav", countNotifications());
-		model.addAttribute("listAcademicYear", reportService.listReportsYear());
+		// model.addAttribute("listAcademicYear",
+		// reportService.listReportsYear());
+		model.addAttribute("allTaskCount", reportService.getAll().size());
+		model.addAttribute("completedReportCount", getCompletedReport().size());
 		return "home";
+	}
+
+	private List<Report> getCompletedReport() {
+		List<Report> listReports = reportService.getAll();
+		List<Report> listCompletedReports = new ArrayList<Report>();
+		for (Report r : listReports) {
+			if (r.getIsApproved() == true) {
+				listCompletedReports.add(r);
+			}
+		}
+		return listCompletedReports;
 	}
 
 	@RequestMapping(value = { "/home", "/member", "/" }, method = RequestMethod.GET)
@@ -238,8 +252,8 @@ public class HomeController extends GenericController{
 			return "false";
 		}
 	}
-	
-	private int countReportEachYear(){
+
+	private int countReportEachYear() {
 		return 0;
 	}
 
