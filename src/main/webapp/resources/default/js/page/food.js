@@ -51,12 +51,26 @@ function displayTable() {
 			$.each(response, function(key, value) {
 				i++;
 				dataDepartments.push([
-						i,
-						value.name,value.description,
+						1,
+						"Food 1","Food 1","Type 1","<img alt='image' src='/project/resources/default/img/food1.jpg'>",
 						"<button class='btn btn-sm btn-primary' onclick='editItem("
 								+ value.id + ")' >Edit</button>",
 						"<button class='btn btn-sm btn-danger' onclick='deleteItem("
 								+ value.id + ")'>Delete</button>" ]);
+				dataDepartments.push([
+										1,
+										"Food 2","Food 2","Type 2","<img alt='image' src='/project/resources/default/img/food1.jpg'>",
+										"<button class='btn btn-sm btn-primary' onclick='editItem("
+												+ value.id + ")' >Edit</button>",
+										"<button class='btn btn-sm btn-danger' onclick='deleteItem("
+												+ value.id + ")'>Delete</button>" ]);
+				dataDepartments.push([
+										1,
+										"Food 3","Food 3","Type 3","<img alt='image' src='/project/resources/default/img/food1.jpg'>",
+										"<button class='btn btn-sm btn-primary' onclick='editItem("
+												+ value.id + ")' >Edit</button>",
+										"<button class='btn btn-sm btn-danger' onclick='deleteItem("
+												+ value.id + ")'>Delete</button>" ]);
 			});
 			$('#tblDepartment').dataTable({
 				"bDestroy" : true,
@@ -73,6 +87,8 @@ function displayTable() {
 					"sTitle" : "Name"
 				}, {
 					"sTitle" : "Description"
+				}, {
+					"sTitle" : "Image"
 				}, {
 					"sTitle" : "Edit"
 				}, {

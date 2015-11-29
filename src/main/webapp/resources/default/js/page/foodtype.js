@@ -51,12 +51,26 @@ function displayTable() {
 			$.each(response, function(key, value) {
 				i++;
 				dataDepartments.push([
-						i,
-						value.name,value.description,
+						1,
+						"Restaurant 1","Restaurant 1","Restaurant",
 						"<button class='btn btn-sm btn-primary' onclick='editItem("
 								+ value.id + ")' >Edit</button>",
 						"<button class='btn btn-sm btn-danger' onclick='deleteItem("
 								+ value.id + ")'>Delete</button>" ]);
+				dataDepartments.push([
+										1,
+										"Drinking 2","Drinking 2","Drinking",
+										"<button class='btn btn-sm btn-primary' onclick='editItem("
+												+ value.id + ")' >Edit</button>",
+										"<button class='btn btn-sm btn-danger' onclick='deleteItem("
+												+ value.id + ")'>Delete</button>" ]);
+				dataDepartments.push([
+										1,
+										"Hotel 3","Hotel 3","Hotel",
+										"<button class='btn btn-sm btn-primary' onclick='editItem("
+												+ value.id + ")' >Edit</button>",
+										"<button class='btn btn-sm btn-danger' onclick='deleteItem("
+												+ value.id + ")'>Delete</button>" ]);
 			});
 			$('#tblDepartment').dataTable({
 				"bDestroy" : true,
@@ -73,6 +87,8 @@ function displayTable() {
 					"sTitle" : "Name"
 				}, {
 					"sTitle" : "Description"
+				}, {
+					"sTitle" : "Image"
 				}, {
 					"sTitle" : "Edit"
 				}, {
