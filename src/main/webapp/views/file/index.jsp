@@ -5,8 +5,9 @@
 <tiles:insertDefinition name="defaultTemplate">
 	<tiles:putAttribute name="body">
 		<form method="POST" action="<c:url value='/uploadFile'/>" enctype="multipart/form-data">
-			File to upload: <input type="file" name="file"><br /> Name:
-			<input type="text" name="name"><br /> <br /> <input
+			File to upload: <input type="file" name="file"><br /> 
+			 <br /> 
+			 <input
 				type="submit" value="Upload"> Press here to upload the file!
 		</form>
 	</tiles:putAttribute>

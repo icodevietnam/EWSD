@@ -25,7 +25,7 @@ public class FileController {
 	}
 	
 	@RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
-	public String uploadFileHandler(@RequestParam("name") String name,
+	public String uploadFileHandler(
 			@RequestParam("file") MultipartFile file) {
 		if (!file.isEmpty()) {
 			try {
@@ -39,7 +39,7 @@ public class FileController {
 
 				// Create the file on server
 				File serverFile = new File(dir.getAbsolutePath()
-						+ File.separator + name);
+						+ File.separator + file.getOriginalFilename());
 				BufferedOutputStream stream = new BufferedOutputStream(
 						new FileOutputStream(serverFile));
 				stream.write(bytes);
@@ -48,17 +48,18 @@ public class FileController {
 				logger.info("Server File Location="
 						+ serverFile.getAbsolutePath());
 
-				return "You successfully uploaded file=" + name;
+				return "You successfully uploaded file=" + file.getOriginalFilename();
 			} catch (Exception e) {
-				return "You failed to upload " + name + " => " + e.getMessage();
+				return "You failed to upload " + file.getOriginalFilename() + " => " + e.getMessage();
 			}
 		} else {
-			return "You failed to upload " + name
+			return "You failed to upload " + file.getOriginalFilename()
 					+ " because the file was empty.";
 		}
 
 	}
 
+	//Upload to multiple file
 	@RequestMapping(value = "/uploadMultipleFile", method = RequestMethod.POST)
 	@ResponseBody
 	public String uploadMultipleFileHandler(
